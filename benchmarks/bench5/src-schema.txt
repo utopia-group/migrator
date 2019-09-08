@@ -1,0 +1,14 @@
+CREATE TABLE Customer (
+    FirstName VARCHAR,
+    CustomerID INT,
+    Balance INT,
+    PRIMARY KEY (CustomerID)
+);
+
+CREATE TABLE Account (
+    AccountID INT,
+    CustomerID_fk INT,
+    FOREIGN KEY (CustomerID_fk) REFERENCES Customer (CustomerID),
+    PRIMARY KEY (AccountID)
+);
+

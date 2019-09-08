@@ -1,0 +1,10 @@
+CREATE TABLE Employee (
+    EmployeeNumber INT,
+    Name VARCHAR,
+    PhoneNumber VARCHAR,
+    Picture VARCHAR,
+    VoicePrint VARCHAR,
+    RetinalPrint VARCHAR,
+    PRIMARY KEY (EmployeeNumber)
+);
+

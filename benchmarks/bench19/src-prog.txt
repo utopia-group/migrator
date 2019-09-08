@@ -1,0 +1,1219 @@
+update createAddress(int id, String first_name, String last_name, String day_phone, String evening_phone, String address_line_1, String address_line_2, String city, String state, String zip, String created_at, String updated_at, String address_name, int user_id, String country, String status, String comment, String fedex_validation_status) {
+    INSERT INTO addresses (addresses.id, addresses.first_name, addresses.last_name, addresses.day_phone, addresses.evening_phone, addresses.address_line_1, addresses.address_line_2, addresses.city, addresses.state, addresses.zip, addresses.created_at, addresses.updated_at, addresses.address_name, addresses.user_id, addresses.country, addresses.status, addresses.comment, addresses.fedex_validation_status) VALUES (<id>, <first_name>, <last_name>, <day_phone>, <evening_phone>, <address_line_1>, <address_line_2>, <city>, <state>, <zip>, <created_at>, <updated_at>, <address_name>, <user_id>, <country>, <status>, <comment>, <fedex_validation_status>);
+}
+
+update deleteAddress(int id) {
+    DELETE FROM addresses WHERE addresses.id = <id>;
+}
+
+update updateAddress(int id, String first_name, String last_name, String day_phone, String evening_phone, String address_line_1, String address_line_2, String city, String state, String zip, String updated_at, String address_name, int user_id, String country, String status, String comment, String fedex_validation_status) {
+    UPDATE addresses SET addresses.first_name = <first_name> WHERE addresses.id = <id>;
+    UPDATE addresses SET addresses.last_name = <last_name> WHERE addresses.id = <id>;
+    UPDATE addresses SET addresses.day_phone = <day_phone> WHERE addresses.id = <id>;
+    UPDATE addresses SET addresses.evening_phone = <evening_phone> WHERE addresses.id = <id>;
+    UPDATE addresses SET addresses.address_line_1 = <address_line_1> WHERE addresses.id = <id>;
+    UPDATE addresses SET addresses.address_line_2 = <address_line_2> WHERE addresses.id = <id>;
+    UPDATE addresses SET addresses.city = <city> WHERE addresses.id = <id>;
+    UPDATE addresses SET addresses.state = <state> WHERE addresses.id = <id>;
+    UPDATE addresses SET addresses.zip = <zip> WHERE addresses.id = <id>;
+    UPDATE addresses SET addresses.updated_at = <updated_at> WHERE addresses.id = <id>;
+    UPDATE addresses SET addresses.address_name = <address_name> WHERE addresses.id = <id>;
+    UPDATE addresses SET addresses.user_id = <user_id> WHERE addresses.id = <id>;
+    UPDATE addresses SET addresses.country = <country> WHERE addresses.id = <id>;
+    UPDATE addresses SET addresses.status = <status> WHERE addresses.id = <id>;
+    UPDATE addresses SET addresses.comment = <comment> WHERE addresses.id = <id>;
+    UPDATE addresses SET addresses.fedex_validation_status = <fedex_validation_status> WHERE addresses.id = <id>;
+}
+
+query readAddress(int id) {
+    SELECT addresses.first_name, addresses.last_name, addresses.day_phone, addresses.evening_phone, addresses.address_line_1, addresses.address_line_2, addresses.city, addresses.state, addresses.zip, addresses.address_name, addresses.user_id, addresses.country, addresses.status, addresses.comment, addresses.fedex_validation_status FROM addresses WHERE addresses.id = <id>;
+}
+
+query readAddressCreateTime(int id) {
+    SELECT addresses.created_at FROM addresses WHERE addresses.id = <id>;
+}
+
+query readAddressUpdateTime(int id) {
+    SELECT addresses.updated_at FROM addresses WHERE addresses.id = <id>;
+}
+
+update createBox(int id, int assigned_to_user_id, String created_at, String updated_at, int ordering_order_line_id, String status, String box_type, String description, String inventorying_status, int inventorying_order_line_id, String received_at, String height, String width, String length, String weight, int box_num, String return_requested_at, String location, String inventoried_at, int created_by_id) {
+    INSERT INTO boxes (boxes.id, boxes.assigned_to_user_id, boxes.created_at, boxes.updated_at, boxes.ordering_order_line_id, boxes.status, boxes.box_type, boxes.description, boxes.inventorying_status, boxes.inventorying_order_line_id, boxes.received_at, boxes.height, boxes.width, boxes.length, boxes.weight, boxes.box_num, boxes.return_requested_at, boxes.location, boxes.inventoried_at, boxes.created_by_id) VALUES (<id>, <assigned_to_user_id>, <created_at>, <updated_at>, <ordering_order_line_id>, <status>, <box_type>, <description>, <inventorying_status>, <inventorying_order_line_id>, <received_at>, <height>, <width>, <length>, <weight>, <box_num>, <return_requested_at>, <location>, <inventoried_at>, <created_by_id>);
+}
+
+update deleteBox(int id) {
+    DELETE FROM boxes WHERE boxes.id = <id>;
+}
+
+update updateBox(int id, int assigned_to_user_id, String updated_at, int ordering_order_line_id, String status, String box_type, String description, String inventorying_status, int inventorying_order_line_id, String received_at, String height, String width, String length, String weight, int box_num, String return_requested_at, String location, String inventoried_at, int created_by_id) {
+    UPDATE boxes SET boxes.assigned_to_user_id = <assigned_to_user_id> WHERE boxes.id = <id>;
+    UPDATE boxes SET boxes.updated_at = <updated_at> WHERE boxes.id = <id>;
+    UPDATE boxes SET boxes.ordering_order_line_id = <ordering_order_line_id> WHERE boxes.id = <id>;
+    UPDATE boxes SET boxes.status = <status> WHERE boxes.id = <id>;
+    UPDATE boxes SET boxes.box_type = <box_type> WHERE boxes.id = <id>;
+    UPDATE boxes SET boxes.description = <description> WHERE boxes.id = <id>;
+    UPDATE boxes SET boxes.inventorying_status = <inventorying_status> WHERE boxes.id = <id>;
+    UPDATE boxes SET boxes.inventorying_order_line_id = <inventorying_order_line_id> WHERE boxes.id = <id>;
+    UPDATE boxes SET boxes.received_at = <received_at> WHERE boxes.id = <id>;
+    UPDATE boxes SET boxes.height = <height> WHERE boxes.id = <id>;
+    UPDATE boxes SET boxes.width = <width> WHERE boxes.id = <id>;
+    UPDATE boxes SET boxes.length = <length> WHERE boxes.id = <id>;
+    UPDATE boxes SET boxes.weight = <weight> WHERE boxes.id = <id>;
+    UPDATE boxes SET boxes.box_num = <box_num> WHERE boxes.id = <id>;
+    UPDATE boxes SET boxes.return_requested_at = <return_requested_at> WHERE boxes.id = <id>;
+    UPDATE boxes SET boxes.location = <location> WHERE boxes.id = <id>;
+    UPDATE boxes SET boxes.inventoried_at = <inventoried_at> WHERE boxes.id = <id>;
+    UPDATE boxes SET boxes.created_by_id = <created_by_id> WHERE boxes.id = <id>;
+}
+
+query readBox(int id) {
+    SELECT boxes.assigned_to_user_id, boxes.ordering_order_line_id, boxes.status, boxes.box_type, boxes.description, boxes.inventorying_status, boxes.inventorying_order_line_id, boxes.received_at, boxes.height, boxes.width, boxes.length, boxes.weight, boxes.box_num, boxes.return_requested_at, boxes.location, boxes.inventoried_at, boxes.created_by_id FROM boxes WHERE boxes.id = <id>;
+}
+
+query readBoxCreateTime(int id) {
+    SELECT boxes.created_at FROM boxes WHERE boxes.id = <id>;
+}
+
+query readBoxUpdateTime(int id) {
+    SELECT boxes.updated_at FROM boxes WHERE boxes.id = <id>;
+}
+
+update createBoxSubscription(int id, int box_id, int subscription_id) {
+    INSERT INTO boxes_subscriptions (boxes_subscriptions.id, boxes_subscriptions.box_id, boxes_subscriptions.subscription_id) VALUES (<id>, <box_id>, <subscription_id>);
+}
+
+update deleteBoxSubscription(int id) {
+    DELETE FROM boxes_subscriptions WHERE boxes_subscriptions.id = <id>;
+}
+
+update updateBoxSubscription(int id, int box_id, int subscription_id) {
+    UPDATE boxes_subscriptions SET boxes_subscriptions.box_id = <box_id> WHERE boxes_subscriptions.id = <id>;
+    UPDATE boxes_subscriptions SET boxes_subscriptions.subscription_id = <subscription_id> WHERE boxes_subscriptions.id = <id>;
+}
+
+query readBoxSubscription(int id) {
+    SELECT boxes_subscriptions.box_id, boxes_subscriptions.subscription_id FROM boxes_subscriptions WHERE boxes_subscriptions.id = <id>;
+}
+
+update createCartItem(int id, int quantity, int cart_id, int product_id, String created_at, String updated_at, int committed_months, int box_id, int address_id, int stored_item_id) {
+    INSERT INTO cart_items (cart_items.id, cart_items.quantity, cart_items.cart_id, cart_items.product_id, cart_items.created_at, cart_items.updated_at, cart_items.committed_months, cart_items.box_id, cart_items.address_id, cart_items.stored_item_id) VALUES (<id>, <quantity>, <cart_id>, <product_id>, <created_at>, <updated_at>, <committed_months>, <box_id>, <address_id>, <stored_item_id>);
+}
+
+update deleteCartItem(int id) {
+    DELETE FROM cart_items WHERE cart_items.id = <id>;
+}
+
+update updateCartItem(int id, int quantity, int cart_id, int product_id, String updated_at, int committed_months, int box_id, int address_id, int stored_item_id) {
+    UPDATE cart_items SET cart_items.quantity = <quantity> WHERE cart_items.id = <id>;
+    UPDATE cart_items SET cart_items.cart_id = <cart_id> WHERE cart_items.id = <id>;
+    UPDATE cart_items SET cart_items.product_id = <product_id> WHERE cart_items.id = <id>;
+    UPDATE cart_items SET cart_items.updated_at = <updated_at> WHERE cart_items.id = <id>;
+    UPDATE cart_items SET cart_items.committed_months = <committed_months> WHERE cart_items.id = <id>;
+    UPDATE cart_items SET cart_items.box_id = <box_id> WHERE cart_items.id = <id>;
+    UPDATE cart_items SET cart_items.address_id = <address_id> WHERE cart_items.id = <id>;
+    UPDATE cart_items SET cart_items.stored_item_id = <stored_item_id> WHERE cart_items.id = <id>;
+}
+
+query readCartItem(int id) {
+    SELECT cart_items.quantity, cart_items.cart_id, cart_items.product_id, cart_items.committed_months, cart_items.box_id, cart_items.address_id, cart_items.stored_item_id FROM cart_items WHERE cart_items.id = <id>;
+}
+
+query readCartItemCreateTime(int id) {
+    SELECT cart_items.created_at FROM cart_items WHERE cart_items.id = <id>;
+}
+
+query readCartItemUpdateTime(int id) {
+    SELECT cart_items.updated_at FROM cart_items WHERE cart_items.id = <id>;
+}
+
+update createCart(int id, int user_id, String created_at, String updated_at, String ordered_at, String status, String quoted_shipping_cost, String quoted_shipping_cost_success) {
+    INSERT INTO carts (carts.id, carts.user_id, carts.created_at, carts.updated_at, carts.ordered_at, carts.status, carts.quoted_shipping_cost, carts.quoted_shipping_cost_success) VALUES (<id>, <user_id>, <created_at>, <updated_at>, <ordered_at>, <status>, <quoted_shipping_cost>, <quoted_shipping_cost_success>);
+}
+
+update deleteCart(int id) {
+    DELETE FROM carts WHERE carts.id = <id>;
+}
+
+update updateCart(int id, int user_id, String updated_at, String ordered_at, String status, String quoted_shipping_cost, String quoted_shipping_cost_success) {
+    UPDATE carts SET carts.user_id = <user_id> WHERE carts.id = <id>;
+    UPDATE carts SET carts.updated_at = <updated_at> WHERE carts.id = <id>;
+    UPDATE carts SET carts.ordered_at = <ordered_at> WHERE carts.id = <id>;
+    UPDATE carts SET carts.status = <status> WHERE carts.id = <id>;
+    UPDATE carts SET carts.quoted_shipping_cost = <quoted_shipping_cost> WHERE carts.id = <id>;
+    UPDATE carts SET carts.quoted_shipping_cost_success = <quoted_shipping_cost_success> WHERE carts.id = <id>;
+}
+
+query readCart(int id) {
+    SELECT carts.user_id, carts.ordered_at, carts.status, carts.quoted_shipping_cost, carts.quoted_shipping_cost_success FROM carts WHERE carts.id = <id>;
+}
+
+query readCartCreateTime(int id) {
+    SELECT carts.created_at FROM carts WHERE carts.id = <id>;
+}
+
+query readCartUpdateTime(int id) {
+    SELECT carts.updated_at FROM carts WHERE carts.id = <id>;
+}
+
+update createCharge(int id, int user_id, String total_in_cents, int product_id, String created_at, String updated_at, int order_id, int shipment_id, String comments, int created_by_admin_id) {
+    INSERT INTO charges (charges.id, charges.user_id, charges.total_in_cents, charges.product_id, charges.created_at, charges.updated_at, charges.order_id, charges.shipment_id, charges.comments, charges.created_by_admin_id) VALUES (<id>, <user_id>, <total_in_cents>, <product_id>, <created_at>, <updated_at>, <order_id>, <shipment_id>, <comments>, <created_by_admin_id>);
+}
+
+update deleteCharge(int id) {
+    DELETE FROM charges WHERE charges.id = <id>;
+}
+
+update updateCharge(int id, int user_id, String total_in_cents, int product_id, String updated_at, int order_id, int shipment_id, String comments, int created_by_admin_id) {
+    UPDATE charges SET charges.user_id = <user_id> WHERE charges.id = <id>;
+    UPDATE charges SET charges.total_in_cents = <total_in_cents> WHERE charges.id = <id>;
+    UPDATE charges SET charges.product_id = <product_id> WHERE charges.id = <id>;
+    UPDATE charges SET charges.updated_at = <updated_at> WHERE charges.id = <id>;
+    UPDATE charges SET charges.order_id = <order_id> WHERE charges.id = <id>;
+    UPDATE charges SET charges.shipment_id = <shipment_id> WHERE charges.id = <id>;
+    UPDATE charges SET charges.comments = <comments> WHERE charges.id = <id>;
+    UPDATE charges SET charges.created_by_admin_id = <created_by_admin_id> WHERE charges.id = <id>;
+}
+
+query readCharge(int id) {
+    SELECT charges.user_id, charges.total_in_cents, charges.product_id, charges.order_id, charges.shipment_id, charges.comments, charges.created_by_admin_id FROM charges WHERE charges.id = <id>;
+}
+
+query readChargeCreateTime(int id) {
+    SELECT charges.created_at FROM charges WHERE charges.id = <id>;
+}
+
+query readChargeUpdateTime(int id) {
+    SELECT charges.updated_at FROM charges WHERE charges.id = <id>;
+}
+
+update createCredit(int id, String amount, int user_id, String created_at, String updated_at, String description, int created_by_admin_id) {
+    INSERT INTO credits (credits.id, credits.amount, credits.user_id, credits.created_at, credits.updated_at, credits.description, credits.created_by_admin_id) VALUES (<id>, <amount>, <user_id>, <created_at>, <updated_at>, <description>, <created_by_admin_id>);
+}
+
+update deleteCredit(int id) {
+    DELETE FROM credits WHERE credits.id = <id>;
+}
+
+update updateCredit(int id, String amount, int user_id, String updated_at, String description, int created_by_admin_id) {
+    UPDATE credits SET credits.amount = <amount> WHERE credits.id = <id>;
+    UPDATE credits SET credits.user_id = <user_id> WHERE credits.id = <id>;
+    UPDATE credits SET credits.updated_at = <updated_at> WHERE credits.id = <id>;
+    UPDATE credits SET credits.description = <description> WHERE credits.id = <id>;
+    UPDATE credits SET credits.created_by_admin_id = <created_by_admin_id> WHERE credits.id = <id>;
+}
+
+query readCredit(int id) {
+    SELECT credits.amount, credits.user_id, credits.description, credits.created_by_admin_id FROM credits WHERE credits.id = <id>;
+}
+
+query readCreditCreateTime(int id) {
+    SELECT credits.created_at FROM credits WHERE credits.id = <id>;
+}
+
+query readCreditUpdateTime(int id) {
+    SELECT credits.updated_at FROM credits WHERE credits.id = <id>;
+}
+
+update createInterestedPeople(int id, String email, String created_at, String updated_at) {
+    INSERT INTO interested_people (interested_people.id, interested_people.email, interested_people.created_at, interested_people.updated_at) VALUES (<id>, <email>, <created_at>, <updated_at>);
+}
+
+update deleteInterestedPeople(int id) {
+    DELETE FROM interested_people WHERE interested_people.id = <id>;
+}
+
+update updateInterestedPeople(int id, String email, String updated_at) {
+    UPDATE interested_people SET interested_people.email = <email> WHERE interested_people.id = <id>;
+    UPDATE interested_people SET interested_people.updated_at = <updated_at> WHERE interested_people.id = <id>;
+}
+
+query readInterestedPeople(int id) {
+    SELECT interested_people.email FROM interested_people WHERE interested_people.id = <id>;
+}
+
+query readInterestedPeopleCreateTime(int id) {
+    SELECT interested_people.created_at FROM interested_people WHERE interested_people.id = <id>;
+}
+
+query readInterestedPeopleUpdateTime(int id) {
+    SELECT interested_people.updated_at FROM interested_people WHERE interested_people.id = <id>;
+}
+
+update createInvoice(int id, int user_id, int payment_transaction_id, int order_id, String created_at, String updated_at) {
+    INSERT INTO invoices (invoices.id, invoices.user_id, invoices.payment_transaction_id, invoices.order_id, invoices.created_at, invoices.updated_at) VALUES (<id>, <user_id>, <payment_transaction_id>, <order_id>, <created_at>, <updated_at>);
+}
+
+update deleteInvoice(int id) {
+    DELETE FROM invoices WHERE invoices.id = <id>;
+}
+
+update updateInvoice(int id, int user_id, int payment_transaction_id, int order_id, String updated_at) {
+    UPDATE invoices SET invoices.user_id = <user_id> WHERE invoices.id = <id>;
+    UPDATE invoices SET invoices.payment_transaction_id = <payment_transaction_id> WHERE invoices.id = <id>;
+    UPDATE invoices SET invoices.order_id = <order_id> WHERE invoices.id = <id>;
+    UPDATE invoices SET invoices.updated_at = <updated_at> WHERE invoices.id = <id>;
+}
+
+query readInvoice(int id) {
+    SELECT invoices.user_id, invoices.payment_transaction_id, invoices.order_id FROM invoices WHERE invoices.id = <id>;
+}
+
+query readInvoiceCreateTime(int id) {
+    SELECT invoices.created_at FROM invoices WHERE invoices.id = <id>;
+}
+
+query readInvoiceUpdateTime(int id) {
+    SELECT invoices.updated_at FROM invoices WHERE invoices.id = <id>;
+}
+
+update createMarketingHit(int id, String source, String created_at, String updated_at) {
+    INSERT INTO marketing_hits (marketing_hits.id, marketing_hits.source, marketing_hits.created_at, marketing_hits.updated_at) VALUES (<id>, <source>, <created_at>, <updated_at>);
+}
+
+update deleteMarketingHit(int id) {
+    DELETE FROM marketing_hits WHERE marketing_hits.id = <id>;
+}
+
+update updateMarketingHit(int id, String source, String updated_at) {
+    UPDATE marketing_hits SET marketing_hits.source = <source> WHERE marketing_hits.id = <id>;
+    UPDATE marketing_hits SET marketing_hits.updated_at = <updated_at> WHERE marketing_hits.id = <id>;
+}
+
+query readMarketingHit(int id) {
+    SELECT marketing_hits.source FROM marketing_hits WHERE marketing_hits.id = <id>;
+}
+
+query readMarketingHitCreateTime(int id) {
+    SELECT marketing_hits.created_at FROM marketing_hits WHERE marketing_hits.id = <id>;
+}
+
+query readMarketingHitUpdateTime(int id) {
+    SELECT marketing_hits.updated_at FROM marketing_hits WHERE marketing_hits.id = <id>;
+}
+
+update createOrderLine(int id, int order_id, int product_id, int quantity, String status, String created_at, String updated_at, int committed_months, int shipping_address_id, int service_box_id, int shipment_id, int service_item_id, int item_mail_shipping_charge_id, String amount_paid_at_purchase) {
+    INSERT INTO order_lines (order_lines.id, order_lines.order_id, order_lines.product_id, order_lines.quantity, order_lines.status, order_lines.created_at, order_lines.updated_at, order_lines.committed_months, order_lines.shipping_address_id, order_lines.service_box_id, order_lines.shipment_id, order_lines.service_item_id, order_lines.item_mail_shipping_charge_id, order_lines.amount_paid_at_purchase) VALUES (<id>, <order_id>, <product_id>, <quantity>, <status>, <created_at>, <updated_at>, <committed_months>, <shipping_address_id>, <service_box_id>, <shipment_id>, <service_item_id>, <item_mail_shipping_charge_id>, <amount_paid_at_purchase>);
+}
+
+update deleteOrderLine(int id) {
+    DELETE FROM order_lines WHERE order_lines.id = <id>;
+}
+
+update updateOrderLine(int id, int order_id, int product_id, int quantity, String status, String updated_at, int committed_months, int shipping_address_id, int service_box_id, int shipment_id, int service_item_id, int item_mail_shipping_charge_id, String amount_paid_at_purchase) {
+    UPDATE order_lines SET order_lines.order_id = <order_id> WHERE order_lines.id = <id>;
+    UPDATE order_lines SET order_lines.product_id = <product_id> WHERE order_lines.id = <id>;
+    UPDATE order_lines SET order_lines.quantity = <quantity> WHERE order_lines.id = <id>;
+    UPDATE order_lines SET order_lines.status = <status> WHERE order_lines.id = <id>;
+    UPDATE order_lines SET order_lines.updated_at = <updated_at> WHERE order_lines.id = <id>;
+    UPDATE order_lines SET order_lines.committed_months = <committed_months> WHERE order_lines.id = <id>;
+    UPDATE order_lines SET order_lines.shipping_address_id = <shipping_address_id> WHERE order_lines.id = <id>;
+    UPDATE order_lines SET order_lines.service_box_id = <service_box_id> WHERE order_lines.id = <id>;
+    UPDATE order_lines SET order_lines.shipment_id = <shipment_id> WHERE order_lines.id = <id>;
+    UPDATE order_lines SET order_lines.service_item_id = <service_item_id> WHERE order_lines.id = <id>;
+    UPDATE order_lines SET order_lines.item_mail_shipping_charge_id = <item_mail_shipping_charge_id> WHERE order_lines.id = <id>;
+    UPDATE order_lines SET order_lines.amount_paid_at_purchase = <amount_paid_at_purchase> WHERE order_lines.id = <id>;
+}
+
+query readOrderLine(int id) {
+    SELECT order_lines.order_id, order_lines.product_id, order_lines.quantity, order_lines.status, order_lines.committed_months, order_lines.shipping_address_id, order_lines.service_box_id, order_lines.shipment_id, order_lines.service_item_id, order_lines.item_mail_shipping_charge_id, order_lines.amount_paid_at_purchase FROM order_lines WHERE order_lines.id = <id>;
+}
+
+query readOrderLineCreateTime(int id) {
+    SELECT order_lines.created_at FROM order_lines WHERE order_lines.id = <id>;
+}
+
+query readOrderLineUpdateTime(int id) {
+    SELECT order_lines.updated_at FROM order_lines WHERE order_lines.id = <id>;
+}
+
+update createOrder(int id, int cart_id, String ip_address, int user_id, String created_at, String updated_at, String initial_charged_shipping_cost) {
+    INSERT INTO orders (orders.id, orders.cart_id, orders.ip_address, orders.user_id, orders.created_at, orders.updated_at, orders.initial_charged_shipping_cost) VALUES (<id>, <cart_id>, <ip_address>, <user_id>, <created_at>, <updated_at>, <initial_charged_shipping_cost>);
+}
+
+update deleteOrder(int id) {
+    DELETE FROM orders WHERE orders.id = <id>;
+}
+
+update updateOrder(int id, int cart_id, String ip_address, int user_id, String updated_at, String initial_charged_shipping_cost) {
+    UPDATE orders SET orders.cart_id = <cart_id> WHERE orders.id = <id>;
+    UPDATE orders SET orders.ip_address = <ip_address> WHERE orders.id = <id>;
+    UPDATE orders SET orders.user_id = <user_id> WHERE orders.id = <id>;
+    UPDATE orders SET orders.updated_at = <updated_at> WHERE orders.id = <id>;
+    UPDATE orders SET orders.initial_charged_shipping_cost = <initial_charged_shipping_cost> WHERE orders.id = <id>;
+}
+
+query readOrder(int id) {
+    SELECT orders.cart_id, orders.ip_address, orders.user_id, orders.initial_charged_shipping_cost FROM orders WHERE orders.id = <id>;
+}
+
+query readOrderCreateTime(int id) {
+    SELECT orders.created_at FROM orders WHERE orders.id = <id>;
+}
+
+query readOrderUpdateTime(int id) {
+    SELECT orders.updated_at FROM orders WHERE orders.id = <id>;
+}
+
+update createPaymentProfile(int id, String identifier, String last_four_digits, int user_id, String created_at, String updated_at, int year, String first_name, String last_name, int billing_address_id, String cc_type, String month, String active) {
+    INSERT INTO payment_profiles (payment_profiles.id, payment_profiles.identifier, payment_profiles.last_four_digits, payment_profiles.user_id, payment_profiles.created_at, payment_profiles.updated_at, payment_profiles.year, payment_profiles.first_name, payment_profiles.last_name, payment_profiles.billing_address_id, payment_profiles.cc_type, payment_profiles.month, payment_profiles.active) VALUES (<id>, <identifier>, <last_four_digits>, <user_id>, <created_at>, <updated_at>, <year>, <first_name>, <last_name>, <billing_address_id>, <cc_type>, <month>, <active>);
+}
+
+update deletePaymentProfile(int id) {
+    DELETE FROM payment_profiles WHERE payment_profiles.id = <id>;
+}
+
+update updatePaymentProfile(int id, String identifier, String last_four_digits, int user_id, String updated_at, int year, String first_name, String last_name, int billing_address_id, String cc_type, String month, String active) {
+    UPDATE payment_profiles SET payment_profiles.identifier = <identifier> WHERE payment_profiles.id = <id>;
+    UPDATE payment_profiles SET payment_profiles.last_four_digits = <last_four_digits> WHERE payment_profiles.id = <id>;
+    UPDATE payment_profiles SET payment_profiles.user_id = <user_id> WHERE payment_profiles.id = <id>;
+    UPDATE payment_profiles SET payment_profiles.updated_at = <updated_at> WHERE payment_profiles.id = <id>;
+    UPDATE payment_profiles SET payment_profiles.year = <year> WHERE payment_profiles.id = <id>;
+    UPDATE payment_profiles SET payment_profiles.first_name = <first_name> WHERE payment_profiles.id = <id>;
+    UPDATE payment_profiles SET payment_profiles.last_name = <last_name> WHERE payment_profiles.id = <id>;
+    UPDATE payment_profiles SET payment_profiles.billing_address_id = <billing_address_id> WHERE payment_profiles.id = <id>;
+    UPDATE payment_profiles SET payment_profiles.cc_type = <cc_type> WHERE payment_profiles.id = <id>;
+    UPDATE payment_profiles SET payment_profiles.month = <month> WHERE payment_profiles.id = <id>;
+    UPDATE payment_profiles SET payment_profiles.active = <active> WHERE payment_profiles.id = <id>;
+}
+
+query readPaymentProfile(int id) {
+    SELECT payment_profiles.identifier, payment_profiles.last_four_digits, payment_profiles.user_id, payment_profiles.year, payment_profiles.first_name, payment_profiles.last_name, payment_profiles.billing_address_id, payment_profiles.cc_type, payment_profiles.month, payment_profiles.active FROM payment_profiles WHERE payment_profiles.id = <id>;
+}
+
+query readPaymentProfileCreateTime(int id) {
+    SELECT payment_profiles.created_at FROM payment_profiles WHERE payment_profiles.id = <id>;
+}
+
+query readPaymentProfileUpdateTime(int id) {
+    SELECT payment_profiles.updated_at FROM payment_profiles WHERE payment_profiles.id = <id>;
+}
+
+update createPaymentTransaction(int id, int order_id, String action, String authorization, String message, String params, int user_id, String created_at, String updated_at, int payment_profile_id, String status, int storage_payment_processing_record_id, String auth_transaction_id, int credit_id, String submitted_amount) {
+    INSERT INTO payment_transactions (payment_transactions.id, payment_transactions.order_id, payment_transactions.action, payment_transactions.authorization, payment_transactions.message, payment_transactions.params, payment_transactions.user_id, payment_transactions.created_at, payment_transactions.updated_at, payment_transactions.payment_profile_id, payment_transactions.status, payment_transactions.storage_payment_processing_record_id, payment_transactions.auth_transaction_id, payment_transactions.credit_id, payment_transactions.submitted_amount) VALUES (<id>, <order_id>, <action>, <authorization>, <message>, <params>, <user_id>, <created_at>, <updated_at>, <payment_profile_id>, <status>, <storage_payment_processing_record_id>, <auth_transaction_id>, <credit_id>, <submitted_amount>);
+}
+
+update deletePaymentTransaction(int id) {
+    DELETE FROM payment_transactions WHERE payment_transactions.id = <id>;
+}
+
+update updatePaymentTransaction(int id, int order_id, String action, String authorization, String message, String params, int user_id, String updated_at, int payment_profile_id, String status, int storage_payment_processing_record_id, String auth_transaction_id, int credit_id, String submitted_amount) {
+    UPDATE payment_transactions SET payment_transactions.order_id = <order_id> WHERE payment_transactions.id = <id>;
+    UPDATE payment_transactions SET payment_transactions.action = <action> WHERE payment_transactions.id = <id>;
+    UPDATE payment_transactions SET payment_transactions.authorization = <authorization> WHERE payment_transactions.id = <id>;
+    UPDATE payment_transactions SET payment_transactions.message = <message> WHERE payment_transactions.id = <id>;
+    UPDATE payment_transactions SET payment_transactions.params = <params> WHERE payment_transactions.id = <id>;
+    UPDATE payment_transactions SET payment_transactions.user_id = <user_id> WHERE payment_transactions.id = <id>;
+    UPDATE payment_transactions SET payment_transactions.updated_at = <updated_at> WHERE payment_transactions.id = <id>;
+    UPDATE payment_transactions SET payment_transactions.payment_profile_id = <payment_profile_id> WHERE payment_transactions.id = <id>;
+    UPDATE payment_transactions SET payment_transactions.status = <status> WHERE payment_transactions.id = <id>;
+    UPDATE payment_transactions SET payment_transactions.storage_payment_processing_record_id = <storage_payment_processing_record_id> WHERE payment_transactions.id = <id>;
+    UPDATE payment_transactions SET payment_transactions.auth_transaction_id = <auth_transaction_id> WHERE payment_transactions.id = <id>;
+    UPDATE payment_transactions SET payment_transactions.credit_id = <credit_id> WHERE payment_transactions.id = <id>;
+    UPDATE payment_transactions SET payment_transactions.submitted_amount = <submitted_amount> WHERE payment_transactions.id = <id>;
+}
+
+query readPaymentTransaction(int id) {
+    SELECT payment_transactions.order_id, payment_transactions.action, payment_transactions.authorization, payment_transactions.message, payment_transactions.params, payment_transactions.user_id, payment_transactions.payment_profile_id, payment_transactions.status, payment_transactions.storage_payment_processing_record_id, payment_transactions.auth_transaction_id, payment_transactions.credit_id, payment_transactions.submitted_amount FROM payment_transactions WHERE payment_transactions.id = <id>;
+}
+
+query readPaymentTransactionCreateTime(int id) {
+    SELECT payment_transactions.created_at FROM payment_transactions WHERE payment_transactions.id = <id>;
+}
+
+query readPaymentTransactionUpdateTime(int id) {
+    SELECT payment_transactions.updated_at FROM payment_transactions WHERE payment_transactions.id = <id>;
+}
+
+update createPhoto(int id, int stored_item_id, String created_at, String updated_at, String data_file_name, String data_content_type, int data_file_size, String data_updated_at) {
+    INSERT INTO photos (photos.id, photos.stored_item_id, photos.created_at, photos.updated_at, photos.data_file_name, photos.data_content_type, photos.data_file_size, photos.data_updated_at) VALUES (<id>, <stored_item_id>, <created_at>, <updated_at>, <data_file_name>, <data_content_type>, <data_file_size>, <data_updated_at>);
+}
+
+update deletePhoto(int id) {
+    DELETE FROM photos WHERE photos.id = <id>;
+}
+
+update updatePhoto(int id, int stored_item_id, String updated_at, String data_file_name, String data_content_type, int data_file_size, String data_updated_at) {
+    UPDATE photos SET photos.stored_item_id = <stored_item_id> WHERE photos.id = <id>;
+    UPDATE photos SET photos.updated_at = <updated_at> WHERE photos.id = <id>;
+    UPDATE photos SET photos.data_file_name = <data_file_name> WHERE photos.id = <id>;
+    UPDATE photos SET photos.data_content_type = <data_content_type> WHERE photos.id = <id>;
+    UPDATE photos SET photos.data_file_size = <data_file_size> WHERE photos.id = <id>;
+    UPDATE photos SET photos.data_updated_at = <data_updated_at> WHERE photos.id = <id>;
+}
+
+query readPhoto(int id) {
+    SELECT photos.stored_item_id, photos.data_file_name, photos.data_content_type, photos.data_file_size, photos.data_updated_at FROM photos WHERE photos.id = <id>;
+}
+
+query readPhotoCreateTime(int id) {
+    SELECT photos.created_at FROM photos WHERE photos.id = <id>;
+}
+
+query readPhotoUpdateTime(int id) {
+    SELECT photos.updated_at FROM photos WHERE photos.id = <id>;
+}
+
+update createProduct(int id, String name, String price, String created_at, String updated_at, String price_comment, String first_due, String discountable) {
+    INSERT INTO products (products.id, products.name, products.price, products.created_at, products.updated_at, products.price_comment, products.first_due, products.discountable) VALUES (<id>, <name>, <price>, <created_at>, <updated_at>, <price_comment>, <first_due>, <discountable>);
+}
+
+update deleteProduct(int id) {
+    DELETE FROM products WHERE products.id = <id>;
+}
+
+update updateProduct(int id, String name, String price, String updated_at, String price_comment, String first_due, String discountable) {
+    UPDATE products SET products.name = <name> WHERE products.id = <id>;
+    UPDATE products SET products.price = <price> WHERE products.id = <id>;
+    UPDATE products SET products.updated_at = <updated_at> WHERE products.id = <id>;
+    UPDATE products SET products.price_comment = <price_comment> WHERE products.id = <id>;
+    UPDATE products SET products.first_due = <first_due> WHERE products.id = <id>;
+    UPDATE products SET products.discountable = <discountable> WHERE products.id = <id>;
+}
+
+query readProduct(int id) {
+    SELECT products.name, products.price, products.price_comment, products.first_due, products.discountable FROM products WHERE products.id = <id>;
+}
+
+query readProductCreateTime(int id) {
+    SELECT products.created_at FROM products WHERE products.id = <id>;
+}
+
+query readProductUpdateTime(int id) {
+    SELECT products.updated_at FROM products WHERE products.id = <id>;
+}
+
+update createRentalAgreementVersion(int id, String agreement_text, String created_at, String updated_at) {
+    INSERT INTO rental_agreement_versions (rental_agreement_versions.id, rental_agreement_versions.agreement_text, rental_agreement_versions.created_at, rental_agreement_versions.updated_at) VALUES (<id>, <agreement_text>, <created_at>, <updated_at>);
+}
+
+update deleteRentalAgreementVersion(int id) {
+    DELETE FROM rental_agreement_versions WHERE rental_agreement_versions.id = <id>;
+}
+
+update updateRentalAgreementVersion(int id, String agreement_text, String updated_at) {
+    UPDATE rental_agreement_versions SET rental_agreement_versions.agreement_text = <agreement_text> WHERE rental_agreement_versions.id = <id>;
+    UPDATE rental_agreement_versions SET rental_agreement_versions.updated_at = <updated_at> WHERE rental_agreement_versions.id = <id>;
+}
+
+query readRentalAgreementVersion(int id) {
+    SELECT rental_agreement_versions.agreement_text FROM rental_agreement_versions WHERE rental_agreement_versions.id = <id>;
+}
+
+query readRentalAgreementVersionCreateTime(int id) {
+    SELECT rental_agreement_versions.created_at FROM rental_agreement_versions WHERE rental_agreement_versions.id = <id>;
+}
+
+query readRentalAgreementVersionUpdateTime(int id) {
+    SELECT rental_agreement_versions.updated_at FROM rental_agreement_versions WHERE rental_agreement_versions.id = <id>;
+}
+
+update createRentalAgreementVersionUser(int id, int user_id, int rental_agreement_version_id, String created_at, String updated_at) {
+    INSERT INTO rental_agreement_versions_users (rental_agreement_versions_users.id, rental_agreement_versions_users.user_id, rental_agreement_versions_users.rental_agreement_version_id, rental_agreement_versions_users.created_at, rental_agreement_versions_users.updated_at) VALUES (<id>, <user_id>, <rental_agreement_version_id>, <created_at>, <updated_at>);
+}
+
+update deleteRentalAgreementVersionUser(int id) {
+    DELETE FROM rental_agreement_versions_users WHERE rental_agreement_versions_users.id = <id>;
+}
+
+update updateRentalAgreementVersionUser(int id, int user_id, int rental_agreement_version_id, String updated_at) {
+    UPDATE rental_agreement_versions_users SET rental_agreement_versions_users.user_id = <user_id> WHERE rental_agreement_versions_users.id = <id>;
+    UPDATE rental_agreement_versions_users SET rental_agreement_versions_users.rental_agreement_version_id = <rental_agreement_version_id> WHERE rental_agreement_versions_users.id = <id>;
+    UPDATE rental_agreement_versions_users SET rental_agreement_versions_users.updated_at = <updated_at> WHERE rental_agreement_versions_users.id = <id>;
+}
+
+query readRentalAgreementVersionUser(int id) {
+    SELECT rental_agreement_versions_users.user_id, rental_agreement_versions_users.rental_agreement_version_id FROM rental_agreement_versions_users WHERE rental_agreement_versions_users.id = <id>;
+}
+
+query readRentalAgreementVersionUserCreateTime(int id) {
+    SELECT rental_agreement_versions_users.created_at FROM rental_agreement_versions_users WHERE rental_agreement_versions_users.id = <id>;
+}
+
+query readRentalAgreementVersionUserUpdateTime(int id) {
+    SELECT rental_agreement_versions_users.updated_at FROM rental_agreement_versions_users WHERE rental_agreement_versions_users.id = <id>;
+}
+
+update createShipment(int id, int box_id, int from_address_id, int to_address_id, String tracking_number, String created_at, String updated_at, String shipment_label_file_name, String shipment_label_updated_at, String state, String payor, String charge_requested) {
+    INSERT INTO shipments (shipments.id, shipments.box_id, shipments.from_address_id, shipments.to_address_id, shipments.tracking_number, shipments.created_at, shipments.updated_at, shipments.shipment_label_file_name, shipments.shipment_label_updated_at, shipments.state, shipments.payor, shipments.charge_requested) VALUES (<id>, <box_id>, <from_address_id>, <to_address_id>, <tracking_number>, <created_at>, <updated_at>, <shipment_label_file_name>, <shipment_label_updated_at>, <state>, <payor>, <charge_requested>);
+}
+
+update deleteShipment(int id) {
+    DELETE FROM shipments WHERE shipments.id = <id>;
+}
+
+update updateShipment(int id, int box_id, int from_address_id, int to_address_id, String tracking_number, String updated_at, String shipment_label_file_name, String shipment_label_updated_at, String state, String payor, String charge_requested) {
+    UPDATE shipments SET shipments.box_id = <box_id> WHERE shipments.id = <id>;
+    UPDATE shipments SET shipments.from_address_id = <from_address_id> WHERE shipments.id = <id>;
+    UPDATE shipments SET shipments.to_address_id = <to_address_id> WHERE shipments.id = <id>;
+    UPDATE shipments SET shipments.tracking_number = <tracking_number> WHERE shipments.id = <id>;
+    UPDATE shipments SET shipments.updated_at = <updated_at> WHERE shipments.id = <id>;
+    UPDATE shipments SET shipments.shipment_label_file_name = <shipment_label_file_name> WHERE shipments.id = <id>;
+    UPDATE shipments SET shipments.shipment_label_updated_at = <shipment_label_updated_at> WHERE shipments.id = <id>;
+    UPDATE shipments SET shipments.state = <state> WHERE shipments.id = <id>;
+    UPDATE shipments SET shipments.payor = <payor> WHERE shipments.id = <id>;
+    UPDATE shipments SET shipments.charge_requested = <charge_requested> WHERE shipments.id = <id>;
+}
+
+query readShipment(int id) {
+    SELECT shipments.box_id, shipments.from_address_id, shipments.to_address_id, shipments.tracking_number, shipments.shipment_label_file_name, shipments.shipment_label_updated_at, shipments.state, shipments.payor, shipments.charge_requested FROM shipments WHERE shipments.id = <id>;
+}
+
+query readShipmentCreateTime(int id) {
+    SELECT shipments.created_at FROM shipments WHERE shipments.id = <id>;
+}
+
+query readShipmentUpdateTime(int id) {
+    SELECT shipments.updated_at FROM shipments WHERE shipments.id = <id>;
+}
+
+update createStorageChargeProcessingRecord(int id, int generated_by_user_id, String as_of_date, String created_at, String updated_at, String locked_for_editing) {
+    INSERT INTO storage_charge_processing_records (storage_charge_processing_records.id, storage_charge_processing_records.generated_by_user_id, storage_charge_processing_records.as_of_date, storage_charge_processing_records.created_at, storage_charge_processing_records.updated_at, storage_charge_processing_records.locked_for_editing) VALUES (<id>, <generated_by_user_id>, <as_of_date>, <created_at>, <updated_at>, <locked_for_editing>);
+}
+
+update deleteStorageChargeProcessingRecord(int id) {
+    DELETE FROM storage_charge_processing_records WHERE storage_charge_processing_records.id = <id>;
+}
+
+update updateStorageChargeProcessingRecord(int id, int generated_by_user_id, String as_of_date, String updated_at, String locked_for_editing) {
+    UPDATE storage_charge_processing_records SET storage_charge_processing_records.generated_by_user_id = <generated_by_user_id> WHERE storage_charge_processing_records.id = <id>;
+    UPDATE storage_charge_processing_records SET storage_charge_processing_records.as_of_date = <as_of_date> WHERE storage_charge_processing_records.id = <id>;
+    UPDATE storage_charge_processing_records SET storage_charge_processing_records.updated_at = <updated_at> WHERE storage_charge_processing_records.id = <id>;
+    UPDATE storage_charge_processing_records SET storage_charge_processing_records.locked_for_editing = <locked_for_editing> WHERE storage_charge_processing_records.id = <id>;
+}
+
+query readStorageChargeProcessingRecord(int id) {
+    SELECT storage_charge_processing_records.generated_by_user_id, storage_charge_processing_records.as_of_date, storage_charge_processing_records.locked_for_editing FROM storage_charge_processing_records WHERE storage_charge_processing_records.id = <id>;
+}
+
+query readStorageChargeProcessingRecordCreateTime(int id) {
+    SELECT storage_charge_processing_records.created_at FROM storage_charge_processing_records WHERE storage_charge_processing_records.id = <id>;
+}
+
+query readStorageChargeProcessingRecordUpdateTime(int id) {
+    SELECT storage_charge_processing_records.updated_at FROM storage_charge_processing_records WHERE storage_charge_processing_records.id = <id>;
+}
+
+update createStorageCharge(int id, int box_id, int charge_id, String start_date, String end_date, int storage_charge_processing_record_id) {
+    INSERT INTO storage_charges (storage_charges.id, storage_charges.box_id, storage_charges.charge_id, storage_charges.start_date, storage_charges.end_date, storage_charges.storage_charge_processing_record_id) VALUES (<id>, <box_id>, <charge_id>, <start_date>, <end_date>, <storage_charge_processing_record_id>);
+}
+
+update deleteStorageCharge(int id) {
+    DELETE FROM storage_charges WHERE storage_charges.id = <id>;
+}
+
+update updateStorageCharge(int id, int box_id, int charge_id, String start_date, String end_date, int storage_charge_processing_record_id) {
+    UPDATE storage_charges SET storage_charges.box_id = <box_id> WHERE storage_charges.id = <id>;
+    UPDATE storage_charges SET storage_charges.charge_id = <charge_id> WHERE storage_charges.id = <id>;
+    UPDATE storage_charges SET storage_charges.start_date = <start_date> WHERE storage_charges.id = <id>;
+    UPDATE storage_charges SET storage_charges.end_date = <end_date> WHERE storage_charges.id = <id>;
+    UPDATE storage_charges SET storage_charges.storage_charge_processing_record_id = <storage_charge_processing_record_id> WHERE storage_charges.id = <id>;
+}
+
+query readStorageCharge(int id) {
+    SELECT storage_charges.box_id, storage_charges.charge_id, storage_charges.start_date, storage_charges.end_date, storage_charges.storage_charge_processing_record_id FROM storage_charges WHERE storage_charges.id = <id>;
+}
+
+update createStoragePaymentProcessingRecord(int id, int generated_by_user_id, String as_of_date, String created_at, String updated_at) {
+    INSERT INTO storage_payment_processing_records (storage_payment_processing_records.id, storage_payment_processing_records.generated_by_user_id, storage_payment_processing_records.as_of_date, storage_payment_processing_records.created_at, storage_payment_processing_records.updated_at) VALUES (<id>, <generated_by_user_id>, <as_of_date>, <created_at>, <updated_at>);
+}
+
+update deleteStoragePaymentProcessingRecord(int id) {
+    DELETE FROM storage_payment_processing_records WHERE storage_payment_processing_records.id = <id>;
+}
+
+update updateStoragePaymentProcessingRecord(int id, int generated_by_user_id, String as_of_date, String updated_at) {
+    UPDATE storage_payment_processing_records SET storage_payment_processing_records.generated_by_user_id = <generated_by_user_id> WHERE storage_payment_processing_records.id = <id>;
+    UPDATE storage_payment_processing_records SET storage_payment_processing_records.as_of_date = <as_of_date> WHERE storage_payment_processing_records.id = <id>;
+    UPDATE storage_payment_processing_records SET storage_payment_processing_records.updated_at = <updated_at> WHERE storage_payment_processing_records.id = <id>;
+}
+
+query readStoragePaymentProcessingRecord(int id) {
+    SELECT storage_payment_processing_records.generated_by_user_id, storage_payment_processing_records.as_of_date FROM storage_payment_processing_records WHERE storage_payment_processing_records.id = <id>;
+}
+
+query readStoragePaymentProcessingRecordCreateTime(int id) {
+    SELECT storage_payment_processing_records.created_at FROM storage_payment_processing_records WHERE storage_payment_processing_records.id = <id>;
+}
+
+query readStoragePaymentProcessingRecordUpdateTime(int id) {
+    SELECT storage_payment_processing_records.updated_at FROM storage_payment_processing_records WHERE storage_payment_processing_records.id = <id>;
+}
+
+update createStoredItemTag(int id, int stored_item_id, String tag, String created_at, String updated_at) {
+    INSERT INTO stored_item_tags (stored_item_tags.id, stored_item_tags.stored_item_id, stored_item_tags.tag, stored_item_tags.created_at, stored_item_tags.updated_at) VALUES (<id>, <stored_item_id>, <tag>, <created_at>, <updated_at>);
+}
+
+update deleteStoredItemTag(int id) {
+    DELETE FROM stored_item_tags WHERE stored_item_tags.id = <id>;
+}
+
+update updateStoredItemTag(int id, int stored_item_id, String tag, String updated_at) {
+    UPDATE stored_item_tags SET stored_item_tags.stored_item_id = <stored_item_id> WHERE stored_item_tags.id = <id>;
+    UPDATE stored_item_tags SET stored_item_tags.tag = <tag> WHERE stored_item_tags.id = <id>;
+    UPDATE stored_item_tags SET stored_item_tags.updated_at = <updated_at> WHERE stored_item_tags.id = <id>;
+}
+
+query readStoredItemTag(int id) {
+    SELECT stored_item_tags.stored_item_id, stored_item_tags.tag FROM stored_item_tags WHERE stored_item_tags.id = <id>;
+}
+
+query readStoredItemTagCreateTime(int id) {
+    SELECT stored_item_tags.created_at FROM stored_item_tags WHERE stored_item_tags.id = <id>;
+}
+
+query readStoredItemTagUpdateTime(int id) {
+    SELECT stored_item_tags.updated_at FROM stored_item_tags WHERE stored_item_tags.id = <id>;
+}
+
+update createStoredItem(int id, int box_id, String created_at, String updated_at, String photo_file_name, String photo_content_type, int photo_file_size, String photo_updated_at, String access_token, String status, String donated_to, int shipment_id) {
+    INSERT INTO stored_items (stored_items.id, stored_items.box_id, stored_items.created_at, stored_items.updated_at, stored_items.photo_file_name, stored_items.photo_content_type, stored_items.photo_file_size, stored_items.photo_updated_at, stored_items.access_token, stored_items.status, stored_items.donated_to, stored_items.shipment_id) VALUES (<id>, <box_id>, <created_at>, <updated_at>, <photo_file_name>, <photo_content_type>, <photo_file_size>, <photo_updated_at>, <access_token>, <status>, <donated_to>, <shipment_id>);
+}
+
+update deleteStoredItem(int id) {
+    DELETE FROM stored_items WHERE stored_items.id = <id>;
+}
+
+update updateStoredItem(int id, int box_id, String updated_at, String status, String donated_to, int shipment_id) {
+    UPDATE stored_items SET stored_items.box_id = <box_id> WHERE stored_items.id = <id>;
+    UPDATE stored_items SET stored_items.updated_at = <updated_at> WHERE stored_items.id = <id>;
+    UPDATE stored_items SET stored_items.status = <status> WHERE stored_items.id = <id>;
+    UPDATE stored_items SET stored_items.donated_to = <donated_to> WHERE stored_items.id = <id>;
+    UPDATE stored_items SET stored_items.shipment_id = <shipment_id> WHERE stored_items.id = <id>;
+}
+
+update updateStoredItemPhoto(int id, String photo_file_name, String photo_content_type, String photo_file_size, String photo_updated_at, String access_token, String updated_at) {
+    UPDATE stored_items SET stored_items.photo_file_name = <photo_file_name> WHERE stored_items.id = <id>;
+    UPDATE stored_items SET stored_items.photo_content_type = <photo_content_type> WHERE stored_items.id = <id>;
+    UPDATE stored_items SET stored_items.photo_file_size = <photo_file_size> WHERE stored_items.id = <id>;
+    UPDATE stored_items SET stored_items.photo_updated_at = <photo_updated_at> WHERE stored_items.id = <id>;
+    UPDATE stored_items SET stored_items.access_token = <access_token> WHERE stored_items.id = <id>;
+    UPDATE stored_items SET stored_items.updated_at = <updated_at> WHERE stored_items.id = <id>;
+}
+
+query readStoredItem(int id) {
+    SELECT stored_items.box_id, stored_items.photo_file_name, stored_items.photo_content_type, stored_items.photo_file_size, stored_items.photo_updated_at, stored_items.access_token, stored_items.status, stored_items.donated_to, stored_items.shipment_id FROM stored_items WHERE stored_items.id = <id>;
+}
+
+query readStoredItemCreateTime(int id) {
+    SELECT stored_items.created_at FROM stored_items WHERE stored_items.id = <id>;
+}
+
+query readStoredItemUpdateTime(int id) {
+    SELECT stored_items.updated_at FROM stored_items WHERE stored_items.id = <id>;
+}
+
+update createSubscription(int id, String start_date, String end_date, int user_id, int duration_in_months, String created_at, String updated_at) {
+    INSERT INTO subscriptions (subscriptions.id, subscriptions.start_date, subscriptions.end_date, subscriptions.user_id, subscriptions.duration_in_months, subscriptions.created_at, subscriptions.updated_at) VALUES (<id>, <start_date>, <end_date>, <user_id>, <duration_in_months>, <created_at>, <updated_at>);
+}
+
+update deleteSubscription(int id) {
+    DELETE FROM subscriptions WHERE subscriptions.id = <id>;
+}
+
+update updateSubscription(int id, String start_date, String end_date, int user_id, int duration_in_months, String updated_at) {
+    UPDATE subscriptions SET subscriptions.start_date = <start_date> WHERE subscriptions.id = <id>;
+    UPDATE subscriptions SET subscriptions.end_date = <end_date> WHERE subscriptions.id = <id>;
+    UPDATE subscriptions SET subscriptions.user_id = <user_id> WHERE subscriptions.id = <id>;
+    UPDATE subscriptions SET subscriptions.duration_in_months = <duration_in_months> WHERE subscriptions.id = <id>;
+    UPDATE subscriptions SET subscriptions.updated_at = <updated_at> WHERE subscriptions.id = <id>;
+}
+
+query readSubscription(int id) {
+    SELECT subscriptions.start_date, subscriptions.end_date, subscriptions.user_id, subscriptions.duration_in_months FROM subscriptions WHERE subscriptions.id = <id>;
+}
+
+query readSubscriptionCreateTime(int id) {
+    SELECT subscriptions.created_at FROM subscriptions WHERE subscriptions.id = <id>;
+}
+
+query readSubscriptionUpdateTime(int id) {
+    SELECT subscriptions.updated_at FROM subscriptions WHERE subscriptions.id = <id>;
+}
+
+update createUser(int id, String email, String encrypted_password, String reset_password_token, String remember_created_at, int sign_in_count, String current_sign_in_at, String last_sign_in_at, String current_sign_in_ip, String last_sign_in_ip, String password_salt, String confirmation_token, String confirmed_at, String confirmation_sent_at, int failed_attempts, String unlock_token, String locked_at, String authentication_token, String created_at, String updated_at, String last_name, String first_name, String beta_user, String signup_comments, String role, String cim_id, int default_payment_profile_id, int default_shipping_address_id, String test_user, int acting_as_user_id, String first_time_signed_up) {
+    INSERT INTO users (users.id, users.email, users.encrypted_password, users.reset_password_token, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.password_salt, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.failed_attempts, users.unlock_token, users.locked_at, users.authentication_token, users.created_at, users.updated_at, users.last_name, users.first_name, users.beta_user, users.signup_comments, users.role, users.cim_id, users.default_payment_profile_id, users.default_shipping_address_id, users.test_user, users.acting_as_user_id, users.first_time_signed_up) VALUES (<id>, <email>, <encrypted_password>, <reset_password_token>, <remember_created_at>, <sign_in_count>, <current_sign_in_at>, <last_sign_in_at>, <current_sign_in_ip>, <last_sign_in_ip>, <password_salt>, <confirmation_token>, <confirmed_at>, <confirmation_sent_at>, <failed_attempts>, <unlock_token>, <locked_at>, <authentication_token>, <created_at>, <updated_at>, <last_name>, <first_name>, <beta_user>, <signup_comments>, <role>, <cim_id>, <default_payment_profile_id>, <default_shipping_address_id>, <test_user>, <acting_as_user_id>, <first_time_signed_up>);
+}
+
+update deleteUser(int id) {
+    DELETE FROM users WHERE users.id = <id>;
+}
+
+update updateUserProfile(int id, String email, String last_name, String first_name, String signup_comments, String role, int cim_id, int default_payment_profile_id, int default_shipping_address_id, String first_time_signed_up, String updated_at) {
+    UPDATE users SET users.email = <email> WHERE users.id = <id>;
+    UPDATE users SET users.last_name = <last_name> WHERE users.id = <id>;
+    UPDATE users SET users.first_name = <first_name> WHERE users.id = <id>;
+    UPDATE users SET users.signup_comments = <signup_comments> WHERE users.id = <id>;
+    UPDATE users SET users.role = <role> WHERE users.id = <id>;
+    UPDATE users SET users.cim_id = <cim_id> WHERE users.id = <id>;
+    UPDATE users SET users.default_payment_profile_id = <default_payment_profile_id> WHERE users.id = <id>;
+    UPDATE users SET users.default_shipping_address_id = <default_shipping_address_id> WHERE users.id = <id>;
+    UPDATE users SET users.first_time_signed_up = <first_time_signed_up> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserPassword(int id, String encrypted_password, String password_salt, String updated_at) {
+    UPDATE users SET users.encrypted_password = <encrypted_password> WHERE users.id = <id>;
+    UPDATE users SET users.password_salt = <password_salt> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserResetPassword(int id, String reset_password_token, String updated_at) {
+    UPDATE users SET users.reset_password_token = <reset_password_token> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserSignIn(int id, int sign_in_count, String current_sign_in_at, String last_sign_in_at, String current_sign_in_ip, String last_sign_in_ip, String updated_at) {
+    UPDATE users SET users.sign_in_count = <sign_in_count> WHERE users.id = <id>;
+    UPDATE users SET users.current_sign_in_at = <current_sign_in_at> WHERE users.id = <id>;
+    UPDATE users SET users.last_sign_in_at = <last_sign_in_at> WHERE users.id = <id>;
+    UPDATE users SET users.current_sign_in_ip = <current_sign_in_ip> WHERE users.id = <id>;
+    UPDATE users SET users.last_sign_in_ip = <last_sign_in_ip> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserConfirmation(int id, String confirmation_token, String confirmed_at, String confirmation_sent_at, String updated_at) {
+    UPDATE users SET users.confirmation_token = <confirmation_token> WHERE users.id = <id>;
+    UPDATE users SET users.confirmed_at = <confirmed_at> WHERE users.id = <id>;
+    UPDATE users SET users.confirmation_sent_at = <confirmation_sent_at> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserLock(int id, int failed_attempts, String unlock_token, String locked_at, String updated_at) {
+    UPDATE users SET users.failed_attempts = <failed_attempts> WHERE users.id = <id>;
+    UPDATE users SET users.unlock_token = <unlock_token> WHERE users.id = <id>;
+    UPDATE users SET users.locked_at = <locked_at> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+query findUserByEmail(String email) {
+    SELECT users.id FROM users WHERE users.email = <email>;
+}
+
+query readUser(int id) {
+    SELECT users.email, users.encrypted_password, users.reset_password_token, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.password_salt, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.failed_attempts, users.unlock_token, users.locked_at, users.authentication_token, users.last_name, users.first_name, users.beta_user, users.signup_comments, users.role, users.cim_id, users.default_payment_profile_id, users.default_shipping_address_id, users.test_user, users.acting_as_user_id, users.first_time_signed_up FROM users WHERE users.id = <id>;
+}
+
+query readUserCreateTime(int id) {
+    SELECT users.created_at FROM users WHERE users.id = <id>;
+}
+
+query readUserUpdateTime(int id) {
+    SELECT users.updated_at FROM users WHERE users.id = <id>;
+}
+
+query readAddressUser(int id) {
+    SELECT users.id, users.email, users.encrypted_password, users.reset_password_token, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.password_salt, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.failed_attempts, users.unlock_token, users.locked_at, users.authentication_token, users.last_name, users.first_name, users.beta_user, users.signup_comments, users.role, users.cim_id, users.default_payment_profile_id, users.default_shipping_address_id, users.test_user, users.acting_as_user_id, users.first_time_signed_up FROM addresses JOIN users ON addresses.user_id = users.id WHERE addresses.id = <id>;
+}
+
+query readUserAddress(int id) {
+    SELECT addresses.id, addresses.first_name, addresses.last_name, addresses.day_phone, addresses.evening_phone, addresses.address_line_1, addresses.address_line_2, addresses.city, addresses.state, addresses.zip, addresses.address_name, addresses.user_id, addresses.country, addresses.status, addresses.comment, addresses.fedex_validation_status FROM addresses JOIN users ON addresses.user_id = users.id WHERE users.id = <id>;
+}
+
+query readBoxUser(int id) {
+    SELECT users.id, users.email, users.encrypted_password, users.reset_password_token, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.password_salt, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.failed_attempts, users.unlock_token, users.locked_at, users.authentication_token, users.last_name, users.first_name, users.beta_user, users.signup_comments, users.role, users.cim_id, users.default_payment_profile_id, users.default_shipping_address_id, users.test_user, users.acting_as_user_id, users.first_time_signed_up FROM boxes JOIN users ON boxes.assigned_to_user_id = users.id WHERE boxes.id = <id>;
+}
+
+query readUserBox(int id) {
+    SELECT boxes.id, boxes.assigned_to_user_id, boxes.ordering_order_line_id, boxes.status, boxes.box_type, boxes.description, boxes.inventorying_status, boxes.inventorying_order_line_id, boxes.received_at, boxes.height, boxes.width, boxes.length, boxes.weight, boxes.box_num, boxes.return_requested_at, boxes.location, boxes.inventoried_at, boxes.created_by_id FROM boxes JOIN users ON boxes.assigned_to_user_id = users.id WHERE users.id = <id>;
+}
+
+query readBoxUser2(int id) {
+    SELECT users.id, users.email, users.encrypted_password, users.reset_password_token, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.password_salt, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.failed_attempts, users.unlock_token, users.locked_at, users.authentication_token, users.last_name, users.first_name, users.beta_user, users.signup_comments, users.role, users.cim_id, users.default_payment_profile_id, users.default_shipping_address_id, users.test_user, users.acting_as_user_id, users.first_time_signed_up FROM boxes JOIN users ON boxes.assigned_to_user_id = users.id WHERE boxes.id = <id>;
+}
+
+query readUserBox2(int id) {
+    SELECT boxes.id, boxes.assigned_to_user_id, boxes.ordering_order_line_id, boxes.status, boxes.box_type, boxes.description, boxes.inventorying_status, boxes.inventorying_order_line_id, boxes.received_at, boxes.height, boxes.width, boxes.length, boxes.weight, boxes.box_num, boxes.return_requested_at, boxes.location, boxes.inventoried_at, boxes.created_by_id FROM boxes JOIN users ON boxes.assigned_to_user_id = users.id WHERE users.id = <id>;
+}
+
+query readBoxSubscriptionBox(int id) {
+    SELECT boxes.id, boxes.assigned_to_user_id, boxes.ordering_order_line_id, boxes.status, boxes.box_type, boxes.description, boxes.inventorying_status, boxes.inventorying_order_line_id, boxes.received_at, boxes.height, boxes.width, boxes.length, boxes.weight, boxes.box_num, boxes.return_requested_at, boxes.location, boxes.inventoried_at, boxes.created_by_id FROM boxes_subscriptions JOIN boxes ON boxes_subscriptions.box_id = boxes.id WHERE boxes_subscriptions.id = <id>;
+}
+
+query readBoxBoxSubscription(int id) {
+    SELECT boxes_subscriptions.id, boxes_subscriptions.box_id, boxes_subscriptions.subscription_id FROM boxes_subscriptions JOIN boxes ON boxes_subscriptions.box_id = boxes.id WHERE boxes.id = <id>;
+}
+
+query readBoxSubscriptionSubscription(int id) {
+    SELECT subscriptions.id, subscriptions.start_date, subscriptions.end_date, subscriptions.user_id, subscriptions.duration_in_months FROM boxes_subscriptions JOIN subscriptions ON boxes_subscriptions.subscription_id = subscriptions.id WHERE boxes_subscriptions.id = <id>;
+}
+
+query readSubscriptionBoxSubscription(int id) {
+    SELECT boxes_subscriptions.id, boxes_subscriptions.box_id, boxes_subscriptions.subscription_id FROM boxes_subscriptions JOIN subscriptions ON boxes_subscriptions.subscription_id = subscriptions.id WHERE subscriptions.id = <id>;
+}
+
+query readCartItemCart(int id) {
+    SELECT carts.id, carts.user_id, carts.ordered_at, carts.status, carts.quoted_shipping_cost, carts.quoted_shipping_cost_success FROM cart_items JOIN carts ON cart_items.cart_id = carts.id WHERE cart_items.id = <id>;
+}
+
+query readCartCartItem(int id) {
+    SELECT cart_items.id, cart_items.quantity, cart_items.cart_id, cart_items.product_id, cart_items.committed_months, cart_items.box_id, cart_items.address_id, cart_items.stored_item_id FROM cart_items JOIN carts ON cart_items.cart_id = carts.id WHERE carts.id = <id>;
+}
+
+query readCartItemProduct(int id) {
+    SELECT products.id, products.name, products.price, products.price_comment, products.first_due, products.discountable FROM cart_items JOIN products ON cart_items.product_id = products.id WHERE cart_items.id = <id>;
+}
+
+query readProductCartItem(int id) {
+    SELECT cart_items.id, cart_items.quantity, cart_items.cart_id, cart_items.product_id, cart_items.committed_months, cart_items.box_id, cart_items.address_id, cart_items.stored_item_id FROM cart_items JOIN products ON cart_items.product_id = products.id WHERE products.id = <id>;
+}
+
+query readCartItemBox(int id) {
+    SELECT boxes.id, boxes.assigned_to_user_id, boxes.ordering_order_line_id, boxes.status, boxes.box_type, boxes.description, boxes.inventorying_status, boxes.inventorying_order_line_id, boxes.received_at, boxes.height, boxes.width, boxes.length, boxes.weight, boxes.box_num, boxes.return_requested_at, boxes.location, boxes.inventoried_at, boxes.created_by_id FROM cart_items JOIN boxes ON cart_items.box_id = boxes.id WHERE cart_items.id = <id>;
+}
+
+query readBoxCartItem(int id) {
+    SELECT cart_items.id, cart_items.quantity, cart_items.cart_id, cart_items.product_id, cart_items.committed_months, cart_items.box_id, cart_items.address_id, cart_items.stored_item_id FROM cart_items JOIN boxes ON cart_items.box_id = boxes.id WHERE boxes.id = <id>;
+}
+
+query readCartItemAddress(int id) {
+    SELECT addresses.id, addresses.first_name, addresses.last_name, addresses.day_phone, addresses.evening_phone, addresses.address_line_1, addresses.address_line_2, addresses.city, addresses.state, addresses.zip, addresses.address_name, addresses.user_id, addresses.country, addresses.status, addresses.comment, addresses.fedex_validation_status FROM cart_items JOIN addresses ON cart_items.address_id = addresses.id WHERE cart_items.id = <id>;
+}
+
+query readAddressCartItem(int id) {
+    SELECT cart_items.id, cart_items.quantity, cart_items.cart_id, cart_items.product_id, cart_items.committed_months, cart_items.box_id, cart_items.address_id, cart_items.stored_item_id FROM cart_items JOIN addresses ON cart_items.address_id = addresses.id WHERE addresses.id = <id>;
+}
+
+query readCartItemStoredItem(int id) {
+    SELECT stored_items.id FROM cart_items JOIN stored_items ON cart_items.stored_item_id = stored_items.id WHERE cart_items.id = <id>;
+}
+
+query readStoredItemCartItem(int id) {
+    SELECT cart_items.id, cart_items.quantity, cart_items.cart_id, cart_items.product_id, cart_items.committed_months, cart_items.box_id, cart_items.address_id, cart_items.stored_item_id FROM cart_items JOIN stored_items ON cart_items.stored_item_id = stored_items.id WHERE stored_items.id = <id>;
+}
+
+query readCartUser(int id) {
+    SELECT users.id, users.email, users.encrypted_password, users.reset_password_token, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.password_salt, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.failed_attempts, users.unlock_token, users.locked_at, users.authentication_token, users.last_name, users.first_name, users.beta_user, users.signup_comments, users.role, users.cim_id, users.default_payment_profile_id, users.default_shipping_address_id, users.test_user, users.acting_as_user_id, users.first_time_signed_up FROM carts JOIN users ON carts.user_id = users.id WHERE carts.id = <id>;
+}
+
+query readUserCart(int id) {
+    SELECT carts.id, carts.user_id, carts.ordered_at, carts.status, carts.quoted_shipping_cost, carts.quoted_shipping_cost_success FROM carts JOIN users ON carts.user_id = users.id WHERE users.id = <id>;
+}
+
+query readChargeUser(int id) {
+    SELECT users.id, users.email, users.encrypted_password, users.reset_password_token, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.password_salt, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.failed_attempts, users.unlock_token, users.locked_at, users.authentication_token, users.last_name, users.first_name, users.beta_user, users.signup_comments, users.role, users.cim_id, users.default_payment_profile_id, users.default_shipping_address_id, users.test_user, users.acting_as_user_id, users.first_time_signed_up FROM charges JOIN users ON charges.user_id = users.id WHERE charges.id = <id>;
+}
+
+query readUserCharge(int id) {
+    SELECT charges.id, charges.user_id, charges.total_in_cents, charges.product_id, charges.order_id, charges.shipment_id, charges.comments, charges.created_by_admin_id FROM charges JOIN users ON charges.user_id = users.id WHERE users.id = <id>;
+}
+
+query readChargeProduct(int id) {
+    SELECT products.id, products.name, products.price, products.price_comment, products.first_due, products.discountable FROM charges JOIN products ON charges.product_id = products.id WHERE charges.id = <id>;
+}
+
+query readProductCharge(int id) {
+    SELECT charges.id, charges.user_id, charges.total_in_cents, charges.product_id, charges.order_id, charges.shipment_id, charges.comments, charges.created_by_admin_id FROM charges JOIN products ON charges.product_id = products.id WHERE products.id = <id>;
+}
+
+query readChargeOrder(int id) {
+    SELECT orders.id, orders.cart_id, orders.ip_address, orders.user_id, orders.initial_charged_shipping_cost FROM charges JOIN orders ON charges.order_id = orders.id WHERE charges.id = <id>;
+}
+
+query readOrderCharge(int id) {
+    SELECT charges.id, charges.user_id, charges.total_in_cents, charges.product_id, charges.order_id, charges.shipment_id, charges.comments, charges.created_by_admin_id FROM charges JOIN orders ON charges.order_id = orders.id WHERE orders.id = <id>;
+}
+
+query readChargeShipment(int id) {
+    SELECT shipments.id, shipments.box_id, shipments.from_address_id, shipments.to_address_id, shipments.tracking_number, shipments.shipment_label_file_name, shipments.shipment_label_updated_at, shipments.state, shipments.payor, shipments.charge_requested FROM charges JOIN shipments ON charges.shipment_id = shipments.id WHERE charges.id = <id>;
+}
+
+query readShipmentCharge(int id) {
+    SELECT charges.id, charges.user_id, charges.total_in_cents, charges.product_id, charges.order_id, charges.shipment_id, charges.comments, charges.created_by_admin_id FROM charges JOIN shipments ON charges.shipment_id = shipments.id WHERE shipments.id = <id>;
+}
+
+query readCreditUser(int id) {
+    SELECT users.id, users.email, users.encrypted_password, users.reset_password_token, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.password_salt, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.failed_attempts, users.unlock_token, users.locked_at, users.authentication_token, users.last_name, users.first_name, users.beta_user, users.signup_comments, users.role, users.cim_id, users.default_payment_profile_id, users.default_shipping_address_id, users.test_user, users.acting_as_user_id, users.first_time_signed_up FROM credits JOIN users ON credits.user_id = users.id WHERE credits.id = <id>;
+}
+
+query readUserCredit(int id) {
+    SELECT credits.id, credits.amount, credits.user_id, credits.description, credits.created_by_admin_id FROM credits JOIN users ON credits.user_id = users.id WHERE users.id = <id>;
+}
+
+query readInvoiceUser(int id) {
+    SELECT users.id, users.email, users.encrypted_password, users.reset_password_token, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.password_salt, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.failed_attempts, users.unlock_token, users.locked_at, users.authentication_token, users.last_name, users.first_name, users.beta_user, users.signup_comments, users.role, users.cim_id, users.default_payment_profile_id, users.default_shipping_address_id, users.test_user, users.acting_as_user_id, users.first_time_signed_up FROM invoices JOIN users ON invoices.user_id = users.id WHERE invoices.id = <id>;
+}
+
+query readUserInvoice(int id) {
+    SELECT invoices.id, invoices.user_id, invoices.payment_transaction_id, invoices.order_id FROM invoices JOIN users ON invoices.user_id = users.id WHERE users.id = <id>;
+}
+
+query readInvoicePaymentTransaction(int id) {
+    SELECT payment_transactions.id, payment_transactions.order_id, payment_transactions.action, payment_transactions.authorization, payment_transactions.message, payment_transactions.params, payment_transactions.user_id, payment_transactions.payment_profile_id, payment_transactions.status, payment_transactions.storage_payment_processing_record_id, payment_transactions.auth_transaction_id, payment_transactions.credit_id, payment_transactions.submitted_amount FROM invoices JOIN payment_transactions ON invoices.payment_transaction_id = payment_transactions.id WHERE invoices.id = <id>;
+}
+
+query readPaymentTransactionInvoice(int id) {
+    SELECT invoices.id, invoices.user_id, invoices.payment_transaction_id, invoices.order_id FROM invoices JOIN payment_transactions ON invoices.payment_transaction_id = payment_transactions.id WHERE payment_transactions.id = <id>;
+}
+
+query readInvoiceOrder(int id) {
+    SELECT orders.id, orders.cart_id, orders.ip_address, orders.user_id, orders.initial_charged_shipping_cost FROM invoices JOIN orders ON invoices.order_id = orders.id WHERE invoices.id = <id>;
+}
+
+query readOrderInvoice(int id) {
+    SELECT invoices.id, invoices.user_id, invoices.payment_transaction_id, invoices.order_id FROM invoices JOIN orders ON invoices.order_id = orders.id WHERE orders.id = <id>;
+}
+
+query readOrderLineOrder(int id) {
+    SELECT orders.id, orders.cart_id, orders.ip_address, orders.user_id, orders.initial_charged_shipping_cost FROM order_lines JOIN orders ON order_lines.order_id = orders.id WHERE order_lines.id = <id>;
+}
+
+query readOrderOrderLine(int id) {
+    SELECT order_lines.id, order_lines.order_id, order_lines.product_id, order_lines.quantity, order_lines.status, order_lines.committed_months, order_lines.shipping_address_id, order_lines.service_box_id, order_lines.shipment_id, order_lines.service_item_id, order_lines.item_mail_shipping_charge_id, order_lines.amount_paid_at_purchase FROM order_lines JOIN orders ON order_lines.order_id = orders.id WHERE orders.id = <id>;
+}
+
+query readOrderLineProduct(int id) {
+    SELECT products.id, products.name, products.price, products.price_comment, products.first_due, products.discountable FROM order_lines JOIN products ON order_lines.product_id = products.id WHERE order_lines.id = <id>;
+}
+
+query readProductOrderLine(int id) {
+    SELECT order_lines.id, order_lines.order_id, order_lines.product_id, order_lines.quantity, order_lines.status, order_lines.committed_months, order_lines.shipping_address_id, order_lines.service_box_id, order_lines.shipment_id, order_lines.service_item_id, order_lines.item_mail_shipping_charge_id, order_lines.amount_paid_at_purchase FROM order_lines JOIN products ON order_lines.product_id = products.id WHERE products.id = <id>;
+}
+
+query readOrderLineAddress(int id) {
+    SELECT addresses.id, addresses.first_name, addresses.last_name, addresses.day_phone, addresses.evening_phone, addresses.address_line_1, addresses.address_line_2, addresses.city, addresses.state, addresses.zip, addresses.address_name, addresses.user_id, addresses.country, addresses.status, addresses.comment, addresses.fedex_validation_status FROM order_lines JOIN addresses ON order_lines.shipping_address_id = addresses.id WHERE order_lines.id = <id>;
+}
+
+query readAddressOrderLine(int id) {
+    SELECT order_lines.id, order_lines.order_id, order_lines.product_id, order_lines.quantity, order_lines.status, order_lines.committed_months, order_lines.shipping_address_id, order_lines.service_box_id, order_lines.shipment_id, order_lines.service_item_id, order_lines.item_mail_shipping_charge_id, order_lines.amount_paid_at_purchase FROM order_lines JOIN addresses ON order_lines.shipping_address_id = addresses.id WHERE addresses.id = <id>;
+}
+
+query readOrderLineBox(int id) {
+    SELECT boxes.id, boxes.assigned_to_user_id, boxes.ordering_order_line_id, boxes.status, boxes.box_type, boxes.description, boxes.inventorying_status, boxes.inventorying_order_line_id, boxes.received_at, boxes.height, boxes.width, boxes.length, boxes.weight, boxes.box_num, boxes.return_requested_at, boxes.location, boxes.inventoried_at, boxes.created_by_id FROM order_lines JOIN boxes ON order_lines.service_box_id = boxes.id WHERE order_lines.id = <id>;
+}
+
+query readBoxOrderLine(int id) {
+    SELECT order_lines.id, order_lines.order_id, order_lines.product_id, order_lines.quantity, order_lines.status, order_lines.committed_months, order_lines.shipping_address_id, order_lines.service_box_id, order_lines.shipment_id, order_lines.service_item_id, order_lines.item_mail_shipping_charge_id, order_lines.amount_paid_at_purchase FROM order_lines JOIN boxes ON order_lines.service_box_id = boxes.id WHERE boxes.id = <id>;
+}
+
+query readOrderLineShipment(int id) {
+    SELECT shipments.id, shipments.box_id, shipments.from_address_id, shipments.to_address_id, shipments.tracking_number, shipments.shipment_label_file_name, shipments.shipment_label_updated_at, shipments.state, shipments.payor, shipments.charge_requested FROM order_lines JOIN shipments ON order_lines.shipment_id = shipments.id WHERE order_lines.id = <id>;
+}
+
+query readShipmentOrderLine(int id) {
+    SELECT order_lines.id, order_lines.order_id, order_lines.product_id, order_lines.quantity, order_lines.status, order_lines.committed_months, order_lines.shipping_address_id, order_lines.service_box_id, order_lines.shipment_id, order_lines.service_item_id, order_lines.item_mail_shipping_charge_id, order_lines.amount_paid_at_purchase FROM order_lines JOIN shipments ON order_lines.shipment_id = shipments.id WHERE shipments.id = <id>;
+}
+
+query readOrderLineStoredItem(int id) {
+    SELECT stored_items.id FROM order_lines JOIN stored_items ON order_lines.service_item_id = stored_items.id WHERE order_lines.id = <id>;
+}
+
+query readStoredItemOrderLine(int id) {
+    SELECT order_lines.id, order_lines.order_id, order_lines.product_id, order_lines.quantity, order_lines.status, order_lines.committed_months, order_lines.shipping_address_id, order_lines.service_box_id, order_lines.shipment_id, order_lines.service_item_id, order_lines.item_mail_shipping_charge_id, order_lines.amount_paid_at_purchase FROM order_lines JOIN stored_items ON order_lines.service_item_id = stored_items.id WHERE stored_items.id = <id>;
+}
+
+query readOrderLineCharge(int id) {
+    SELECT charges.id, charges.user_id, charges.total_in_cents, charges.product_id, charges.order_id, charges.shipment_id, charges.comments, charges.created_by_admin_id FROM order_lines JOIN charges ON order_lines.item_mail_shipping_charge_id = charges.id WHERE order_lines.id = <id>;
+}
+
+query readChargeOrderLine(int id) {
+    SELECT order_lines.id, order_lines.order_id, order_lines.product_id, order_lines.quantity, order_lines.status, order_lines.committed_months, order_lines.shipping_address_id, order_lines.service_box_id, order_lines.shipment_id, order_lines.service_item_id, order_lines.item_mail_shipping_charge_id, order_lines.amount_paid_at_purchase FROM order_lines JOIN charges ON order_lines.item_mail_shipping_charge_id = charges.id WHERE charges.id = <id>;
+}
+
+query readOrderCart(int id) {
+    SELECT carts.id, carts.user_id, carts.ordered_at, carts.status, carts.quoted_shipping_cost, carts.quoted_shipping_cost_success FROM orders JOIN carts ON orders.cart_id = carts.id WHERE orders.id = <id>;
+}
+
+query readCartOrder(int id) {
+    SELECT orders.id, orders.cart_id, orders.ip_address, orders.user_id, orders.initial_charged_shipping_cost FROM orders JOIN carts ON orders.cart_id = carts.id WHERE carts.id = <id>;
+}
+
+query readOrderUser(int id) {
+    SELECT users.id, users.email, users.encrypted_password, users.reset_password_token, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.password_salt, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.failed_attempts, users.unlock_token, users.locked_at, users.authentication_token, users.last_name, users.first_name, users.beta_user, users.signup_comments, users.role, users.cim_id, users.default_payment_profile_id, users.default_shipping_address_id, users.test_user, users.acting_as_user_id, users.first_time_signed_up FROM orders JOIN users ON orders.user_id = users.id WHERE orders.id = <id>;
+}
+
+query readUserOrder(int id) {
+    SELECT orders.id, orders.cart_id, orders.ip_address, orders.user_id, orders.initial_charged_shipping_cost FROM orders JOIN users ON orders.user_id = users.id WHERE users.id = <id>;
+}
+
+query readPaymentProfileUser(int id) {
+    SELECT users.id, users.email, users.encrypted_password, users.reset_password_token, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.password_salt, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.failed_attempts, users.unlock_token, users.locked_at, users.authentication_token, users.last_name, users.first_name, users.beta_user, users.signup_comments, users.role, users.cim_id, users.default_payment_profile_id, users.default_shipping_address_id, users.test_user, users.acting_as_user_id, users.first_time_signed_up FROM payment_profiles JOIN users ON payment_profiles.user_id = users.id WHERE payment_profiles.id = <id>;
+}
+
+query readUserPaymentProfile(int id) {
+    SELECT payment_profiles.id, payment_profiles.identifier, payment_profiles.last_four_digits, payment_profiles.user_id, payment_profiles.year, payment_profiles.first_name, payment_profiles.last_name, payment_profiles.billing_address_id, payment_profiles.cc_type, payment_profiles.month, payment_profiles.active FROM payment_profiles JOIN users ON payment_profiles.user_id = users.id WHERE users.id = <id>;
+}
+
+query readPaymentProfileAddress(int id) {
+    SELECT addresses.id, addresses.first_name, addresses.last_name, addresses.day_phone, addresses.evening_phone, addresses.address_line_1, addresses.address_line_2, addresses.city, addresses.state, addresses.zip, addresses.address_name, addresses.user_id, addresses.country, addresses.status, addresses.comment, addresses.fedex_validation_status FROM payment_profiles JOIN addresses ON payment_profiles.billing_address_id = addresses.id WHERE payment_profiles.id = <id>;
+}
+
+query readAddressPaymentProfile(int id) {
+    SELECT payment_profiles.id, payment_profiles.identifier, payment_profiles.last_four_digits, payment_profiles.user_id, payment_profiles.year, payment_profiles.first_name, payment_profiles.last_name, payment_profiles.billing_address_id, payment_profiles.cc_type, payment_profiles.month, payment_profiles.active FROM payment_profiles JOIN addresses ON payment_profiles.billing_address_id = addresses.id WHERE addresses.id = <id>;
+}
+
+query readPaymentTransactionOrder(int id) {
+    SELECT orders.id, orders.cart_id, orders.ip_address, orders.user_id, orders.initial_charged_shipping_cost FROM payment_transactions JOIN orders ON payment_transactions.order_id = orders.id WHERE payment_transactions.id = <id>;
+}
+
+query readOrderPaymentTransaction(int id) {
+    SELECT payment_transactions.id, payment_transactions.order_id, payment_transactions.action, payment_transactions.authorization, payment_transactions.message, payment_transactions.params, payment_transactions.user_id, payment_transactions.payment_profile_id, payment_transactions.status, payment_transactions.storage_payment_processing_record_id, payment_transactions.auth_transaction_id, payment_transactions.credit_id, payment_transactions.submitted_amount FROM payment_transactions JOIN orders ON payment_transactions.order_id = orders.id WHERE orders.id = <id>;
+}
+
+query readPaymentTransactionUser(int id) {
+    SELECT users.id, users.email, users.encrypted_password, users.reset_password_token, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.password_salt, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.failed_attempts, users.unlock_token, users.locked_at, users.authentication_token, users.last_name, users.first_name, users.beta_user, users.signup_comments, users.role, users.cim_id, users.default_payment_profile_id, users.default_shipping_address_id, users.test_user, users.acting_as_user_id, users.first_time_signed_up FROM payment_transactions JOIN users ON payment_transactions.user_id = users.id WHERE payment_transactions.id = <id>;
+}
+
+query readUserPaymentTransaction(int id) {
+    SELECT payment_transactions.id, payment_transactions.order_id, payment_transactions.action, payment_transactions.authorization, payment_transactions.message, payment_transactions.params, payment_transactions.user_id, payment_transactions.payment_profile_id, payment_transactions.status, payment_transactions.storage_payment_processing_record_id, payment_transactions.auth_transaction_id, payment_transactions.credit_id, payment_transactions.submitted_amount FROM payment_transactions JOIN users ON payment_transactions.user_id = users.id WHERE users.id = <id>;
+}
+
+query readPaymentTransactionPaymentProfile(int id) {
+    SELECT payment_profiles.id, payment_profiles.identifier, payment_profiles.last_four_digits, payment_profiles.user_id, payment_profiles.year, payment_profiles.first_name, payment_profiles.last_name, payment_profiles.billing_address_id, payment_profiles.cc_type, payment_profiles.month, payment_profiles.active FROM payment_transactions JOIN payment_profiles ON payment_transactions.payment_profile_id = payment_profiles.id WHERE payment_transactions.id = <id>;
+}
+
+query readPaymentProfilePaymentTransaction(int id) {
+    SELECT payment_transactions.id, payment_transactions.order_id, payment_transactions.action, payment_transactions.authorization, payment_transactions.message, payment_transactions.params, payment_transactions.user_id, payment_transactions.payment_profile_id, payment_transactions.status, payment_transactions.storage_payment_processing_record_id, payment_transactions.auth_transaction_id, payment_transactions.credit_id, payment_transactions.submitted_amount FROM payment_transactions JOIN payment_profiles ON payment_transactions.payment_profile_id = payment_profiles.id WHERE payment_profiles.id = <id>;
+}
+
+query readPaymentTransactionStoragePaymentProcessingRecord(int id) {
+    SELECT storage_payment_processing_records.id, storage_payment_processing_records.generated_by_user_id, storage_payment_processing_records.as_of_date FROM payment_transactions JOIN storage_payment_processing_records ON payment_transactions.storage_payment_processing_record_id = storage_payment_processing_records.id WHERE payment_transactions.id = <id>;
+}
+
+query readStoragePaymentProcessingRecordPaymentTransaction(int id) {
+    SELECT payment_transactions.id, payment_transactions.order_id, payment_transactions.action, payment_transactions.authorization, payment_transactions.message, payment_transactions.params, payment_transactions.user_id, payment_transactions.payment_profile_id, payment_transactions.status, payment_transactions.storage_payment_processing_record_id, payment_transactions.auth_transaction_id, payment_transactions.credit_id, payment_transactions.submitted_amount FROM payment_transactions JOIN storage_payment_processing_records ON payment_transactions.storage_payment_processing_record_id = storage_payment_processing_records.id WHERE storage_payment_processing_records.id = <id>;
+}
+
+query readPaymentTransactionCredit(int id) {
+    SELECT credits.id, credits.amount, credits.user_id, credits.description, credits.created_by_admin_id FROM payment_transactions JOIN credits ON payment_transactions.credit_id = credits.id WHERE payment_transactions.id = <id>;
+}
+
+query readCreditPaymentTransaction(int id) {
+    SELECT payment_transactions.id, payment_transactions.order_id, payment_transactions.action, payment_transactions.authorization, payment_transactions.message, payment_transactions.params, payment_transactions.user_id, payment_transactions.payment_profile_id, payment_transactions.status, payment_transactions.storage_payment_processing_record_id, payment_transactions.auth_transaction_id, payment_transactions.credit_id, payment_transactions.submitted_amount FROM payment_transactions JOIN credits ON payment_transactions.credit_id = credits.id WHERE credits.id = <id>;
+}
+
+query readPhotoStoredItem(int id) {
+    SELECT stored_items.id FROM photos JOIN stored_items ON photos.stored_item_id = stored_items.id WHERE photos.id = <id>;
+}
+
+query readStoredItemPhoto(int id) {
+    SELECT photos.id, photos.stored_item_id, photos.data_file_name, photos.data_content_type, photos.data_file_size, photos.data_updated_at FROM photos JOIN stored_items ON photos.stored_item_id = stored_items.id WHERE stored_items.id = <id>;
+}
+
+query readRentalAgreementVersionUserUser(int id) {
+    SELECT users.id, users.email, users.encrypted_password, users.reset_password_token, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.password_salt, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.failed_attempts, users.unlock_token, users.locked_at, users.authentication_token, users.last_name, users.first_name, users.beta_user, users.signup_comments, users.role, users.cim_id, users.default_payment_profile_id, users.default_shipping_address_id, users.test_user, users.acting_as_user_id, users.first_time_signed_up FROM rental_agreement_versions_users JOIN users ON rental_agreement_versions_users.user_id = users.id WHERE rental_agreement_versions_users.id = <id>;
+}
+
+query readUserRentalAgreementVersionUser(int id) {
+    SELECT rental_agreement_versions_users.id, rental_agreement_versions_users.user_id, rental_agreement_versions_users.rental_agreement_version_id FROM rental_agreement_versions_users JOIN users ON rental_agreement_versions_users.user_id = users.id WHERE users.id = <id>;
+}
+
+query readRentalAgreementVersionUserRentalAgreementVersion(int id) {
+    SELECT rental_agreement_versions.id, rental_agreement_versions.agreement_text FROM rental_agreement_versions_users JOIN rental_agreement_versions ON rental_agreement_versions_users.rental_agreement_version_id = rental_agreement_versions.id WHERE rental_agreement_versions_users.id = <id>;
+}
+
+query readRentalAgreementVersionRentalAgreementVersionUser(int id) {
+    SELECT rental_agreement_versions_users.id, rental_agreement_versions_users.user_id, rental_agreement_versions_users.rental_agreement_version_id FROM rental_agreement_versions_users JOIN rental_agreement_versions ON rental_agreement_versions_users.rental_agreement_version_id = rental_agreement_versions.id WHERE rental_agreement_versions.id = <id>;
+}
+
+query readShipmentBox(int id) {
+    SELECT boxes.id, boxes.assigned_to_user_id, boxes.ordering_order_line_id, boxes.status, boxes.box_type, boxes.description, boxes.inventorying_status, boxes.inventorying_order_line_id, boxes.received_at, boxes.height, boxes.width, boxes.length, boxes.weight, boxes.box_num, boxes.return_requested_at, boxes.location, boxes.inventoried_at, boxes.created_by_id FROM shipments JOIN boxes ON shipments.box_id = boxes.id WHERE shipments.id = <id>;
+}
+
+query readBoxShipment(int id) {
+    SELECT shipments.id, shipments.box_id, shipments.from_address_id, shipments.to_address_id, shipments.tracking_number, shipments.shipment_label_file_name, shipments.shipment_label_updated_at, shipments.state, shipments.payor, shipments.charge_requested FROM shipments JOIN boxes ON shipments.box_id = boxes.id WHERE boxes.id = <id>;
+}
+
+query readShipmentAddress(int id) {
+    SELECT addresses.id, addresses.first_name, addresses.last_name, addresses.day_phone, addresses.evening_phone, addresses.address_line_1, addresses.address_line_2, addresses.city, addresses.state, addresses.zip, addresses.address_name, addresses.user_id, addresses.country, addresses.status, addresses.comment, addresses.fedex_validation_status FROM shipments JOIN addresses ON shipments.from_address_id = addresses.id WHERE shipments.id = <id>;
+}
+
+query readAddressShipment(int id) {
+    SELECT shipments.id, shipments.box_id, shipments.from_address_id, shipments.to_address_id, shipments.tracking_number, shipments.shipment_label_file_name, shipments.shipment_label_updated_at, shipments.state, shipments.payor, shipments.charge_requested FROM shipments JOIN addresses ON shipments.from_address_id = addresses.id WHERE addresses.id = <id>;
+}
+
+query readShipmentAddress2(int id) {
+    SELECT addresses.id, addresses.first_name, addresses.last_name, addresses.day_phone, addresses.evening_phone, addresses.address_line_1, addresses.address_line_2, addresses.city, addresses.state, addresses.zip, addresses.address_name, addresses.user_id, addresses.country, addresses.status, addresses.comment, addresses.fedex_validation_status FROM shipments JOIN addresses ON shipments.from_address_id = addresses.id WHERE shipments.id = <id>;
+}
+
+query readAddressShipment2(int id) {
+    SELECT shipments.id, shipments.box_id, shipments.from_address_id, shipments.to_address_id, shipments.tracking_number, shipments.shipment_label_file_name, shipments.shipment_label_updated_at, shipments.state, shipments.payor, shipments.charge_requested FROM shipments JOIN addresses ON shipments.from_address_id = addresses.id WHERE addresses.id = <id>;
+}
+
+query readStorageChargeProcessingRecordUser(int id) {
+    SELECT users.id, users.email, users.encrypted_password, users.reset_password_token, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.password_salt, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.failed_attempts, users.unlock_token, users.locked_at, users.authentication_token, users.last_name, users.first_name, users.beta_user, users.signup_comments, users.role, users.cim_id, users.default_payment_profile_id, users.default_shipping_address_id, users.test_user, users.acting_as_user_id, users.first_time_signed_up FROM storage_charge_processing_records JOIN users ON storage_charge_processing_records.generated_by_user_id = users.id WHERE storage_charge_processing_records.id = <id>;
+}
+
+query readUserStorageChargeProcessingRecord(int id) {
+    SELECT storage_charge_processing_records.id, storage_charge_processing_records.generated_by_user_id, storage_charge_processing_records.as_of_date, storage_charge_processing_records.locked_for_editing FROM storage_charge_processing_records JOIN users ON storage_charge_processing_records.generated_by_user_id = users.id WHERE users.id = <id>;
+}
+
+query readStorageChargeBox(int id) {
+    SELECT boxes.id, boxes.assigned_to_user_id, boxes.ordering_order_line_id, boxes.status, boxes.box_type, boxes.description, boxes.inventorying_status, boxes.inventorying_order_line_id, boxes.received_at, boxes.height, boxes.width, boxes.length, boxes.weight, boxes.box_num, boxes.return_requested_at, boxes.location, boxes.inventoried_at, boxes.created_by_id FROM storage_charges JOIN boxes ON storage_charges.box_id = boxes.id WHERE storage_charges.id = <id>;
+}
+
+query readBoxStorageCharge(int id) {
+    SELECT storage_charges.id, storage_charges.box_id, storage_charges.charge_id, storage_charges.start_date, storage_charges.end_date, storage_charges.storage_charge_processing_record_id FROM storage_charges JOIN boxes ON storage_charges.box_id = boxes.id WHERE boxes.id = <id>;
+}
+
+query readStorageChargeCharge(int id) {
+    SELECT charges.id, charges.user_id, charges.total_in_cents, charges.product_id, charges.order_id, charges.shipment_id, charges.comments, charges.created_by_admin_id FROM storage_charges JOIN charges ON storage_charges.charge_id = charges.id WHERE storage_charges.id = <id>;
+}
+
+query readChargeStorageCharge(int id) {
+    SELECT storage_charges.id, storage_charges.box_id, storage_charges.charge_id, storage_charges.start_date, storage_charges.end_date, storage_charges.storage_charge_processing_record_id FROM storage_charges JOIN charges ON storage_charges.charge_id = charges.id WHERE charges.id = <id>;
+}
+
+query readStorageChargeStorageChargeProcessingRecord(int id) {
+    SELECT storage_charge_processing_records.id, storage_charge_processing_records.generated_by_user_id, storage_charge_processing_records.as_of_date, storage_charge_processing_records.locked_for_editing FROM storage_charges JOIN storage_charge_processing_records ON storage_charges.storage_charge_processing_record_id = storage_charge_processing_records.id WHERE storage_charges.id = <id>;
+}
+
+query readStorageChargeProcessingRecordStorageCharge(int id) {
+    SELECT storage_charges.id, storage_charges.box_id, storage_charges.charge_id, storage_charges.start_date, storage_charges.end_date, storage_charges.storage_charge_processing_record_id FROM storage_charges JOIN storage_charge_processing_records ON storage_charges.storage_charge_processing_record_id = storage_charge_processing_records.id WHERE storage_charge_processing_records.id = <id>;
+}
+
+query readStoragePaymentProcessingRecordUser(int id) {
+    SELECT users.id, users.email, users.encrypted_password, users.reset_password_token, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.password_salt, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.failed_attempts, users.unlock_token, users.locked_at, users.authentication_token, users.last_name, users.first_name, users.beta_user, users.signup_comments, users.role, users.cim_id, users.default_payment_profile_id, users.default_shipping_address_id, users.test_user, users.acting_as_user_id, users.first_time_signed_up FROM storage_payment_processing_records JOIN users ON storage_payment_processing_records.generated_by_user_id = users.id WHERE storage_payment_processing_records.id = <id>;
+}
+
+query readUserStoragePaymentProcessingRecord(int id) {
+    SELECT storage_payment_processing_records.id, storage_payment_processing_records.generated_by_user_id, storage_payment_processing_records.as_of_date FROM storage_payment_processing_records JOIN users ON storage_payment_processing_records.generated_by_user_id = users.id WHERE users.id = <id>;
+}
+
+query readStoredItemTagStoredItem(int id) {
+    SELECT stored_items.id FROM stored_item_tags JOIN stored_items ON stored_item_tags.stored_item_id = stored_items.id WHERE stored_item_tags.id = <id>;
+}
+
+query readStoredItemStoredItemTag(int id) {
+    SELECT stored_item_tags.id, stored_item_tags.stored_item_id, stored_item_tags.tag FROM stored_item_tags JOIN stored_items ON stored_item_tags.stored_item_id = stored_items.id WHERE stored_items.id = <id>;
+}
+
+query readStoredItemBox(int id) {
+    SELECT boxes.id, boxes.assigned_to_user_id, boxes.ordering_order_line_id, boxes.status, boxes.box_type, boxes.description, boxes.inventorying_status, boxes.inventorying_order_line_id, boxes.received_at, boxes.height, boxes.width, boxes.length, boxes.weight, boxes.box_num, boxes.return_requested_at, boxes.location, boxes.inventoried_at, boxes.created_by_id FROM stored_items JOIN boxes ON stored_items.box_id = boxes.id WHERE stored_items.id = <id>;
+}
+
+query readBoxStoredItem(int id) {
+    SELECT stored_items.id FROM stored_items JOIN boxes ON stored_items.box_id = boxes.id WHERE boxes.id = <id>;
+}
+
+query readStoredItemShipment(int id) {
+    SELECT shipments.id, shipments.box_id, shipments.from_address_id, shipments.to_address_id, shipments.tracking_number, shipments.shipment_label_file_name, shipments.shipment_label_updated_at, shipments.state, shipments.payor, shipments.charge_requested FROM stored_items JOIN shipments ON stored_items.shipment_id = shipments.id WHERE stored_items.id = <id>;
+}
+
+query readShipmentStoredItem(int id) {
+    SELECT stored_items.id FROM stored_items JOIN shipments ON stored_items.shipment_id = shipments.id WHERE shipments.id = <id>;
+}
+
+query readSubscriptionUser(int id) {
+    SELECT users.id, users.email, users.encrypted_password, users.reset_password_token, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.password_salt, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.failed_attempts, users.unlock_token, users.locked_at, users.authentication_token, users.last_name, users.first_name, users.beta_user, users.signup_comments, users.role, users.cim_id, users.default_payment_profile_id, users.default_shipping_address_id, users.test_user, users.acting_as_user_id, users.first_time_signed_up FROM subscriptions JOIN users ON subscriptions.user_id = users.id WHERE subscriptions.id = <id>;
+}
+
+query readUserSubscription(int id) {
+    SELECT subscriptions.id, subscriptions.start_date, subscriptions.end_date, subscriptions.user_id, subscriptions.duration_in_months FROM subscriptions JOIN users ON subscriptions.user_id = users.id WHERE users.id = <id>;
+}
+
+query readUserPaymentProfile2(int id) {
+    SELECT payment_profiles.id, payment_profiles.identifier, payment_profiles.last_four_digits, payment_profiles.user_id, payment_profiles.year, payment_profiles.first_name, payment_profiles.last_name, payment_profiles.billing_address_id, payment_profiles.cc_type, payment_profiles.month, payment_profiles.active FROM users JOIN payment_profiles ON users.default_payment_profile_id = payment_profiles.id WHERE users.id = <id>;
+}
+
+query readPaymentProfileUser2(int id) {
+    SELECT users.id, users.email, users.encrypted_password, users.reset_password_token, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.password_salt, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.failed_attempts, users.unlock_token, users.locked_at, users.authentication_token, users.last_name, users.first_name, users.beta_user, users.signup_comments, users.role, users.cim_id, users.default_payment_profile_id, users.default_shipping_address_id, users.test_user, users.acting_as_user_id, users.first_time_signed_up FROM users JOIN payment_profiles ON users.default_payment_profile_id = payment_profiles.id WHERE payment_profiles.id = <id>;
+}
+
+query readUserAddress2(int id) {
+    SELECT addresses.id, addresses.first_name, addresses.last_name, addresses.day_phone, addresses.evening_phone, addresses.address_line_1, addresses.address_line_2, addresses.city, addresses.state, addresses.zip, addresses.address_name, addresses.user_id, addresses.country, addresses.status, addresses.comment, addresses.fedex_validation_status FROM users JOIN addresses ON users.default_shipping_address_id = addresses.id WHERE users.id = <id>;
+}
+
+query readAddressUser2(int id) {
+    SELECT users.id, users.email, users.encrypted_password, users.reset_password_token, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.password_salt, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.failed_attempts, users.unlock_token, users.locked_at, users.authentication_token, users.last_name, users.first_name, users.beta_user, users.signup_comments, users.role, users.cim_id, users.default_payment_profile_id, users.default_shipping_address_id, users.test_user, users.acting_as_user_id, users.first_time_signed_up FROM users JOIN addresses ON users.default_shipping_address_id = addresses.id WHERE addresses.id = <id>;
+}
+

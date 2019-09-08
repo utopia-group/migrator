@@ -1,0 +1,57 @@
+update createEmployee(int eid, String name) {
+    INSERT INTO Employees (EmployeeId, EmployeeName) VALUES (<eid>, <name>);
+}
+
+update createInvoice(int iid, String date, String name, String addr, int city, int eid) {
+    INSERT INTO Invoices (InvoiceId, CustomerId_fk, InvoiceDate) VALUES (<iid>, FRESH(1), <date>);
+    INSERT INTO Customers (CustomerId, Name, Address, CityId, EmployeeId_fk) VALUES (FRESH(1), <name>, <addr>, <city>, <eid>);
+}
+
+update deleteEmployee(int eid) {
+    DELETE FROM Employees WHERE EmployeeId = <eid>;
+}
+
+update deleteInvoice(int iid) {
+    DELETE Invoices, Customers FROM Invoices JOIN Customers ON Invoices.CustomerId_fk = Customers.CustomerId WHERE InvoiceId = <iid>;
+}
+
+update updateEmployeeName(int eid, String name) {
+    UPDATE Employees SET EmployeeName = <name> WHERE EmployeeId = <eid>;
+}
+
+update updateCustomerName(int iid, String name) {
+    UPDATE Customers JOIN Invoices ON Customers.CustomerId = Invoices.CustomerId_fk SET Name = <name> WHERE InvoiceId = <iid>;
+}
+
+update updateCustomerAddress(int iid, String addr) {
+    UPDATE Customers JOIN Invoices ON Customers.CustomerId = Invoices.CustomerId_fk SET Address = <addr> WHERE InvoiceId = <iid>;
+}
+
+update updateCustomerCity(int iid, int city) {
+    UPDATE Customers JOIN Invoices ON Customers.CustomerId = Invoices.CustomerId_fk SET CityId = <city> WHERE InvoiceId = <iid>;
+}
+
+update updateInvoiceDate(int iid, String date) {
+    UPDATE Invoices SET InvoiceDate = <date> WHERE InvoiceId = <iid>;
+}
+
+query getCustomerName(int iid) {
+    SELECT Name FROM Invoices JOIN Customers ON Invoices.CustomerId_fk = Customers.CustomerId WHERE InvoiceId = <iid>;
+}
+
+query getCustomerAddress(int iid) {
+    SELECT Address FROM Invoices JOIN Customers ON Invoices.CustomerId_fk = Customers.CustomerId WHERE InvoiceId = <iid>;
+}
+
+query getCustomerCity(int iid) {
+    SELECT CityId FROM Invoices JOIN Customers ON Invoices.CustomerId_fk = Customers.CustomerId WHERE InvoiceId = <iid>;
+}
+
+query getInvoiceDate(int iid) {
+    SELECT InvoiceDate FROM Invoices WHERE InvoiceId = <iid>;
+}
+
+query getInvoiceEmployeeName(int iid) {
+    SELECT EmployeeName FROM Invoices JOIN Customers ON Invoices.CustomerId_fk = Customers.CustomerId JOIN Employees ON Customers.EmployeeId_fk = Employees.EmployeeId WHERE InvoiceId = <iid>;
+}
+

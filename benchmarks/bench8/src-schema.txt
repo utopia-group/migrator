@@ -1,0 +1,18 @@
+CREATE TABLE Address (
+    Aid INT,
+    Street VARCHAR,
+    City VARCHAR,
+    StatePOID_fk INT,
+    PostCode INT,
+    CountryCode INT,
+    FOREIGN KEY (StatePOID_fk) REFERENCES State (StatePOID),
+    PRIMARY KEY (Aid)
+);
+
+CREATE TABLE State (
+    StatePOID INT,
+    StateCode INT,
+    Name VARCHAR,
+    PRIMARY KEY (StatePOID)
+);
+

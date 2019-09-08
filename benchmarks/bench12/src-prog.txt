@@ -1,0 +1,214 @@
+update createCourse(int id, String title, String description, int price, int coach_id, String created_at, String updated_at, String sport, int max_participants, String address, String latitude, String longitude) {
+    INSERT INTO courses (courses.id, courses.title, courses.description, courses.price, courses.coach_id, courses.created_at, courses.updated_at, courses.sport, courses.max_participants, courses.address, courses.latitude, courses.longitude) VALUES (<id>, <title>, <description>, <price>, <coach_id>, <created_at>, <updated_at>, <sport>, <max_participants>, <address>, <latitude>, <longitude>);
+}
+
+update deleteCourse(int id) {
+    DELETE FROM courses WHERE courses.id = <id>;
+}
+
+update updateCourse(int id, String title, String description, int price, String updated_at, String sport, int max_participants, String address, String latitude, String longitude) {
+    UPDATE courses SET courses.title = <title> WHERE courses.id = <id>;
+    UPDATE courses SET courses.description = <description> WHERE courses.id = <id>;
+    UPDATE courses SET courses.price = <price> WHERE courses.id = <id>;
+    UPDATE courses SET courses.updated_at = <updated_at> WHERE courses.id = <id>;
+    UPDATE courses SET courses.sport = <sport> WHERE courses.id = <id>;
+    UPDATE courses SET courses.max_participants = <max_participants> WHERE courses.id = <id>;
+    UPDATE courses SET courses.address = <address> WHERE courses.id = <id>;
+    UPDATE courses SET courses.latitude = <latitude> WHERE courses.id = <id>;
+    UPDATE courses SET courses.longitude = <longitude> WHERE courses.id = <id>;
+}
+
+query readCourse(int id) {
+    SELECT courses.title, courses.description, courses.price, courses.coach_id, courses.sport, courses.max_participants, courses.address, courses.latitude, courses.longitude FROM courses WHERE courses.id = <id>;
+}
+
+query getCoachCourse(int id) {
+    SELECT courses.title, courses.description, courses.price, courses.sport, courses.max_participants, courses.address, courses.latitude, courses.longitude FROM courses JOIN users ON courses.coach_id = users.id WHERE users.id = <id>;
+}
+
+query getCourseByCoachName(String name) {
+    SELECT courses.title, courses.description, courses.price, courses.sport, courses.max_participants, courses.address, courses.latitude, courses.longitude FROM courses JOIN users ON courses.coach_id = users.id WHERE users.username = <name>;
+}
+
+query getCourseBySubscription(int id) {
+    SELECT courses.title, courses.description, courses.price, courses.sport, courses.max_participants, courses.address, courses.latitude, courses.longitude FROM courses JOIN subscriptions ON courses.id = subscriptions.course_id WHERE subscriptions.user_id = <id>;
+}
+
+query readCourseCreateTime(int id) {
+    SELECT courses.created_at FROM courses WHERE courses.id = <id>;
+}
+
+query readCourseUpdateTime(int id) {
+    SELECT courses.updated_at FROM courses WHERE courses.id = <id>;
+}
+
+update createSubscription(int id, int course_id, int user_id, String created_at, String updated_at) {
+    INSERT INTO subscriptions (subscriptions.id, subscriptions.course_id, subscriptions.user_id, subscriptions.created_at, subscriptions.updated_at) VALUES (<id>, <course_id>, <user_id>, <created_at>, <updated_at>);
+}
+
+update deleteSubscription(int id) {
+    DELETE FROM subscriptions WHERE subscriptions.id = <id>;
+}
+
+update updateSubscription(int id, int course_id, int user_id, String updated_at) {
+    UPDATE subscriptions SET subscriptions.course_id = <course_id> WHERE subscriptions.id = <id>;
+    UPDATE subscriptions SET subscriptions.user_id = <user_id> WHERE subscriptions.id = <id>;
+    UPDATE subscriptions SET subscriptions.updated_at = <updated_at> WHERE subscriptions.id = <id>;
+}
+
+query findCourses(String username) {
+    SELECT courses.title, courses.description, courses.price, courses.sport FROM subscriptions JOIN users ON subscriptions.user_id = users.id JOIN courses ON subscriptions.course_id = courses.id WHERE users.username = <username>;
+}
+
+query readSubscriptionCreateTime(int id) {
+    SELECT subscriptions.created_at FROM subscriptions WHERE subscriptions.id = <id>;
+}
+
+query readSubscriptionUpdateTime(int id) {
+    SELECT subscriptions.updated_at FROM subscriptions WHERE subscriptions.id = <id>;
+}
+
+update createTrainingSession(int id, String description, String starts_at, String ends_at, String lat, String lng, int course_id, String created_at, String updated_at) {
+    INSERT INTO training_sessions (training_sessions.id, training_sessions.description, training_sessions.starts_at, training_sessions.ends_at, training_sessions.lat, training_sessions.lng, training_sessions.course_id, training_sessions.created_at, training_sessions.updated_at) VALUES (<id>, <description>, <starts_at>, <ends_at>, <lat>, <lng>, <course_id>, <created_at>, <updated_at>);
+}
+
+update deleteTrainingSession(int id) {
+    DELETE FROM training_sessions WHERE training_sessions.id = <id>;
+}
+
+update updateTrainingSession(int id, String description, String starts_at, String ends_at, String lat, String lng, int course_id, String updated_at) {
+    UPDATE training_sessions SET training_sessions.description = <description> WHERE training_sessions.id = <id>;
+    UPDATE training_sessions SET training_sessions.starts_at = <starts_at> WHERE training_sessions.id = <id>;
+    UPDATE training_sessions SET training_sessions.ends_at = <ends_at> WHERE training_sessions.id = <id>;
+    UPDATE training_sessions SET training_sessions.lat = <lat> WHERE training_sessions.id = <id>;
+    UPDATE training_sessions SET training_sessions.lng = <lng> WHERE training_sessions.id = <id>;
+    UPDATE training_sessions SET training_sessions.course_id = <course_id> WHERE training_sessions.id = <id>;
+    UPDATE training_sessions SET training_sessions.updated_at = <updated_at> WHERE training_sessions.id = <id>;
+}
+
+query readTrainingSession(int id) {
+    SELECT training_sessions.description, training_sessions.starts_at, training_sessions.ends_at, training_sessions.lat, training_sessions.lng, training_sessions.course_id FROM training_sessions WHERE training_sessions.id = <id>;
+}
+
+query readTrainingSessionCreateTime(int id) {
+    SELECT training_sessions.created_at FROM training_sessions WHERE training_sessions.id = <id>;
+}
+
+query readTrainingSessionUpdateTime(int id) {
+    SELECT training_sessions.updated_at FROM training_sessions WHERE training_sessions.id = <id>;
+}
+
+update createUser(int id, String email, String encrypted_password, String reset_password_token, String reset_password_sent_at, String remember_created_at, String sign_in_count, String current_sign_in_at, String last_sign_in_at, String current_sign_in_ip, String last_sign_in_ip, String created_at, String updated_at, String username, String name, String last_name, String address, String country, String phone, String date_of_birth, String trophies, String personal_records, String education, String bio, String aboutme) {
+    INSERT INTO users (users.id, users.email, users.encrypted_password, users.reset_password_token, users.reset_password_sent_at, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.created_at, users.updated_at, users.username, users.name, users.last_name, users.address, users.country, users.phone, users.date_of_birth, users.trophies, users.personal_records, users.education, users.bio, users.aboutme) VALUES (<id>, <email>, <encrypted_password>, <reset_password_token>, <reset_password_sent_at>, <remember_created_at>, <sign_in_count>, <current_sign_in_at>, <last_sign_in_at>, <current_sign_in_ip>, <last_sign_in_ip>, <created_at>, <updated_at>, <username>, <name>, <last_name>, <address>, <country>, <phone>, <date_of_birth>, <trophies>, <personal_records>, <education>, <bio>, <aboutme>);
+}
+
+update deleteUser(int id) {
+    DELETE FROM users WHERE users.id = <id>;
+}
+
+update updateUserContact(int id, String email, String address, String country, String phone, String updated_at) {
+    UPDATE users SET users.email = <email> WHERE users.id = <id>;
+    UPDATE users SET users.address = <address> WHERE users.id = <id>;
+    UPDATE users SET users.country = <country> WHERE users.id = <id>;
+    UPDATE users SET users.phone = <phone> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserPassword(int id, String encrypted_password, String updated_at) {
+    UPDATE users SET users.encrypted_password = <encrypted_password> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserResetPassword(int id, String reset_password_token, String reset_password_sent_at, String updated_at) {
+    UPDATE users SET users.reset_password_token = <reset_password_token> WHERE users.id = <id>;
+    UPDATE users SET users.reset_password_sent_at = <reset_password_sent_at> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserRememberCreatedAt(int id, String remember_created_at, String updated_at) {
+    UPDATE users SET users.remember_created_at = <remember_created_at> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserSignIn(int id, int sign_in_count, String current_sign_in_at, String last_sign_in_at, String current_sign_in_ip, String last_sign_in_ip, String updated_at) {
+    UPDATE users SET users.sign_in_count = <sign_in_count> WHERE users.id = <id>;
+    UPDATE users SET users.current_sign_in_at = <current_sign_in_at> WHERE users.id = <id>;
+    UPDATE users SET users.last_sign_in_at = <last_sign_in_at> WHERE users.id = <id>;
+    UPDATE users SET users.current_sign_in_ip = <current_sign_in_ip> WHERE users.id = <id>;
+    UPDATE users SET users.last_sign_in_ip = <last_sign_in_ip> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserBio(int id, String bio, String education, String updated_at) {
+    UPDATE users SET users.bio = <bio> WHERE users.id = <id>;
+    UPDATE users SET users.education = <education> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserTrophies(int id, String trophies, String updated_at) {
+    UPDATE users SET users.trophies = <trophies> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserPersonalRecords(int id, String personal_records, String updated_at) {
+    UPDATE users SET users.personal_records = <personal_records> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserAboutme(int id, String aboutme, String updated_at) {
+    UPDATE users SET users.aboutme = <aboutme> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+query findUserByEmail(String email) {
+    SELECT users.id FROM users WHERE users.email = <email>;
+}
+
+query findUserByUserName(String username) {
+    SELECT users.id FROM users WHERE users.username = <username>;
+}
+
+query readUser(int id) {
+    SELECT users.email, users.encrypted_password, users.reset_password_token, users.reset_password_sent_at, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.username, users.name, users.last_name, users.address, users.country, users.phone, users.date_of_birth, users.trophies, users.personal_records, users.education, users.bio, users.aboutme FROM users WHERE users.id = <id>;
+}
+
+query readUserCreateTime(int id) {
+    SELECT users.created_at FROM users WHERE users.id = <id>;
+}
+
+query readUserUpdateTime(int id) {
+    SELECT users.updated_at FROM users WHERE users.id = <id>;
+}
+
+query readCourseUser(int id) {
+    SELECT users.id, users.email, users.encrypted_password, users.reset_password_token, users.reset_password_sent_at, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.username, users.name, users.last_name, users.address, users.country, users.phone, users.date_of_birth, users.trophies, users.personal_records, users.education, users.bio, users.aboutme FROM courses JOIN users ON courses.coach_id = users.id WHERE courses.id = <id>;
+}
+
+query readUserCourse(int id) {
+    SELECT courses.id, courses.title, courses.description, courses.price, courses.coach_id, courses.sport, courses.max_participants, courses.address, courses.latitude, courses.longitude FROM courses JOIN users ON courses.coach_id = users.id WHERE users.id = <id>;
+}
+
+query readSubscriptionCourse(int id) {
+    SELECT courses.id, courses.title, courses.description, courses.price, courses.coach_id, courses.sport, courses.max_participants, courses.address, courses.latitude, courses.longitude FROM subscriptions JOIN courses ON subscriptions.course_id = courses.id WHERE subscriptions.id = <id>;
+}
+
+query readCourseSubscription(int id) {
+    SELECT subscriptions.id, subscriptions.course_id, subscriptions.user_id FROM subscriptions JOIN courses ON subscriptions.course_id = courses.id WHERE courses.id = <id>;
+}
+
+query readSubscriptionUser(int id) {
+    SELECT users.id, users.email, users.encrypted_password, users.reset_password_token, users.reset_password_sent_at, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.username, users.name, users.last_name, users.address, users.country, users.phone, users.date_of_birth, users.trophies, users.personal_records, users.education, users.bio, users.aboutme FROM subscriptions JOIN users ON subscriptions.user_id = users.id WHERE subscriptions.id = <id>;
+}
+
+query readUserSubscription(int id) {
+    SELECT subscriptions.id, subscriptions.course_id, subscriptions.user_id FROM subscriptions JOIN users ON subscriptions.user_id = users.id WHERE users.id = <id>;
+}
+
+query readTrainingSessionCourse(int id) {
+    SELECT courses.id, courses.title, courses.description, courses.price, courses.coach_id, courses.sport, courses.max_participants, courses.address, courses.latitude, courses.longitude FROM training_sessions JOIN courses ON training_sessions.course_id = courses.id WHERE training_sessions.id = <id>;
+}
+
+query readCourseTrainingSession(int id) {
+    SELECT training_sessions.id, training_sessions.description, training_sessions.starts_at, training_sessions.ends_at, training_sessions.lat, training_sessions.lng, training_sessions.course_id FROM training_sessions JOIN courses ON training_sessions.course_id = courses.id WHERE courses.id = <id>;
+}
+

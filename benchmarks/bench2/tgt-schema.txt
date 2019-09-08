@@ -1,0 +1,59 @@
+CREATE TABLE EMPLOYEE (
+    eid INT,
+    ename VARCHAR,
+    aid_fk INT,
+    phid_fk INT,
+    emid_fk INT,
+    jid_fk INT,
+    FOREIGN KEY (aid_fk) REFERENCES ADDRESS (aid),
+    FOREIGN KEY (phid_fk) REFERENCES PHONE (phid),
+    FOREIGN KEY (emid_fk) REFERENCES EMAIL (emid),
+    FOREIGN KEY (jid_fk) REFERENCES JOB (jid),
+    PRIMARY KEY (eid)
+);
+
+CREATE TABLE ADDRESS (
+    aid INT,
+    street VARCHAR,
+    zipcode INT,
+    PRIMARY KEY (aid)
+);
+
+CREATE TABLE PHONE (
+    phid INT,
+    work_phone VARCHAR,
+    mobile VARCHAR,
+    fax VARCHAR,
+    PRIMARY KEY (phid)
+);
+
+CREATE TABLE EMAIL (
+    emid INT,
+    work_email VARCHAR,
+    personal_email VARCHAR,
+    PRIMARY KEY (emid)
+);
+
+CREATE TABLE JOB (
+    jid INT,
+    job_title VARCHAR,
+    job_desc VARCHAR,
+    PRIMARY KEY (jid)
+);
+
+CREATE TABLE PROJECT (
+    pid INT,
+    pname VARCHAR,
+    pdesc VARCHAR,
+    PRIMARY KEY (pid)
+);
+
+CREATE TABLE PROJ_EMP (
+    peid INT,
+    pid_fk INT,
+    eid_fk INT,
+    FOREIGN KEY (pid_fk) REFERENCES PROJECT (pid),
+    FOREIGN KEY (eid_fk) REFERENCES EMPLOYEE (eid),
+    PRIMARY KEY (peid)
+);
+

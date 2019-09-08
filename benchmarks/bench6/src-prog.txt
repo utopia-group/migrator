@@ -1,0 +1,20 @@
+update createCustomer(int id, String name) {
+    INSERT INTO Customer (CustomerID, Fname) VALUES (<id>, <name>);
+}
+
+update deleteCustomer(int id) {
+    DELETE FROM Customer WHERE CustomerID = <id>;
+}
+
+update updateCustomerName(int id, String name) {
+    UPDATE Customer SET Fname = <name> WHERE CustomerID = <id>;
+}
+
+query getCustomerID(String name) {
+    SELECT CustomerID FROM Customer WHERE Fname = <name>;
+}
+
+query getCustomerName(int id) {
+    SELECT Fname FROM Customer WHERE CustomerID = <id>;
+}
+

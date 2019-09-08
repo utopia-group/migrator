@@ -1,0 +1,19 @@
+update add_foo(INT num) {
+    INSERT INTO Foo (id, type, num) VALUES (FRESH(0), 1, <num>);
+}
+
+update add_bar(INT num) {
+    INSERT INTO Foo (id, type, num) VALUES (FRESH(0), 2, <num>);
+}
+
+update remove_both(INT num) {
+    DELETE FROM Foo WHERE num = <num>;
+}
+
+query get_foo() {
+    SELECT num FROM Foo WHERE type = 1;
+}
+
+query get_bar() {
+    SELECT num FROM Foo WHERE type = 2;
+}

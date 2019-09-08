@@ -1,0 +1,615 @@
+update createCategory(int id, String name, String created_at, String updated_at) {
+    INSERT INTO categories (categories.id, categories.name, categories.created_at, categories.updated_at) VALUES (<id>, <name>, <created_at>, <updated_at>);
+}
+
+update deleteCategory(int id) {
+    DELETE FROM categories WHERE categories.id = <id>;
+}
+
+update updateCategory(int id, String name, String updated_at) {
+    UPDATE categories SET categories.name = <name> WHERE categories.id = <id>;
+    UPDATE categories SET categories.updated_at = <updated_at> WHERE categories.id = <id>;
+}
+
+query readCategory(int id) {
+    SELECT categories.name FROM categories WHERE categories.id = <id>;
+}
+
+query readCategoryCreateTime(int id) {
+    SELECT categories.created_at FROM categories WHERE categories.id = <id>;
+}
+
+query readCategoryUpdateTime(int id) {
+    SELECT categories.updated_at FROM categories WHERE categories.id = <id>;
+}
+
+update createEmailAddress(int id, String address, int user_id, int email_address_type_id, String _primary, String created_at, String updated_at) {
+    INSERT INTO email_addresses (email_addresses.id, email_addresses.address, email_addresses.user_id, email_addresses.email_address_type_id, email_addresses._primary, email_addresses.created_at, email_addresses.updated_at) VALUES (<id>, <address>, <user_id>, <email_address_type_id>, <_primary>, <created_at>, <updated_at>);
+}
+
+update deleteEmailAddress(int id) {
+    DELETE FROM email_addresses WHERE email_addresses.id = <id>;
+}
+
+update updateEmailAddress(int id, String address, int user_id, int email_address_type_id, String _primary, String updated_at) {
+    UPDATE email_addresses SET email_addresses.address = <address> WHERE email_addresses.id = <id>;
+    UPDATE email_addresses SET email_addresses.user_id = <user_id> WHERE email_addresses.id = <id>;
+    UPDATE email_addresses SET email_addresses.email_address_type_id = <email_address_type_id> WHERE email_addresses.id = <id>;
+    UPDATE email_addresses SET email_addresses._primary = <_primary> WHERE email_addresses.id = <id>;
+    UPDATE email_addresses SET email_addresses.updated_at = <updated_at> WHERE email_addresses.id = <id>;
+}
+
+query readEmailAddress(int id) {
+    SELECT email_addresses.address, email_addresses.user_id, email_addresses.email_address_type_id, email_addresses._primary FROM email_addresses WHERE email_addresses.id = <id>;
+}
+
+query readEmailAddressCreateTime(int id) {
+    SELECT email_addresses.created_at FROM email_addresses WHERE email_addresses.id = <id>;
+}
+
+query readEmailAddressUpdateTime(int id) {
+    SELECT email_addresses.updated_at FROM email_addresses WHERE email_addresses.id = <id>;
+}
+
+update createEvent(int id, String active, String name, String start_at, String end_at, String created_at, String updated_at, String url_friendly, String description, String sponsored, int max_attendance, String sponsor_file_name, String sponsor_content_type, int sponsor_file_size, String sponsor_updated_at) {
+    INSERT INTO events (events.id, events.active, events.name, events.start_at, events.end_at, events.created_at, events.updated_at, events.url_friendly, events.description, events.sponsored, events.max_attendance, events.sponsor_file_name, events.sponsor_content_type, events.sponsor_file_size, events.sponsor_updated_at) VALUES (<id>, <active>, <name>, <start_at>, <end_at>, <created_at>, <updated_at>, <url_friendly>, <description>, <sponsored>, <max_attendance>, <sponsor_file_name>, <sponsor_content_type>, <sponsor_file_size>, <sponsor_updated_at>);
+}
+
+update deleteEvent(int id) {
+    DELETE FROM events WHERE events.id = <id>;
+}
+
+update updateEvent(int id, String active, String name, String start_at, String end_at, String updated_at, String description, String sponsored) {
+    UPDATE events SET events.active = <active> WHERE events.id = <id>;
+    UPDATE events SET events.name = <name> WHERE events.id = <id>;
+    UPDATE events SET events.start_at = <start_at> WHERE events.id = <id>;
+    UPDATE events SET events.end_at = <end_at> WHERE events.id = <id>;
+    UPDATE events SET events.updated_at = <updated_at> WHERE events.id = <id>;
+    UPDATE events SET events.description = <description> WHERE events.id = <id>;
+    UPDATE events SET events.sponsored = <sponsored> WHERE events.id = <id>;
+}
+
+update updateEventUrl(int id, String url_friendly, String updated_at) {
+    UPDATE events SET events.url_friendly = <url_friendly> WHERE events.id = <id>;
+    UPDATE events SET events.updated_at = <updated_at> WHERE events.id = <id>;
+}
+
+update updateEventMaxAttendance(int id, int max_attendance, String updated_at) {
+    UPDATE events SET events.max_attendance = <max_attendance> WHERE events.id = <id>;
+    UPDATE events SET events.updated_at = <updated_at> WHERE events.id = <id>;
+}
+
+update updateEventSponsor(int id, String sponsor_file_name, String sponsor_content_type, String sponsor_file_size, String sponsor_updated_at, String updated_at) {
+    UPDATE events SET events.sponsor_file_name = <sponsor_file_name> WHERE events.id = <id>;
+    UPDATE events SET events.sponsor_content_type = <sponsor_content_type> WHERE events.id = <id>;
+    UPDATE events SET events.sponsor_file_size = <sponsor_file_size> WHERE events.id = <id>;
+    UPDATE events SET events.sponsor_updated_at = <sponsor_updated_at> WHERE events.id = <id>;
+    UPDATE events SET events.updated_at = <updated_at> WHERE events.id = <id>;
+}
+
+query readEvent(int id) {
+    SELECT events.active, events.name, events.start_at, events.end_at, events.url_friendly, events.description, events.sponsored, events.max_attendance, events.sponsor_file_name, events.sponsor_content_type, events.sponsor_file_size, events.sponsor_updated_at FROM events WHERE events.id = <id>;
+}
+
+query readEventCreateTime(int id) {
+    SELECT events.created_at FROM events WHERE events.id = <id>;
+}
+
+query readEventUpdateTime(int id) {
+    SELECT events.updated_at FROM events WHERE events.id = <id>;
+}
+
+update createGuest(int id, String first_name, String last_name, String email, String created_at, String updated_at) {
+    INSERT INTO guests (guests.id, guests.first_name, guests.last_name, guests.email, guests.created_at, guests.updated_at) VALUES (<id>, <first_name>, <last_name>, <email>, <created_at>, <updated_at>);
+}
+
+update deleteGuest(int id) {
+    DELETE FROM guests WHERE guests.id = <id>;
+}
+
+update updateGuest(int id, String first_name, String last_name, String email, String updated_at) {
+    UPDATE guests SET guests.first_name = <first_name> WHERE guests.id = <id>;
+    UPDATE guests SET guests.last_name = <last_name> WHERE guests.id = <id>;
+    UPDATE guests SET guests.email = <email> WHERE guests.id = <id>;
+    UPDATE guests SET guests.updated_at = <updated_at> WHERE guests.id = <id>;
+}
+
+query readGuest(int id) {
+    SELECT guests.first_name, guests.last_name, guests.email FROM guests WHERE guests.id = <id>;
+}
+
+query readGuestCreateTime(int id) {
+    SELECT guests.created_at FROM guests WHERE guests.id = <id>;
+}
+
+query readGuestUpdateTime(int id) {
+    SELECT guests.updated_at FROM guests WHERE guests.id = <id>;
+}
+
+update createItem(int id, int product_id, String product_type, String name, String price, String created_at, String updated_at) {
+    INSERT INTO items (items.id, items.product_id, items.product_type, items.name, items.price, items.created_at, items.updated_at) VALUES (<id>, <product_id>, <product_type>, <name>, <price>, <created_at>, <updated_at>);
+}
+
+update deleteItem(int id) {
+    DELETE FROM items WHERE items.id = <id>;
+}
+
+update updateItem(int id, int product_id, String product_type, String name, String price, String updated_at) {
+    UPDATE items SET items.product_id = <product_id> WHERE items.id = <id>;
+    UPDATE items SET items.product_type = <product_type> WHERE items.id = <id>;
+    UPDATE items SET items.name = <name> WHERE items.id = <id>;
+    UPDATE items SET items.price = <price> WHERE items.id = <id>;
+    UPDATE items SET items.updated_at = <updated_at> WHERE items.id = <id>;
+}
+
+query readItem(int id) {
+    SELECT items.product_id, items.product_type, items.name, items.price FROM items WHERE items.id = <id>;
+}
+
+query readItemCreateTime(int id) {
+    SELECT items.created_at FROM items WHERE items.id = <id>;
+}
+
+query readItemUpdateTime(int id) {
+    SELECT items.updated_at FROM items WHERE items.id = <id>;
+}
+
+update createLocation(int id, int participant_id, String region, String address, String address_cont, String city, String state, String zip, String phone, String created_at, String updated_at) {
+    INSERT INTO locations (locations.id, locations.participant_id, locations.region, locations.address, locations.address_cont, locations.city, locations.state, locations.zip, locations.phone, locations.created_at, locations.updated_at) VALUES (<id>, <participant_id>, <region>, <address>, <address_cont>, <city>, <state>, <zip>, <phone>, <created_at>, <updated_at>);
+}
+
+update deleteLocation(int id) {
+    DELETE FROM locations WHERE locations.id = <id>;
+}
+
+update updateLocation(int id, int participant_id, String region, String address, String address_cont, String city, String state, String zip, String phone, String updated_at) {
+    UPDATE locations SET locations.participant_id = <participant_id> WHERE locations.id = <id>;
+    UPDATE locations SET locations.region = <region> WHERE locations.id = <id>;
+    UPDATE locations SET locations.address = <address> WHERE locations.id = <id>;
+    UPDATE locations SET locations.address_cont = <address_cont> WHERE locations.id = <id>;
+    UPDATE locations SET locations.city = <city> WHERE locations.id = <id>;
+    UPDATE locations SET locations.state = <state> WHERE locations.id = <id>;
+    UPDATE locations SET locations.zip = <zip> WHERE locations.id = <id>;
+    UPDATE locations SET locations.phone = <phone> WHERE locations.id = <id>;
+    UPDATE locations SET locations.updated_at = <updated_at> WHERE locations.id = <id>;
+}
+
+query readLocation(int id) {
+    SELECT locations.participant_id, locations.region, locations.address, locations.address_cont, locations.city, locations.state, locations.zip, locations.phone FROM locations WHERE locations.id = <id>;
+}
+
+query readLocationCreateTime(int id) {
+    SELECT locations.created_at FROM locations WHERE locations.id = <id>;
+}
+
+query readLocationUpdateTime(int id) {
+    SELECT locations.updated_at FROM locations WHERE locations.id = <id>;
+}
+
+update createMembership(int id, String name, String created_at, String updated_at) {
+    INSERT INTO memberships (memberships.id, memberships.name, memberships.created_at, memberships.updated_at) VALUES (<id>, <name>, <created_at>, <updated_at>);
+}
+
+update deleteMembership(int id) {
+    DELETE FROM memberships WHERE memberships.id = <id>;
+}
+
+update updateMembership(int id, String name, String updated_at) {
+    UPDATE memberships SET memberships.name = <name> WHERE memberships.id = <id>;
+    UPDATE memberships SET memberships.updated_at = <updated_at> WHERE memberships.id = <id>;
+}
+
+query readMembership(int id) {
+    SELECT memberships.name FROM memberships WHERE memberships.id = <id>;
+}
+
+query readMembershipCreateTime(int id) {
+    SELECT memberships.created_at FROM memberships WHERE memberships.id = <id>;
+}
+
+query readMembershipUpdateTime(int id) {
+    SELECT memberships.updated_at FROM memberships WHERE memberships.id = <id>;
+}
+
+update createOrderItem(int id, int order_id, int item_id, int quantity, String created_at, String updated_at) {
+    INSERT INTO order_items (order_items.id, order_items.order_id, order_items.item_id, order_items.quantity, order_items.created_at, order_items.updated_at) VALUES (<id>, <order_id>, <item_id>, <quantity>, <created_at>, <updated_at>);
+}
+
+update deleteOrderItem(int id) {
+    DELETE FROM order_items WHERE order_items.id = <id>;
+}
+
+update updateOrderItem(int id, int order_id, int item_id, int quantity, String updated_at) {
+    UPDATE order_items SET order_items.order_id = <order_id> WHERE order_items.id = <id>;
+    UPDATE order_items SET order_items.item_id = <item_id> WHERE order_items.id = <id>;
+    UPDATE order_items SET order_items.quantity = <quantity> WHERE order_items.id = <id>;
+    UPDATE order_items SET order_items.updated_at = <updated_at> WHERE order_items.id = <id>;
+}
+
+query readOrderItem(int id) {
+    SELECT order_items.order_id, items.name, order_items.quantity FROM order_items JOIN items ON order_items.item_id = items.id WHERE order_items.id = <id>;
+}
+
+query readOrderItemCreateTime(int id) {
+    SELECT order_items.created_at FROM order_items WHERE order_items.id = <id>;
+}
+
+query readOrderItemUpdateTime(int id) {
+    SELECT order_items.updated_at FROM order_items WHERE order_items.id = <id>;
+}
+
+update createOrder(int id, int customer_id, String customer_type, String amount, String express_token, String express_payer_id, String created_at, String updated_at, String complete) {
+    INSERT INTO orders (orders.id, orders.customer_id, orders.customer_type, orders.amount, orders.express_token, orders.express_payer_id, orders.created_at, orders.updated_at, orders.complete) VALUES (<id>, <customer_id>, <customer_type>, <amount>, <express_token>, <express_payer_id>, <created_at>, <updated_at>, <complete>);
+}
+
+update deleteOrder(int id) {
+    DELETE FROM orders WHERE orders.id = <id>;
+}
+
+update updateOrder(int id, int customer_id, String customer_type, String amount, String express_token, String express_payer_id, String updated_at, String complete) {
+    UPDATE orders SET orders.customer_id = <customer_id> WHERE orders.id = <id>;
+    UPDATE orders SET orders.customer_type = <customer_type> WHERE orders.id = <id>;
+    UPDATE orders SET orders.amount = <amount> WHERE orders.id = <id>;
+    UPDATE orders SET orders.express_token = <express_token> WHERE orders.id = <id>;
+    UPDATE orders SET orders.express_payer_id = <express_payer_id> WHERE orders.id = <id>;
+    UPDATE orders SET orders.updated_at = <updated_at> WHERE orders.id = <id>;
+    UPDATE orders SET orders.complete = <complete> WHERE orders.id = <id>;
+}
+
+update updateOrderExpress(int id, String express_token, String express_payer_id, String updated_at) {
+    UPDATE orders SET orders.express_token = <express_token> WHERE orders.id = <id>;
+    UPDATE orders SET orders.express_payer_id = <express_payer_id> WHERE orders.id = <id>;
+    UPDATE orders SET orders.updated_at = <updated_at> WHERE orders.id = <id>;
+}
+
+update updateOrderAmount(int id, int amount, String updated_at) {
+    UPDATE orders SET orders.amount = <amount> WHERE orders.id = <id>;
+    UPDATE orders SET orders.updated_at = <updated_at> WHERE orders.id = <id>;
+}
+
+update updateOrderComplete(int id, String complete, String updated_at) {
+    UPDATE orders SET orders.complete = <complete> WHERE orders.id = <id>;
+    UPDATE orders SET orders.updated_at = <updated_at> WHERE orders.id = <id>;
+}
+
+query readOrder(int id) {
+    SELECT orders.customer_id, orders.customer_type, orders.amount, orders.express_token, orders.express_payer_id, orders.complete FROM orders WHERE orders.id = <id>;
+}
+
+query readOrderCreateTime(int id) {
+    SELECT orders.created_at FROM orders WHERE orders.id = <id>;
+}
+
+query readOrderUpdateTime(int id) {
+    SELECT orders.updated_at FROM orders WHERE orders.id = <id>;
+}
+
+update createParticipant(int id, String name, String url, String bio, String benefit, String instructions, String created_at, String updated_at, String logo_file_name, String logo_content_type, int logo_file_size, String logo_updated_at, int category_id) {
+    INSERT INTO participants (participants.id, participants.name, participants.url, participants.bio, participants.benefit, participants.instructions, participants.created_at, participants.updated_at, participants.logo_file_name, participants.logo_content_type, participants.logo_file_size, participants.logo_updated_at, participants.category_id) VALUES (<id>, <name>, <url>, <bio>, <benefit>, <instructions>, <created_at>, <updated_at>, <logo_file_name>, <logo_content_type>, <logo_file_size>, <logo_updated_at>, <category_id>);
+}
+
+update deleteParticipant(int id) {
+    DELETE FROM participants WHERE participants.id = <id>;
+}
+
+update updateParticipant(int id, String name, String url, String bio, String benefit, String instructions, String updated_at, String logo_file_name, String logo_content_type, int logo_file_size, String logo_updated_at, int category_id) {
+    UPDATE participants SET participants.name = <name> WHERE participants.id = <id>;
+    UPDATE participants SET participants.url = <url> WHERE participants.id = <id>;
+    UPDATE participants SET participants.bio = <bio> WHERE participants.id = <id>;
+    UPDATE participants SET participants.benefit = <benefit> WHERE participants.id = <id>;
+    UPDATE participants SET participants.instructions = <instructions> WHERE participants.id = <id>;
+    UPDATE participants SET participants.updated_at = <updated_at> WHERE participants.id = <id>;
+    UPDATE participants SET participants.logo_file_name = <logo_file_name> WHERE participants.id = <id>;
+    UPDATE participants SET participants.logo_content_type = <logo_content_type> WHERE participants.id = <id>;
+    UPDATE participants SET participants.logo_file_size = <logo_file_size> WHERE participants.id = <id>;
+    UPDATE participants SET participants.logo_updated_at = <logo_updated_at> WHERE participants.id = <id>;
+    UPDATE participants SET participants.category_id = <category_id> WHERE participants.id = <id>;
+}
+
+query readParticipant(int id) {
+    SELECT participants.name, participants.url, participants.bio, participants.benefit, participants.instructions, participants.logo_file_name, participants.logo_content_type, participants.logo_file_size, participants.logo_updated_at, participants.category_id FROM participants WHERE participants.id = <id>;
+}
+
+query readParticipantCreateTime(int id) {
+    SELECT participants.created_at FROM participants WHERE participants.id = <id>;
+}
+
+query readParticipantUpdateTime(int id) {
+    SELECT participants.updated_at FROM participants WHERE participants.id = <id>;
+}
+
+update createRegistration(int id, int user_id, String email, String first_name, String last_name, String address, String address2, String city, String state, String zip, String phone_number, String profession, String employer, String education, String about2030, String created_at, String updated_at) {
+    INSERT INTO registrations (registrations.id, registrations.user_id, registrations.email, registrations.first_name, registrations.last_name, registrations.address, registrations.address2, registrations.city, registrations.state, registrations.zip, registrations.phone_number, registrations.profession, registrations.employer, registrations.education, registrations.about2030, registrations.created_at, registrations.updated_at) VALUES (<id>, <user_id>, <email>, <first_name>, <last_name>, <address>, <address2>, <city>, <state>, <zip>, <phone_number>, <profession>, <employer>, <education>, <about2030>, <created_at>, <updated_at>);
+}
+
+update deleteRegistration(int id) {
+    DELETE FROM registrations WHERE registrations.id = <id>;
+}
+
+update updateRegistration(int id, int user_id, String email, String first_name, String last_name, String address, String address2, String city, String state, String zip, String phone_number, String profession, String employer, String education, String about2030, String updated_at) {
+    UPDATE registrations SET registrations.user_id = <user_id> WHERE registrations.id = <id>;
+    UPDATE registrations SET registrations.email = <email> WHERE registrations.id = <id>;
+    UPDATE registrations SET registrations.first_name = <first_name> WHERE registrations.id = <id>;
+    UPDATE registrations SET registrations.last_name = <last_name> WHERE registrations.id = <id>;
+    UPDATE registrations SET registrations.address = <address> WHERE registrations.id = <id>;
+    UPDATE registrations SET registrations.address2 = <address2> WHERE registrations.id = <id>;
+    UPDATE registrations SET registrations.city = <city> WHERE registrations.id = <id>;
+    UPDATE registrations SET registrations.state = <state> WHERE registrations.id = <id>;
+    UPDATE registrations SET registrations.zip = <zip> WHERE registrations.id = <id>;
+    UPDATE registrations SET registrations.phone_number = <phone_number> WHERE registrations.id = <id>;
+    UPDATE registrations SET registrations.profession = <profession> WHERE registrations.id = <id>;
+    UPDATE registrations SET registrations.employer = <employer> WHERE registrations.id = <id>;
+    UPDATE registrations SET registrations.education = <education> WHERE registrations.id = <id>;
+    UPDATE registrations SET registrations.about2030 = <about2030> WHERE registrations.id = <id>;
+    UPDATE registrations SET registrations.updated_at = <updated_at> WHERE registrations.id = <id>;
+}
+
+query readRegistration(int id) {
+    SELECT registrations.user_id, registrations.email, registrations.first_name, registrations.last_name, registrations.address, registrations.address2, registrations.city, registrations.state, registrations.zip, registrations.phone_number, registrations.profession, registrations.employer, registrations.education, registrations.about2030 FROM registrations WHERE registrations.id = <id>;
+}
+
+query readRegistrationCreateTime(int id) {
+    SELECT registrations.created_at FROM registrations WHERE registrations.id = <id>;
+}
+
+query readRegistrationUpdateTime(int id) {
+    SELECT registrations.updated_at FROM registrations WHERE registrations.id = <id>;
+}
+
+update createState(int id, String title, String code) {
+    INSERT INTO states (states.id, states.title, states.code) VALUES (<id>, <title>, <code>);
+}
+
+update deleteState(int id) {
+    DELETE FROM states WHERE states.id = <id>;
+}
+
+update updateState(int id, String title, String code) {
+    UPDATE states SET states.title = <title> WHERE states.id = <id>;
+    UPDATE states SET states.code = <code> WHERE states.id = <id>;
+}
+
+query readState(int id) {
+    SELECT states.title, states.code FROM states WHERE states.id = <id>;
+}
+
+update createUserAddress(int id, int user_id, String address2, int address_type_id, String is_primary, int sort_order, String created_at, String updated_at, String address, String city, String state_code, String zip) {
+    INSERT INTO user_addresses (user_addresses.id, user_addresses.user_id, user_addresses.address2, user_addresses.address_type_id, user_addresses.is_primary, user_addresses.sort_order, user_addresses.created_at, user_addresses.updated_at, user_addresses.address, user_addresses.city, user_addresses.state_code, user_addresses.zip) VALUES (<id>, <user_id>, <address2>, <address_type_id>, <is_primary>, <sort_order>, <created_at>, <updated_at>, <address>, <city>, <state_code>, <zip>);
+}
+
+update deleteUserAddress(int id) {
+    DELETE FROM user_addresses WHERE user_addresses.id = <id>;
+}
+
+update updateUserAddress(int id, int user_id, String address2, int address_type_id, String is_primary, int sort_order, String updated_at, String address, String city, String state_code, String zip) {
+    UPDATE user_addresses SET user_addresses.user_id = <user_id> WHERE user_addresses.id = <id>;
+    UPDATE user_addresses SET user_addresses.address2 = <address2> WHERE user_addresses.id = <id>;
+    UPDATE user_addresses SET user_addresses.address_type_id = <address_type_id> WHERE user_addresses.id = <id>;
+    UPDATE user_addresses SET user_addresses.is_primary = <is_primary> WHERE user_addresses.id = <id>;
+    UPDATE user_addresses SET user_addresses.sort_order = <sort_order> WHERE user_addresses.id = <id>;
+    UPDATE user_addresses SET user_addresses.updated_at = <updated_at> WHERE user_addresses.id = <id>;
+    UPDATE user_addresses SET user_addresses.address = <address> WHERE user_addresses.id = <id>;
+    UPDATE user_addresses SET user_addresses.city = <city> WHERE user_addresses.id = <id>;
+    UPDATE user_addresses SET user_addresses.state_code = <state_code> WHERE user_addresses.id = <id>;
+    UPDATE user_addresses SET user_addresses.zip = <zip> WHERE user_addresses.id = <id>;
+}
+
+query readUserAddress(int id) {
+    SELECT user_addresses.user_id, user_addresses.address2, user_addresses.address_type_id, user_addresses.is_primary, user_addresses.sort_order, user_addresses.address, user_addresses.city, user_addresses.state_code, user_addresses.zip FROM user_addresses WHERE user_addresses.id = <id>;
+}
+
+query readUserAddressCreateTime(int id) {
+    SELECT user_addresses.created_at FROM user_addresses WHERE user_addresses.id = <id>;
+}
+
+query readUserAddressUpdateTime(int id) {
+    SELECT user_addresses.updated_at FROM user_addresses WHERE user_addresses.id = <id>;
+}
+
+update createUserProfile(int id, int user_id, String phone_number, String profession, String employer, String education, String about2030, String birthdate, String bio, String avatar_file_name, String avatar_content_type, int avatar_file_size, String avatar_updated_at, String created_at, String updated_at, String gender, String member_notes) {
+    INSERT INTO user_profiles (user_profiles.id, user_profiles.user_id, user_profiles.phone_number, user_profiles.profession, user_profiles.employer, user_profiles.education, user_profiles.about2030, user_profiles.birthdate, user_profiles.bio, user_profiles.avatar_file_name, user_profiles.avatar_content_type, user_profiles.avatar_file_size, user_profiles.avatar_updated_at, user_profiles.created_at, user_profiles.updated_at, user_profiles.gender, user_profiles.member_notes) VALUES (<id>, <user_id>, <phone_number>, <profession>, <employer>, <education>, <about2030>, <birthdate>, <bio>, <avatar_file_name>, <avatar_content_type>, <avatar_file_size>, <avatar_updated_at>, <created_at>, <updated_at>, <gender>, <member_notes>);
+}
+
+update deleteUserProfile(int id) {
+    DELETE FROM user_profiles WHERE user_profiles.id = <id>;
+}
+
+update updateUserProfile(int id, int user_id, String phone_number, String profession, String employer, String education, String birthdate, String bio, String updated_at, String gender) {
+    UPDATE user_profiles SET user_profiles.user_id = <user_id> WHERE user_profiles.id = <id>;
+    UPDATE user_profiles SET user_profiles.phone_number = <phone_number> WHERE user_profiles.id = <id>;
+    UPDATE user_profiles SET user_profiles.profession = <profession> WHERE user_profiles.id = <id>;
+    UPDATE user_profiles SET user_profiles.employer = <employer> WHERE user_profiles.id = <id>;
+    UPDATE user_profiles SET user_profiles.education = <education> WHERE user_profiles.id = <id>;
+    UPDATE user_profiles SET user_profiles.birthdate = <birthdate> WHERE user_profiles.id = <id>;
+    UPDATE user_profiles SET user_profiles.bio = <bio> WHERE user_profiles.id = <id>;
+    UPDATE user_profiles SET user_profiles.updated_at = <updated_at> WHERE user_profiles.id = <id>;
+    UPDATE user_profiles SET user_profiles.gender = <gender> WHERE user_profiles.id = <id>;
+}
+
+update updateUserProfileAvatar(int id, String avatar_file_name, String avatar_content_type, int avatar_file_size, String avatar_updated_at, String updated_at) {
+    UPDATE user_profiles SET user_profiles.avatar_file_name = <avatar_file_name> WHERE user_profiles.id = <id>;
+    UPDATE user_profiles SET user_profiles.avatar_content_type = <avatar_content_type> WHERE user_profiles.id = <id>;
+    UPDATE user_profiles SET user_profiles.avatar_file_size = <avatar_file_size> WHERE user_profiles.id = <id>;
+    UPDATE user_profiles SET user_profiles.avatar_updated_at = <avatar_updated_at> WHERE user_profiles.id = <id>;
+    UPDATE user_profiles SET user_profiles.updated_at = <updated_at> WHERE user_profiles.id = <id>;
+}
+
+update updateUserProfileMemberNotes(int id, String member_notes, String updated_at) {
+    UPDATE user_profiles SET user_profiles.member_notes = <member_notes> WHERE user_profiles.id = <id>;
+    UPDATE user_profiles SET user_profiles.updated_at = <updated_at> WHERE user_profiles.id = <id>;
+}
+
+update updateUserProfileAbout2030(int id, String about2030, String updated_at) {
+    UPDATE user_profiles SET user_profiles.about2030 = <about2030> WHERE user_profiles.id = <id>;
+    UPDATE user_profiles SET user_profiles.updated_at = <updated_at> WHERE user_profiles.id = <id>;
+}
+
+query readUserProfile(int id) {
+    SELECT user_profiles.phone_number, user_profiles.profession, user_profiles.employer, user_profiles.education, user_profiles.birthdate, user_profiles.bio, user_profiles.gender, user_profiles.member_notes FROM user_profiles WHERE user_profiles.id = <id>;
+}
+
+query readUserProfileAvatar(int id) {
+    SELECT user_profiles.avatar_file_name, user_profiles.avatar_content_type, user_profiles.avatar_file_size, user_profiles.avatar_updated_at FROM user_profiles WHERE user_profiles.id = <id>;
+}
+
+query readUserProfileCreateTime(int id) {
+    SELECT user_profiles.created_at FROM user_profiles WHERE user_profiles.id = <id>;
+}
+
+query readUserProfileUpdateTime(int id) {
+    SELECT user_profiles.updated_at FROM user_profiles WHERE user_profiles.id = <id>;
+}
+
+update createUser(int id, String first_name, String last_name, String url_friendly, String email, String crypted_password, String password_salt, String persistence_token, String single_access_token, String perishable_token, int login_count, int failed_login_count, String last_request_at, String current_login_at, String last_login_at, String current_login_ip, String last_login_ip, String joined_at, String expired_at, String activated_at, String active, String activated, String created_at, String updated_at) {
+    INSERT INTO users (users.id, users.first_name, users.last_name, users.url_friendly, users.email, users.crypted_password, users.password_salt, users.persistence_token, users.single_access_token, users.perishable_token, users.login_count, users.failed_login_count, users.last_request_at, users.current_login_at, users.last_login_at, users.current_login_ip, users.last_login_ip, users.joined_at, users.expired_at, users.activated_at, users.active, users.activated, users.created_at, users.updated_at) VALUES (<id>, <first_name>, <last_name>, <url_friendly>, <email>, <crypted_password>, <password_salt>, <persistence_token>, <single_access_token>, <perishable_token>, <login_count>, <failed_login_count>, <last_request_at>, <current_login_at>, <last_login_at>, <current_login_ip>, <last_login_ip>, <joined_at>, <expired_at>, <activated_at>, <active>, <activated>, <created_at>, <updated_at>);
+}
+
+update deleteUser(int id) {
+    DELETE FROM users WHERE users.id = <id>;
+}
+
+update updateUserName(int id, String first_name, String last_name, String updated_at) {
+    UPDATE users SET users.first_name = <first_name> WHERE users.id = <id>;
+    UPDATE users SET users.last_name = <last_name> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserUrl(int id, String url_friendly, String updated_at) {
+    UPDATE users SET users.url_friendly = <url_friendly> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserEmail(int id, String email, String updated_at) {
+    UPDATE users SET users.email = <email> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserPassword(int id, String crypted_password, String password_salt, String updated_at) {
+    UPDATE users SET users.crypted_password = <crypted_password> WHERE users.id = <id>;
+    UPDATE users SET users.password_salt = <password_salt> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserToken(int id, String persistence_token, String single_access_token, String perishable_token, String updated_at) {
+    UPDATE users SET users.persistence_token = <persistence_token> WHERE users.id = <id>;
+    UPDATE users SET users.single_access_token = <single_access_token> WHERE users.id = <id>;
+    UPDATE users SET users.perishable_token = <perishable_token> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserSignIn(int id, int login_count, int failed_login_count, String last_request_at, String current_login_at, String last_login_at, String current_login_ip, String last_login_ip, String updated_at) {
+    UPDATE users SET users.login_count = <login_count> WHERE users.id = <id>;
+    UPDATE users SET users.failed_login_count = <failed_login_count> WHERE users.id = <id>;
+    UPDATE users SET users.last_request_at = <last_request_at> WHERE users.id = <id>;
+    UPDATE users SET users.current_login_at = <current_login_at> WHERE users.id = <id>;
+    UPDATE users SET users.last_login_at = <last_login_at> WHERE users.id = <id>;
+    UPDATE users SET users.current_login_ip = <current_login_ip> WHERE users.id = <id>;
+    UPDATE users SET users.last_login_ip = <last_login_ip> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserStatus(int id, String joined_at, String expired_at, String activated_at, String active, String activated, String updated_at) {
+    UPDATE users SET users.joined_at = <joined_at> WHERE users.id = <id>;
+    UPDATE users SET users.expired_at = <expired_at> WHERE users.id = <id>;
+    UPDATE users SET users.activated_at = <activated_at> WHERE users.id = <id>;
+    UPDATE users SET users.active = <active> WHERE users.id = <id>;
+    UPDATE users SET users.activated = <activated> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+query readUserContact(int id) {
+    SELECT users.first_name, users.last_name, users.url_friendly, users.email FROM users WHERE users.id = <id>;
+}
+
+query readUserPassword(int id) {
+    SELECT users.crypted_password, users.password_salt FROM users WHERE users.id = <id>;
+}
+
+query readUserTokens(int id) {
+    SELECT users.persistence_token, users.single_access_token, users.perishable_token FROM users WHERE users.id = <id>;
+}
+
+query readUserLoginInfo(int id) {
+    SELECT users.login_count, users.failed_login_count, users.last_request_at, users.current_login_at, users.last_login_at, users.current_login_ip, users.last_login_ip FROM users WHERE users.id = <id>;
+}
+
+query readUserStatus(int id) {
+    SELECT users.joined_at, users.expired_at, users.activated_at, users.active, users.activated FROM users WHERE users.id = <id>;
+}
+
+query findUserByEmail(String email) {
+    SELECT users.id FROM users WHERE users.email = <email>;
+}
+
+query readUserCreateTime(int id) {
+    SELECT users.created_at FROM users WHERE users.id = <id>;
+}
+
+query readUserUpdateTime(int id) {
+    SELECT users.updated_at FROM users WHERE users.id = <id>;
+}
+
+query readEmailAddressUser(int id) {
+    SELECT users.id, users.first_name, users.last_name, users.url_friendly, users.email, users.crypted_password, users.password_salt, users.persistence_token, users.single_access_token, users.perishable_token, users.login_count, users.failed_login_count, users.last_request_at, users.current_login_at, users.last_login_at, users.current_login_ip, users.last_login_ip, users.joined_at, users.expired_at, users.activated_at, users.active, users.activated FROM email_addresses JOIN users ON email_addresses.user_id = users.id WHERE email_addresses.id = <id>;
+}
+
+query readUserEmailAddress(int id) {
+    SELECT email_addresses.id, email_addresses.address, email_addresses.user_id, email_addresses.email_address_type_id, email_addresses._primary FROM email_addresses JOIN users ON email_addresses.user_id = users.id WHERE users.id = <id>;
+}
+
+query readLocationParticipant(int id) {
+    SELECT participants.id, participants.name, participants.url, participants.bio, participants.benefit, participants.instructions, participants.logo_file_name, participants.logo_content_type, participants.logo_file_size, participants.logo_updated_at, participants.category_id FROM locations JOIN participants ON locations.participant_id = participants.id WHERE locations.id = <id>;
+}
+
+query readParticipantLocation(int id) {
+    SELECT locations.id, locations.participant_id, locations.region, locations.address, locations.address_cont, locations.city, locations.state, locations.zip, locations.phone FROM locations JOIN participants ON locations.participant_id = participants.id WHERE participants.id = <id>;
+}
+
+query readOrderItemOrder(int id) {
+    SELECT orders.id, orders.customer_id, orders.customer_type, orders.amount, orders.express_token, orders.express_payer_id, orders.complete FROM order_items JOIN orders ON order_items.order_id = orders.id WHERE order_items.id = <id>;
+}
+
+query readOrderOrderItem(int id) {
+    SELECT order_items.id, order_items.order_id, order_items.item_id, order_items.quantity FROM order_items JOIN orders ON order_items.order_id = orders.id WHERE orders.id = <id>;
+}
+
+query readOrderItemItem(int id) {
+    SELECT items.id, items.product_id, items.product_type, items.name, items.price FROM order_items JOIN items ON order_items.item_id = items.id WHERE order_items.id = <id>;
+}
+
+query readItemOrderItem(int id) {
+    SELECT order_items.id, order_items.order_id, order_items.item_id, order_items.quantity FROM order_items JOIN items ON order_items.item_id = items.id WHERE items.id = <id>;
+}
+
+query readParticipantCategory(int id) {
+    SELECT categories.id, categories.name FROM participants JOIN categories ON participants.category_id = categories.id WHERE participants.id = <id>;
+}
+
+query readCategoryParticipant(int id) {
+    SELECT participants.id, participants.name, participants.url, participants.bio, participants.benefit, participants.instructions, participants.logo_file_name, participants.logo_content_type, participants.logo_file_size, participants.logo_updated_at, participants.category_id FROM participants JOIN categories ON participants.category_id = categories.id WHERE categories.id = <id>;
+}
+
+query readRegistrationUser(int id) {
+    SELECT users.id, users.first_name, users.last_name, users.url_friendly, users.email, users.crypted_password, users.password_salt, users.persistence_token, users.single_access_token, users.perishable_token, users.login_count, users.failed_login_count, users.last_request_at, users.current_login_at, users.last_login_at, users.current_login_ip, users.last_login_ip, users.joined_at, users.expired_at, users.activated_at, users.active, users.activated FROM registrations JOIN users ON registrations.user_id = users.id WHERE registrations.id = <id>;
+}
+
+query readUserRegistration(int id) {
+    SELECT registrations.id, registrations.user_id, registrations.email, registrations.first_name, registrations.last_name, registrations.address, registrations.address2, registrations.city, registrations.state, registrations.zip, registrations.phone_number, registrations.profession, registrations.employer, registrations.education, registrations.about2030 FROM registrations JOIN users ON registrations.user_id = users.id WHERE users.id = <id>;
+}
+
+query readUserAddressUser(int id) {
+    SELECT users.id, users.first_name, users.last_name, users.url_friendly, users.email, users.crypted_password, users.password_salt, users.persistence_token, users.single_access_token, users.perishable_token, users.login_count, users.failed_login_count, users.last_request_at, users.current_login_at, users.last_login_at, users.current_login_ip, users.last_login_ip, users.joined_at, users.expired_at, users.activated_at, users.active, users.activated FROM user_addresses JOIN users ON user_addresses.user_id = users.id WHERE user_addresses.id = <id>;
+}
+
+query readUserUserAddress(int id) {
+    SELECT user_addresses.id, user_addresses.user_id, user_addresses.address2, user_addresses.address_type_id, user_addresses.is_primary, user_addresses.sort_order, user_addresses.address, user_addresses.city, user_addresses.state_code, user_addresses.zip FROM user_addresses JOIN users ON user_addresses.user_id = users.id WHERE users.id = <id>;
+}
+
+query readUserProfileUser(int id) {
+    SELECT users.id, users.first_name, users.last_name, users.url_friendly, users.email, users.crypted_password, users.password_salt, users.persistence_token, users.single_access_token, users.perishable_token, users.login_count, users.failed_login_count, users.last_request_at, users.current_login_at, users.last_login_at, users.current_login_ip, users.last_login_ip, users.joined_at, users.expired_at, users.activated_at, users.active, users.activated FROM user_profiles JOIN users ON user_profiles.user_id = users.id WHERE user_profiles.id = <id>;
+}
+
+query readUserUserProfile(int id) {
+    SELECT user_profiles.id, user_profiles.user_id, user_profiles.phone_number, user_profiles.profession, user_profiles.employer, user_profiles.education, user_profiles.about2030, user_profiles.birthdate, user_profiles.bio, user_profiles.avatar_file_name, user_profiles.avatar_content_type, user_profiles.avatar_file_size, user_profiles.avatar_updated_at, user_profiles.gender, user_profiles.member_notes FROM user_profiles JOIN users ON user_profiles.user_id = users.id WHERE users.id = <id>;
+}
+

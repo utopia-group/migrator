@@ -1,0 +1,30 @@
+update createCustomer(int cid, String name, int aid, int balance) {
+    INSERT INTO Customer (FirstName, CustomerID, Balance) VALUES (<name>, <cid>, <balance>);
+    INSERT INTO Account (AccountID, CustomerID_fk) VALUES (<aid>, <cid>);
+}
+
+update deleteCustomer(int cid) {
+    DELETE FROM Account WHERE CustomerID_fk = <cid>;
+    DELETE FROM Customer WHERE CustomerID = <cid>;
+}
+
+update updateCustomerName(int cid, String name) {
+    UPDATE Customer SET FirstName = <name> WHERE CustomerID = <cid>;
+}
+
+update updateBalance(int cid, int balance) {
+    UPDATE Customer SET Balance = <balance> WHERE CustomerID = <cid>;
+}
+
+query getCustomerID(String name) {
+    SELECT CustomerID FROM Customer WHERE FirstName = <name>;
+}
+
+query getAccountID(int cid) {
+    SELECT AccountID FROM Account WHERE CustomerID_fk = <cid>;
+}
+
+query getBalance(int cid) {
+    SELECT Balance FROM Customer WHERE CustomerID = <cid>;
+}
+

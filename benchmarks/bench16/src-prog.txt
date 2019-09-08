@@ -1,0 +1,233 @@
+update createInstruction(int id, String description, String created_at, String updated_at) {
+    INSERT INTO instructions (instructions.id, instructions.description, instructions.created_at, instructions.updated_at) VALUES (<id>, <description>, <created_at>, <updated_at>);
+}
+
+update deleteInstruction(int id) {
+    DELETE FROM instructions WHERE instructions.id = <id>;
+}
+
+update updateInstruction(int id, String description, String updated_at) {
+    UPDATE instructions SET instructions.description = <description> WHERE instructions.id = <id>;
+    UPDATE instructions SET instructions.updated_at = <updated_at> WHERE instructions.id = <id>;
+}
+
+query readInstruction(int id) {
+    SELECT instructions.description FROM instructions WHERE instructions.id = <id>;
+}
+
+query readInstructionCreateTime(int id) {
+    SELECT instructions.created_at FROM instructions WHERE instructions.id = <id>;
+}
+
+query readInstructionUpdateTime(int id) {
+    SELECT instructions.updated_at FROM instructions WHERE instructions.id = <id>;
+}
+
+update createLesson(int id, String title, int chapter, int section, String created_at, String updated_at, int subject_id) {
+    INSERT INTO lessons (lessons.id, lessons.title, lessons.chapter, lessons.section, lessons.created_at, lessons.updated_at, lessons.subject_id) VALUES (<id>, <title>, <chapter>, <section>, <created_at>, <updated_at>, <subject_id>);
+}
+
+update deleteLesson(int id) {
+    DELETE FROM lessons WHERE lessons.id = <id>;
+}
+
+update updateLesson(int id, String title, int chapter, int section, String updated_at, int subject_id) {
+    UPDATE lessons SET lessons.title = <title> WHERE lessons.id = <id>;
+    UPDATE lessons SET lessons.chapter = <chapter> WHERE lessons.id = <id>;
+    UPDATE lessons SET lessons.section = <section> WHERE lessons.id = <id>;
+    UPDATE lessons SET lessons.updated_at = <updated_at> WHERE lessons.id = <id>;
+    UPDATE lessons SET lessons.subject_id = <subject_id> WHERE lessons.id = <id>;
+}
+
+query readLesson(int id) {
+    SELECT lessons.title, lessons.chapter, lessons.section, lessons.subject_id FROM lessons WHERE lessons.id = <id>;
+}
+
+query readLessonCreateTime(int id) {
+    SELECT lessons.created_at FROM lessons WHERE lessons.id = <id>;
+}
+
+query readLessonUpdateTime(int id) {
+    SELECT lessons.updated_at FROM lessons WHERE lessons.id = <id>;
+}
+
+update createMathProblemTemplate(int id, int lesson_id, int instruction_id, int difficulty, String created_at, String updated_at, String display_mode) {
+    INSERT INTO math_problem_templates (math_problem_templates.template_id, math_problem_templates.lesson_id, math_problem_templates.instruction_id, math_problem_templates.difficulty, math_problem_templates.created_at, math_problem_templates.updated_at, math_problem_templates.display_mode) VALUES (<id>, <lesson_id>, <instruction_id>, <difficulty>, <created_at>, <updated_at>, <display_mode>);
+}
+
+update deleteMathProblemTemplate(int id) {
+    DELETE FROM math_problem_templates WHERE math_problem_templates.template_id = <id>;
+}
+
+update updateMathProblemTemplate(int id, int lesson_id, int instruction_id, int difficulty, String updated_at, String display_mode) {
+    UPDATE math_problem_templates SET math_problem_templates.lesson_id = <lesson_id> WHERE math_problem_templates.template_id = <id>;
+    UPDATE math_problem_templates SET math_problem_templates.instruction_id = <instruction_id> WHERE math_problem_templates.template_id = <id>;
+    UPDATE math_problem_templates SET math_problem_templates.difficulty = <difficulty> WHERE math_problem_templates.template_id = <id>;
+    UPDATE math_problem_templates SET math_problem_templates.updated_at = <updated_at> WHERE math_problem_templates.template_id = <id>;
+    UPDATE math_problem_templates SET math_problem_templates.display_mode = <display_mode> WHERE math_problem_templates.template_id = <id>;
+}
+
+query readMathProblemTemplate(int id) {
+    SELECT math_problem_templates.lesson_id, math_problem_templates.instruction_id, math_problem_templates.difficulty, math_problem_templates.display_mode FROM math_problem_templates WHERE math_problem_templates.template_id = <id>;
+}
+
+query readMathProblemTemplateCreateTime(int id) {
+    SELECT math_problem_templates.created_at FROM math_problem_templates WHERE math_problem_templates.template_id = <id>;
+}
+
+query readMathProblemTemplateUpdateTime(int id) {
+    SELECT math_problem_templates.updated_at FROM math_problem_templates WHERE math_problem_templates.template_id = <id>;
+}
+
+update createMathProblem(int id, int math_problem_template_id, String question_markup, String created_at, String updated_at, String answer_markup) {
+    INSERT INTO math_problems (math_problems.id, math_problems.math_problem_template_id, math_problems.question_markup, math_problems.created_at, math_problems.updated_at, math_problems.answer_markup) VALUES (<id>, <math_problem_template_id>, <question_markup>, <created_at>, <updated_at>, <answer_markup>);
+}
+
+update deleteMathProblem(int id) {
+    DELETE FROM math_problems WHERE math_problems.id = <id>;
+}
+
+update updateMathProblem(int id, int math_problem_template_id, String question_markup, String updated_at, String answer_markup) {
+    UPDATE math_problems SET math_problems.math_problem_template_id = <math_problem_template_id> WHERE math_problems.id = <id>;
+    UPDATE math_problems SET math_problems.question_markup = <question_markup> WHERE math_problems.id = <id>;
+    UPDATE math_problems SET math_problems.updated_at = <updated_at> WHERE math_problems.id = <id>;
+    UPDATE math_problems SET math_problems.answer_markup = <answer_markup> WHERE math_problems.id = <id>;
+}
+
+query readMathProblem(int id) {
+    SELECT math_problems.math_problem_template_id, math_problems.question_markup, math_problems.answer_markup FROM math_problems WHERE math_problems.id = <id>;
+}
+
+query readMathProblemCreateTime(int id) {
+    SELECT math_problems.created_at FROM math_problems WHERE math_problems.id = <id>;
+}
+
+query readMathProblemUpdateTime(int id) {
+    SELECT math_problems.updated_at FROM math_problems WHERE math_problems.id = <id>;
+}
+
+update createSubject(int id, String title, String created_at, String updated_at) {
+    INSERT INTO subjects (subjects.id, subjects.title, subjects.created_at, subjects.updated_at) VALUES (<id>, <title>, <created_at>, <updated_at>);
+}
+
+update deleteSubject(int id) {
+    DELETE FROM subjects WHERE subjects.id = <id>;
+}
+
+update updateSubject(int id, String title, String updated_at) {
+    UPDATE subjects SET subjects.title = <title> WHERE subjects.id = <id>;
+    UPDATE subjects SET subjects.updated_at = <updated_at> WHERE subjects.id = <id>;
+}
+
+query readSubject(int id) {
+    SELECT subjects.title FROM subjects WHERE subjects.id = <id>;
+}
+
+query readSubjectCreateTime(int id) {
+    SELECT subjects.created_at FROM subjects WHERE subjects.id = <id>;
+}
+
+query readSubjectUpdateTime(int id) {
+    SELECT subjects.updated_at FROM subjects WHERE subjects.id = <id>;
+}
+
+update createWorksheetProblem(int id, int worksheet_id, int math_problem_id, int problem_number, String created_at, String updated_at) {
+    INSERT INTO worksheet_problems (worksheet_problems.id, worksheet_problems.worksheet_id, worksheet_problems.math_problem_id, worksheet_problems.problem_number, worksheet_problems.created_at, worksheet_problems.updated_at) VALUES (<id>, <worksheet_id>, <math_problem_id>, <problem_number>, <created_at>, <updated_at>);
+}
+
+update deleteWorksheetProblem(int id) {
+    DELETE FROM worksheet_problems WHERE worksheet_problems.id = <id>;
+}
+
+update updateWorksheetProblem(int id, int worksheet_id, int math_problem_id, int problem_number, String updated_at) {
+    UPDATE worksheet_problems SET worksheet_problems.worksheet_id = <worksheet_id> WHERE worksheet_problems.id = <id>;
+    UPDATE worksheet_problems SET worksheet_problems.math_problem_id = <math_problem_id> WHERE worksheet_problems.id = <id>;
+    UPDATE worksheet_problems SET worksheet_problems.problem_number = <problem_number> WHERE worksheet_problems.id = <id>;
+    UPDATE worksheet_problems SET worksheet_problems.updated_at = <updated_at> WHERE worksheet_problems.id = <id>;
+}
+
+query readWorksheetProblem(int id) {
+    SELECT worksheet_problems.worksheet_id, worksheet_problems.math_problem_id, worksheet_problems.problem_number FROM worksheet_problems WHERE worksheet_problems.id = <id>;
+}
+
+query readWorksheetProblemCreateTime(int id) {
+    SELECT worksheet_problems.created_at FROM worksheet_problems WHERE worksheet_problems.id = <id>;
+}
+
+query readWorksheetProblemUpdateTime(int id) {
+    SELECT worksheet_problems.updated_at FROM worksheet_problems WHERE worksheet_problems.id = <id>;
+}
+
+update createWorksheet(int id, String title, String created_at, String updated_at) {
+    INSERT INTO worksheets (worksheets.id, worksheets.title, worksheets.created_at, worksheets.updated_at) VALUES (<id>, <title>, <created_at>, <updated_at>);
+}
+
+update deleteWorksheet(int id) {
+    DELETE FROM worksheets WHERE worksheets.id = <id>;
+}
+
+update updateWorksheet(int id, String title, String updated_at) {
+    UPDATE worksheets SET worksheets.title = <title> WHERE worksheets.id = <id>;
+    UPDATE worksheets SET worksheets.updated_at = <updated_at> WHERE worksheets.id = <id>;
+}
+
+query readWorksheet(int id) {
+    SELECT worksheets.title FROM worksheets WHERE worksheets.id = <id>;
+}
+
+query readWorksheetCreateTime(int id) {
+    SELECT worksheets.created_at FROM worksheets WHERE worksheets.id = <id>;
+}
+
+query readWorksheetUpdateTime(int id) {
+    SELECT worksheets.updated_at FROM worksheets WHERE worksheets.id = <id>;
+}
+
+query readLessonSubject(int id) {
+    SELECT subjects.id, subjects.title FROM lessons JOIN subjects ON lessons.subject_id = subjects.id WHERE lessons.id = <id>;
+}
+
+query readSubjectLesson(int id) {
+    SELECT lessons.id, lessons.title, lessons.chapter, lessons.section, lessons.subject_id FROM lessons JOIN subjects ON lessons.subject_id = subjects.id WHERE subjects.id = <id>;
+}
+
+query readMathProblemTemplateLesson(int id) {
+    SELECT lessons.id, lessons.title, lessons.chapter, lessons.section, lessons.subject_id FROM math_problem_templates JOIN lessons ON math_problem_templates.lesson_id = lessons.id WHERE math_problem_templates.template_id = <id>;
+}
+
+query readLessonMathProblemTemplate(int id) {
+    SELECT math_problem_templates.template_id, math_problem_templates.lesson_id, math_problem_templates.instruction_id, math_problem_templates.difficulty, math_problem_templates.display_mode FROM math_problem_templates JOIN lessons ON math_problem_templates.lesson_id = lessons.id WHERE lessons.id = <id>;
+}
+
+query readMathProblemTemplateInstruction(int id) {
+    SELECT instructions.id, instructions.description FROM math_problem_templates JOIN instructions ON math_problem_templates.instruction_id = instructions.id WHERE math_problem_templates.template_id = <id>;
+}
+
+query readInstructionMathProblemTemplate(int id) {
+    SELECT math_problem_templates.template_id, math_problem_templates.lesson_id, math_problem_templates.instruction_id, math_problem_templates.difficulty, math_problem_templates.display_mode FROM math_problem_templates JOIN instructions ON math_problem_templates.instruction_id = instructions.id WHERE instructions.id = <id>;
+}
+
+query readMathProblemMathProblemTemplate(int id) {
+    SELECT math_problem_templates.template_id, math_problem_templates.lesson_id, math_problem_templates.instruction_id, math_problem_templates.difficulty, math_problem_templates.display_mode FROM math_problems JOIN math_problem_templates ON math_problems.math_problem_template_id = math_problem_templates.template_id WHERE math_problems.id = <id>;
+}
+
+query readMathProblemTemplateMathProblem(int id) {
+    SELECT math_problems.id, math_problems.math_problem_template_id, math_problems.question_markup, math_problems.answer_markup FROM math_problems JOIN math_problem_templates ON math_problems.math_problem_template_id = math_problem_templates.template_id WHERE math_problem_templates.template_id = <id>;
+}
+
+query readWorksheetProblemWorksheet(int id) {
+    SELECT worksheets.id, worksheets.title FROM worksheet_problems JOIN worksheets ON worksheet_problems.worksheet_id = worksheets.id WHERE worksheet_problems.id = <id>;
+}
+
+query readWorksheetWorksheetProblem(int id) {
+    SELECT worksheet_problems.id, worksheet_problems.worksheet_id, worksheet_problems.math_problem_id, worksheet_problems.problem_number FROM worksheet_problems JOIN worksheets ON worksheet_problems.worksheet_id = worksheets.id WHERE worksheets.id = <id>;
+}
+
+query readWorksheetProblemMathProblem(int id) {
+    SELECT math_problems.id, math_problems.math_problem_template_id, math_problems.question_markup, math_problems.answer_markup FROM worksheet_problems JOIN math_problems ON worksheet_problems.math_problem_id = math_problems.id WHERE worksheet_problems.id = <id>;
+}
+
+query readMathProblemWorksheetProblem(int id) {
+    SELECT worksheet_problems.id, worksheet_problems.worksheet_id, worksheet_problems.math_problem_id, worksheet_problems.problem_number FROM worksheet_problems JOIN math_problems ON worksheet_problems.math_problem_id = math_problems.id WHERE math_problems.id = <id>;
+}
+

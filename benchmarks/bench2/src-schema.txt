@@ -1,0 +1,31 @@
+CREATE TABLE EMPLOYEE (
+    eid INT,
+    ename VARCHAR,
+    street VARCHAR,
+    zipcode INT,
+    work_phone VARCHAR,
+    mobile VARCHAR,
+    fax VARCHAR,
+    work_email VARCHAR,
+    personal_email VARCHAR,
+    job_title VARCHAR,
+    job_desc VARCHAR,
+    PRIMARY KEY (eid)
+);
+
+CREATE TABLE PROJECT (
+    pid INT,
+    pname VARCHAR,
+    pdesc VARCHAR,
+    PRIMARY KEY (pid)
+);
+
+CREATE TABLE PROJ_EMP (
+    peid INT,
+    pid_fk INT,
+    eid_fk INT,
+    FOREIGN KEY (pid_fk) REFERENCES PROJECT (pid),
+    FOREIGN KEY (eid_fk) REFERENCES EMPLOYEE (eid),
+    PRIMARY KEY (peid)
+);
+

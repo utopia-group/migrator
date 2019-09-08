@@ -1,0 +1,413 @@
+CREATE TABLE addresses (
+    id INT,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    day_phone VARCHAR,
+    evening_phone VARCHAR,
+    address_line_1 VARCHAR,
+    address_line_2 VARCHAR,
+    city VARCHAR,
+    state VARCHAR,
+    zip VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    address_name VARCHAR,
+    user_id INT,
+    country VARCHAR,
+    status VARCHAR,
+    comment VARCHAR,
+    fedex_validation_status VARCHAR,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE boxes (
+    id INT,
+    assigned_to_user_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    ordering_order_line_id INT,
+    status VARCHAR,
+    box_type VARCHAR,
+    description VARCHAR,
+    inventorying_status VARCHAR,
+    inventorying_order_line_id INT,
+    received_at VARCHAR,
+    height VARCHAR,
+    width VARCHAR,
+    length VARCHAR,
+    weight VARCHAR,
+    box_num INT,
+    return_requested_at VARCHAR,
+    location VARCHAR,
+    inventoried_at VARCHAR,
+    created_by_id INT,
+    FOREIGN KEY (assigned_to_user_id) REFERENCES users (id),
+    FOREIGN KEY (created_by_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE boxes_subscriptions (
+    id INT,
+    box_id INT,
+    subscription_id INT,
+    FOREIGN KEY (box_id) REFERENCES boxes (id),
+    FOREIGN KEY (subscription_id) REFERENCES subscriptions (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE cart_items (
+    id INT,
+    quantity INT,
+    cart_id INT,
+    product_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    committed_months INT,
+    box_id INT,
+    address_id INT,
+    stored_item_id INT,
+    FOREIGN KEY (cart_id) REFERENCES carts (id),
+    FOREIGN KEY (product_id) REFERENCES products (id),
+    FOREIGN KEY (box_id) REFERENCES boxes (id),
+    FOREIGN KEY (address_id) REFERENCES addresses (id),
+    FOREIGN KEY (stored_item_id) REFERENCES stored_items (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE carts (
+    id INT,
+    user_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    ordered_at VARCHAR,
+    status VARCHAR,
+    quoted_shipping_cost VARCHAR,
+    quoted_shipping_cost_success VARCHAR,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE charges (
+    id INT,
+    user_id INT,
+    total_in_cents VARCHAR,
+    product_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    order_id INT,
+    shipment_id INT,
+    comments VARCHAR,
+    created_by_admin_id INT,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (product_id) REFERENCES products (id),
+    FOREIGN KEY (order_id) REFERENCES orders (id),
+    FOREIGN KEY (shipment_id) REFERENCES shipments (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE credits (
+    id INT,
+    amount VARCHAR,
+    user_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    description VARCHAR,
+    created_by_admin_id INT,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE interested_people (
+    id INT,
+    email VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE invoices (
+    id INT,
+    user_id INT,
+    payment_transaction_id INT,
+    order_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (payment_transaction_id) REFERENCES payment_transactions (id),
+    FOREIGN KEY (order_id) REFERENCES orders (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE marketing_hits (
+    id INT,
+    source VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE order_lines (
+    id INT,
+    order_id INT,
+    product_id INT,
+    quantity INT,
+    status VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    committed_months INT,
+    shipping_address_id INT,
+    service_box_id INT,
+    shipment_id INT,
+    service_item_id INT,
+    item_mail_shipping_charge_id INT,
+    amount_paid_at_purchase VARCHAR,
+    FOREIGN KEY (order_id) REFERENCES orders (id),
+    FOREIGN KEY (product_id) REFERENCES products (id),
+    FOREIGN KEY (shipping_address_id) REFERENCES addresses (id),
+    FOREIGN KEY (service_box_id) REFERENCES boxes (id),
+    FOREIGN KEY (shipment_id) REFERENCES shipments (id),
+    FOREIGN KEY (service_item_id) REFERENCES stored_items (id),
+    FOREIGN KEY (item_mail_shipping_charge_id) REFERENCES charges (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE orders (
+    id INT,
+    cart_id INT,
+    ip_address VARCHAR,
+    user_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    initial_charged_shipping_cost VARCHAR,
+    FOREIGN KEY (cart_id) REFERENCES carts (id),
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE payment_profiles (
+    id INT,
+    identifier VARCHAR,
+    last_four_digits VARCHAR,
+    user_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    year INT,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    billing_address_id INT,
+    cc_type VARCHAR,
+    month VARCHAR,
+    active VARCHAR,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (billing_address_id) REFERENCES addresses (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE payment_transactions (
+    id INT,
+    order_id INT,
+    action VARCHAR,
+    authorization VARCHAR,
+    message VARCHAR,
+    params VARCHAR,
+    user_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    payment_profile_id INT,
+    status VARCHAR,
+    storage_payment_processing_record_id INT,
+    auth_transaction_id VARCHAR,
+    credit_id INT,
+    submitted_amount VARCHAR,
+    FOREIGN KEY (order_id) REFERENCES orders (id),
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (payment_profile_id) REFERENCES payment_profiles (id),
+    FOREIGN KEY (storage_payment_processing_record_id) REFERENCES storage_payment_processing_records (id),
+    FOREIGN KEY (credit_id) REFERENCES credits (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE photos (
+    id INT,
+    stored_item_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    data_file_name VARCHAR,
+    data_content_type VARCHAR,
+    data_file_size INT,
+    data_updated_at VARCHAR,
+    FOREIGN KEY (stored_item_id) REFERENCES stored_items (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE products (
+    id INT,
+    name VARCHAR,
+    price VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    price_comment VARCHAR,
+    first_due VARCHAR,
+    discountable VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE rental_agreement_versions (
+    id INT,
+    agreement_text VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE rental_agreement_versions_users (
+    id INT,
+    user_id INT,
+    rental_agreement_version_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (rental_agreement_version_id) REFERENCES rental_agreement_versions (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE shipments (
+    id INT,
+    box_id INT,
+    from_address_id INT,
+    to_address_id INT,
+    tracking_number VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    shipment_label_file_name VARCHAR,
+    shipment_label_updated_at VARCHAR,
+    state VARCHAR,
+    payor VARCHAR,
+    charge_requested VARCHAR,
+    FOREIGN KEY (box_id) REFERENCES boxes (id),
+    FOREIGN KEY (from_address_id) REFERENCES addresses (id),
+    FOREIGN KEY (to_address_id) REFERENCES addresses (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE storage_charge_processing_records (
+    id INT,
+    generated_by_user_id INT,
+    as_of_date VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    locked_for_editing VARCHAR,
+    FOREIGN KEY (generated_by_user_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE storage_charges (
+    id INT,
+    box_id INT,
+    charge_id INT,
+    start_date VARCHAR,
+    end_date VARCHAR,
+    storage_charge_processing_record_id INT,
+    FOREIGN KEY (box_id) REFERENCES boxes (id),
+    FOREIGN KEY (charge_id) REFERENCES charges (id),
+    FOREIGN KEY (storage_charge_processing_record_id) REFERENCES storage_charge_processing_records (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE storage_payment_processing_records (
+    id INT,
+    generated_by_user_id INT,
+    as_of_date VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (generated_by_user_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE stored_item_photos (
+    id INT,
+    photo_file_name VARCHAR,
+    photo_content_type VARCHAR,
+    photo_file_size INT,
+    photo_updated_at VARCHAR,
+    access_token VARCHAR,
+    stored_item_id VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (stored_item_id) REFERENCES stored_items (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE stored_item_tags (
+    id INT,
+    stored_item_id INT,
+    tag VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (stored_item_id) REFERENCES stored_items (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE stored_items (
+    id INT,
+    box_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    status VARCHAR,
+    donated_to VARCHAR,
+    shipment_id INT,
+    FOREIGN KEY (box_id) REFERENCES boxes (id),
+    FOREIGN KEY (shipment_id) REFERENCES shipments (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE subscriptions (
+    id INT,
+    start_date VARCHAR,
+    end_date VARCHAR,
+    user_id INT,
+    duration_in_months INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE users (
+    id INT,
+    email VARCHAR,
+    encrypted_password VARCHAR,
+    reset_password_token VARCHAR,
+    remember_created_at VARCHAR,
+    sign_in_count INT,
+    current_sign_in_at VARCHAR,
+    last_sign_in_at VARCHAR,
+    current_sign_in_ip VARCHAR,
+    last_sign_in_ip VARCHAR,
+    password_salt VARCHAR,
+    confirmation_token VARCHAR,
+    confirmed_at VARCHAR,
+    confirmation_sent_at VARCHAR,
+    failed_attempts INT,
+    unlock_token VARCHAR,
+    locked_at VARCHAR,
+    authentication_token VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    last_name VARCHAR,
+    first_name VARCHAR,
+    beta_user VARCHAR,
+    signup_comments VARCHAR,
+    role VARCHAR,
+    cim_id VARCHAR,
+    default_payment_profile_id INT,
+    default_shipping_address_id INT,
+    test_user VARCHAR,
+    acting_as_user_id INT,
+    first_time_signed_up VARCHAR,
+    FOREIGN KEY (default_payment_profile_id) REFERENCES payment_profiles (id),
+    FOREIGN KEY (default_shipping_address_id) REFERENCES addresses (id),
+    PRIMARY KEY (id)
+);
+

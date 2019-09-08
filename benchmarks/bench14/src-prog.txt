@@ -1,0 +1,305 @@
+update createActiveAdminComment(int id, String resource_id, String resource_type, int author_id, String author_type, String body, String created_at, String updated_at, String namespace) {
+    INSERT INTO active_admin_comments (active_admin_comments.id, active_admin_comments.resource_id, active_admin_comments.resource_type, active_admin_comments.author_id, active_admin_comments.author_type, active_admin_comments.body, active_admin_comments.created_at, active_admin_comments.updated_at, active_admin_comments.namespace) VALUES (<id>, <resource_id>, <resource_type>, <author_id>, <author_type>, <body>, <created_at>, <updated_at>, <namespace>);
+}
+
+update deleteActiveAdminComment(int id) {
+    DELETE FROM active_admin_comments WHERE active_admin_comments.id = <id>;
+}
+
+update updateActiveAdminComment(int id, String resource_id, String resource_type, int author_id, String author_type, String body, String updated_at, String namespace) {
+    UPDATE active_admin_comments SET active_admin_comments.resource_id = <resource_id> WHERE active_admin_comments.id = <id>;
+    UPDATE active_admin_comments SET active_admin_comments.resource_type = <resource_type> WHERE active_admin_comments.id = <id>;
+    UPDATE active_admin_comments SET active_admin_comments.author_id = <author_id> WHERE active_admin_comments.id = <id>;
+    UPDATE active_admin_comments SET active_admin_comments.author_type = <author_type> WHERE active_admin_comments.id = <id>;
+    UPDATE active_admin_comments SET active_admin_comments.body = <body> WHERE active_admin_comments.id = <id>;
+    UPDATE active_admin_comments SET active_admin_comments.updated_at = <updated_at> WHERE active_admin_comments.id = <id>;
+    UPDATE active_admin_comments SET active_admin_comments.namespace = <namespace> WHERE active_admin_comments.id = <id>;
+}
+
+query readActiveAdminComment(int id) {
+    SELECT active_admin_comments.resource_id, active_admin_comments.resource_type, active_admin_comments.author_id, active_admin_comments.author_type, active_admin_comments.body, active_admin_comments.namespace FROM active_admin_comments WHERE active_admin_comments.id = <id>;
+}
+
+query readActiveAdminCommentCreateTime(int id) {
+    SELECT active_admin_comments.created_at FROM active_admin_comments WHERE active_admin_comments.id = <id>;
+}
+
+query readActiveAdminCommentUpdateTime(int id) {
+    SELECT active_admin_comments.updated_at FROM active_admin_comments WHERE active_admin_comments.id = <id>;
+}
+
+update createAdminUser(int id, String email, String encrypted_password, String reset_password_token, String reset_password_sent_at, String remember_created_at, int sign_in_count, String current_sign_in_at, String last_sign_in_at, String current_sign_in_ip, String last_sign_in_ip, String created_at, String updated_at) {
+    INSERT INTO admin_users (admin_users.id, admin_users.email, admin_users.encrypted_password, admin_users.reset_password_token, admin_users.reset_password_sent_at, admin_users.remember_created_at, admin_users.sign_in_count, admin_users.current_sign_in_at, admin_users.last_sign_in_at, admin_users.current_sign_in_ip, admin_users.last_sign_in_ip, admin_users.created_at, admin_users.updated_at) VALUES (<id>, <email>, <encrypted_password>, <reset_password_token>, <reset_password_sent_at>, <remember_created_at>, <sign_in_count>, <current_sign_in_at>, <last_sign_in_at>, <current_sign_in_ip>, <last_sign_in_ip>, <created_at>, <updated_at>);
+}
+
+update deleteAdminUser(int id) {
+    DELETE FROM admin_users WHERE admin_users.id = <id>;
+}
+
+update updateAdminUserEmail(int id, String email, String updated_at) {
+    UPDATE admin_users SET admin_users.email = <email> WHERE admin_users.id = <id>;
+    UPDATE admin_users SET admin_users.updated_at = <updated_at> WHERE admin_users.id = <id>;
+}
+
+update updateAdminUserPassword(int id, String encrypted_password, String updated_at) {
+    UPDATE admin_users SET admin_users.encrypted_password = <encrypted_password> WHERE admin_users.id = <id>;
+    UPDATE admin_users SET admin_users.updated_at = <updated_at> WHERE admin_users.id = <id>;
+}
+
+update updateAdminUserResetPassword(int id, String reset_password_token, String reset_password_sent_at, String updated_at) {
+    UPDATE admin_users SET admin_users.reset_password_token = <reset_password_token> WHERE admin_users.id = <id>;
+    UPDATE admin_users SET admin_users.reset_password_sent_at = <reset_password_sent_at> WHERE admin_users.id = <id>;
+    UPDATE admin_users SET admin_users.updated_at = <updated_at> WHERE admin_users.id = <id>;
+}
+
+update updateAdminUserRememberCreatedAt(int id, String remember_created_at, String updated_at) {
+    UPDATE admin_users SET admin_users.remember_created_at = <remember_created_at> WHERE admin_users.id = <id>;
+    UPDATE admin_users SET admin_users.updated_at = <updated_at> WHERE admin_users.id = <id>;
+}
+
+update updateUserSignIn(int id, int sign_in_count, String current_sign_in_at, String last_sign_in_at, String current_sign_in_ip, String last_sign_in_ip, String updated_at) {
+    UPDATE admin_users SET admin_users.sign_in_count = <sign_in_count> WHERE admin_users.id = <id>;
+    UPDATE admin_users SET admin_users.current_sign_in_at = <current_sign_in_at> WHERE admin_users.id = <id>;
+    UPDATE admin_users SET admin_users.last_sign_in_at = <last_sign_in_at> WHERE admin_users.id = <id>;
+    UPDATE admin_users SET admin_users.current_sign_in_ip = <current_sign_in_ip> WHERE admin_users.id = <id>;
+    UPDATE admin_users SET admin_users.last_sign_in_ip = <last_sign_in_ip> WHERE admin_users.id = <id>;
+    UPDATE admin_users SET admin_users.updated_at = <updated_at> WHERE admin_users.id = <id>;
+}
+
+query findUserByEmail(String email) {
+    SELECT admin_users.id FROM admin_users WHERE admin_users.email = <email>;
+}
+
+query readAdminUser(int id) {
+    SELECT admin_users.email, admin_users.encrypted_password, admin_users.reset_password_token, admin_users.reset_password_sent_at, admin_users.remember_created_at, admin_users.sign_in_count, admin_users.current_sign_in_at, admin_users.last_sign_in_at, admin_users.current_sign_in_ip, admin_users.last_sign_in_ip FROM admin_users WHERE admin_users.id = <id>;
+}
+
+query readAdminUserCreateTime(int id) {
+    SELECT admin_users.created_at FROM admin_users WHERE admin_users.id = <id>;
+}
+
+query readAdminUserUpdateTime(int id) {
+    SELECT admin_users.updated_at FROM admin_users WHERE admin_users.id = <id>;
+}
+
+update createCustomer(int id, String first_name, String last_name, String address, String city, String postal_code, String email, String created_at, String updated_at, int province_id) {
+    INSERT INTO customers (customers.id, customers.first_name, customers.last_name, customers.address, customers.city, customers.postal_code, customers.email, customers.created_at, customers.updated_at, customers.province_id) VALUES (<id>, <first_name>, <last_name>, <address>, <city>, <postal_code>, <email>, <created_at>, <updated_at>, <province_id>);
+}
+
+update deleteCustomer(int id) {
+    DELETE FROM customers WHERE customers.id = <id>;
+}
+
+update updateCustomer(int id, String first_name, String last_name, String address, String city, String postal_code, String email, String updated_at, int province_id) {
+    UPDATE customers SET customers.first_name = <first_name> WHERE customers.id = <id>;
+    UPDATE customers SET customers.last_name = <last_name> WHERE customers.id = <id>;
+    UPDATE customers SET customers.address = <address> WHERE customers.id = <id>;
+    UPDATE customers SET customers.city = <city> WHERE customers.id = <id>;
+    UPDATE customers SET customers.postal_code = <postal_code> WHERE customers.id = <id>;
+    UPDATE customers SET customers.email = <email> WHERE customers.id = <id>;
+    UPDATE customers SET customers.updated_at = <updated_at> WHERE customers.id = <id>;
+    UPDATE customers SET customers.province_id = <province_id> WHERE customers.id = <id>;
+}
+
+query readCustomer(int id) {
+    SELECT customers.first_name, customers.last_name, customers.address, customers.city, customers.postal_code, customers.email, customers.province_id FROM customers WHERE customers.id = <id>;
+}
+
+query readCustomerCreateTime(int id) {
+    SELECT customers.created_at FROM customers WHERE customers.id = <id>;
+}
+
+query readCustomerUpdateTime(int id) {
+    SELECT customers.updated_at FROM customers WHERE customers.id = <id>;
+}
+
+update createLineItem(int id, int quantity, String price, String created_at, String updated_at, int order_id, int product_id) {
+    INSERT INTO line_items (line_items.id, line_items.quantity, line_items.price, line_items.created_at, line_items.updated_at, line_items.order_id, line_items.product_id) VALUES (<id>, <quantity>, <price>, <created_at>, <updated_at>, <order_id>, <product_id>);
+}
+
+update deleteLineItem(int id) {
+    DELETE FROM line_items WHERE line_items.id = <id>;
+}
+
+update updateLineItem(int id, int quantity, String price, String updated_at, int order_id, int product_id) {
+    UPDATE line_items SET line_items.quantity = <quantity> WHERE line_items.id = <id>;
+    UPDATE line_items SET line_items.price = <price> WHERE line_items.id = <id>;
+    UPDATE line_items SET line_items.updated_at = <updated_at> WHERE line_items.id = <id>;
+    UPDATE line_items SET line_items.order_id = <order_id> WHERE line_items.id = <id>;
+    UPDATE line_items SET line_items.product_id = <product_id> WHERE line_items.id = <id>;
+}
+
+query readLineItem(int id) {
+    SELECT line_items.quantity, line_items.price, line_items.order_id, line_items.product_id FROM line_items WHERE line_items.id = <id>;
+}
+
+query readLineItemCreateTime(int id) {
+    SELECT line_items.created_at FROM line_items WHERE line_items.id = <id>;
+}
+
+query readLineItemUpdateTime(int id) {
+    SELECT line_items.updated_at FROM line_items WHERE line_items.id = <id>;
+}
+
+update createOrder(int id, String status, String pst_rate, String gst_rate, String hst_rate, String created_at, String updated_at, int customer_id) {
+    INSERT INTO orders (orders.id, orders.status, orders.pst_rate, orders.gst_rate, orders.hst_rate, orders.created_at, orders.updated_at, orders.customer_id) VALUES (<id>, <status>, <pst_rate>, <gst_rate>, <hst_rate>, <created_at>, <updated_at>, <customer_id>);
+}
+
+update deleteOrder(int id) {
+    DELETE FROM orders WHERE orders.id = <id>;
+}
+
+update updateOrder(int id, String status, String pst_rate, String gst_rate, String hst_rate, String updated_at, int customer_id) {
+    UPDATE orders SET orders.status = <status> WHERE orders.id = <id>;
+    UPDATE orders SET orders.pst_rate = <pst_rate> WHERE orders.id = <id>;
+    UPDATE orders SET orders.gst_rate = <gst_rate> WHERE orders.id = <id>;
+    UPDATE orders SET orders.hst_rate = <hst_rate> WHERE orders.id = <id>;
+    UPDATE orders SET orders.updated_at = <updated_at> WHERE orders.id = <id>;
+    UPDATE orders SET orders.customer_id = <customer_id> WHERE orders.id = <id>;
+}
+
+query readOrder(int id) {
+    SELECT orders.status, orders.pst_rate, orders.gst_rate, orders.hst_rate, orders.customer_id FROM orders WHERE orders.id = <id>;
+}
+
+query readOrderCreateTime(int id) {
+    SELECT orders.created_at FROM orders WHERE orders.id = <id>;
+}
+
+query readOrderUpdateTime(int id) {
+    SELECT orders.updated_at FROM orders WHERE orders.id = <id>;
+}
+
+update createProduct(int id, String name, String description, String price, int stock_quantity, String created_at, String updated_at, String category) {
+    INSERT INTO products (products.id, products.name, products.description, products.price, products.stock_quantity, products.created_at, products.updated_at, products.category) VALUES (<id>, <name>, <description>, <price>, <stock_quantity>, <created_at>, <updated_at>, <category>);
+}
+
+update deleteProduct(int id) {
+    DELETE FROM products WHERE products.id = <id>;
+}
+
+update updateProduct(int id, String name, String description, String price, int stock_quantity, String updated_at, String category) {
+    UPDATE products SET products.name = <name> WHERE products.id = <id>;
+    UPDATE products SET products.description = <description> WHERE products.id = <id>;
+    UPDATE products SET products.price = <price> WHERE products.id = <id>;
+    UPDATE products SET products.stock_quantity = <stock_quantity> WHERE products.id = <id>;
+    UPDATE products SET products.updated_at = <updated_at> WHERE products.id = <id>;
+    UPDATE products SET products.category = <category> WHERE products.id = <id>;
+}
+
+query readProduct(int id) {
+    SELECT products.name, products.description, products.price, products.stock_quantity, products.category FROM products WHERE products.id = <id>;
+}
+
+query readProductCreateTime(int id) {
+    SELECT products.created_at FROM products WHERE products.id = <id>;
+}
+
+query readProductUpdateTime(int id) {
+    SELECT products.updated_at FROM products WHERE products.id = <id>;
+}
+
+update createProvince(int id, String name, String pst, String gst, String hst, String created_at, String updated_at) {
+    INSERT INTO provinces (provinces.id, provinces.name, provinces.pst, provinces.gst, provinces.hst, provinces.created_at, provinces.updated_at) VALUES (<id>, <name>, <pst>, <gst>, <hst>, <created_at>, <updated_at>);
+}
+
+update deleteProvince(int id) {
+    DELETE FROM provinces WHERE provinces.id = <id>;
+}
+
+update updateProvince(int id, String name, String pst, String gst, String hst, String updated_at) {
+    UPDATE provinces SET provinces.name = <name> WHERE provinces.id = <id>;
+    UPDATE provinces SET provinces.pst = <pst> WHERE provinces.id = <id>;
+    UPDATE provinces SET provinces.gst = <gst> WHERE provinces.id = <id>;
+    UPDATE provinces SET provinces.hst = <hst> WHERE provinces.id = <id>;
+    UPDATE provinces SET provinces.updated_at = <updated_at> WHERE provinces.id = <id>;
+}
+
+query readProvince(int id) {
+    SELECT provinces.name, provinces.pst, provinces.gst, provinces.hst FROM provinces WHERE provinces.id = <id>;
+}
+
+query readProvinceCreateTime(int id) {
+    SELECT provinces.created_at FROM provinces WHERE provinces.id = <id>;
+}
+
+query readProvinceUpdateTime(int id) {
+    SELECT provinces.updated_at FROM provinces WHERE provinces.id = <id>;
+}
+
+update createReview(int id, String content, String rating, String created_at, String updated_at, int customer_id, int product_id) {
+    INSERT INTO reviews (reviews.id, reviews.content, reviews.rating, reviews.created_at, reviews.updated_at, reviews.customer_id, reviews.product_id) VALUES (<id>, <content>, <rating>, <created_at>, <updated_at>, <customer_id>, <product_id>);
+}
+
+update deleteReview(int id) {
+    DELETE FROM reviews WHERE reviews.id = <id>;
+}
+
+update updateReview(int id, String content, String rating, String updated_at, int customer_id, int product_id) {
+    UPDATE reviews SET reviews.content = <content> WHERE reviews.id = <id>;
+    UPDATE reviews SET reviews.rating = <rating> WHERE reviews.id = <id>;
+    UPDATE reviews SET reviews.updated_at = <updated_at> WHERE reviews.id = <id>;
+    UPDATE reviews SET reviews.customer_id = <customer_id> WHERE reviews.id = <id>;
+    UPDATE reviews SET reviews.product_id = <product_id> WHERE reviews.id = <id>;
+}
+
+query readReview(int id) {
+    SELECT reviews.content, reviews.rating, reviews.customer_id, reviews.product_id FROM reviews WHERE reviews.id = <id>;
+}
+
+query readReviewCreateTime(int id) {
+    SELECT reviews.created_at FROM reviews WHERE reviews.id = <id>;
+}
+
+query readReviewUpdateTime(int id) {
+    SELECT reviews.updated_at FROM reviews WHERE reviews.id = <id>;
+}
+
+query readCustomerProvince(int id) {
+    SELECT provinces.id, provinces.name, provinces.pst, provinces.gst, provinces.hst FROM customers JOIN provinces ON customers.province_id = provinces.id WHERE customers.id = <id>;
+}
+
+query readProvinceCustomer(int id) {
+    SELECT customers.id, customers.first_name, customers.last_name, customers.address, customers.city, customers.postal_code, customers.email, customers.province_id FROM customers JOIN provinces ON customers.province_id = provinces.id WHERE provinces.id = <id>;
+}
+
+query readLineItemOrder(int id) {
+    SELECT orders.id, orders.status, orders.pst_rate, orders.gst_rate, orders.hst_rate, orders.customer_id FROM line_items JOIN orders ON line_items.order_id = orders.id WHERE line_items.id = <id>;
+}
+
+query readOrderLineItem(int id) {
+    SELECT line_items.id, line_items.quantity, line_items.price, line_items.order_id, line_items.product_id FROM line_items JOIN orders ON line_items.order_id = orders.id WHERE orders.id = <id>;
+}
+
+query readLineItemProduct(int id) {
+    SELECT products.id, products.name, products.description, products.price, products.stock_quantity, products.category FROM line_items JOIN products ON line_items.product_id = products.id WHERE line_items.id = <id>;
+}
+
+query readProductLineItem(int id) {
+    SELECT line_items.id, line_items.quantity, line_items.price, line_items.order_id, line_items.product_id FROM line_items JOIN products ON line_items.product_id = products.id WHERE products.id = <id>;
+}
+
+query readOrderCustomer(int id) {
+    SELECT customers.id, customers.first_name, customers.last_name, customers.address, customers.city, customers.postal_code, customers.email, customers.province_id FROM orders JOIN customers ON orders.customer_id = customers.id WHERE orders.id = <id>;
+}
+
+query readCustomerOrder(int id) {
+    SELECT orders.id, orders.status, orders.pst_rate, orders.gst_rate, orders.hst_rate, orders.customer_id FROM orders JOIN customers ON orders.customer_id = customers.id WHERE customers.id = <id>;
+}
+
+query readReviewCustomer(int id) {
+    SELECT customers.id, customers.first_name, customers.last_name, customers.address, customers.city, customers.postal_code, customers.email, customers.province_id FROM reviews JOIN customers ON reviews.customer_id = customers.id WHERE reviews.id = <id>;
+}
+
+query readCustomerReview(int id) {
+    SELECT reviews.id, reviews.content, reviews.rating, reviews.customer_id, reviews.product_id FROM reviews JOIN customers ON reviews.customer_id = customers.id WHERE customers.id = <id>;
+}
+
+query readReviewProduct(int id) {
+    SELECT products.id, products.name, products.description, products.price, products.stock_quantity, products.category FROM reviews JOIN products ON reviews.product_id = products.id WHERE reviews.id = <id>;
+}
+
+query readProductReview(int id) {
+    SELECT reviews.id, reviews.content, reviews.rating, reviews.customer_id, reviews.product_id FROM reviews JOIN products ON reviews.product_id = products.id WHERE products.id = <id>;
+}
+

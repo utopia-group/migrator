@@ -1,0 +1,41 @@
+update createAddress(String id, String street, String city, int state, int post, int country) {
+    INSERT INTO Address (Aid, Street, City, StatePOID_fk, PostCode, CountryCode) VALUES (<id>, <street>, <city>, <state>, <post>, <country>);
+}
+
+update createState(int code, String name) {
+    INSERT INTO State (StatePOID, StateCode, Name) VALUES (<code>, <code>, <name>);
+}
+
+update deleteAddress(int id) {
+    DELETE FROM Address WHERE Aid = <id>;
+}
+
+update deleteState(int state) {
+    DELETE FROM Address WHERE StatePOID_fk = <state>;
+    DELETE FROM State WHERE StatePOID = <state>;
+}
+
+update updateStreet(int id, String street) {
+    UPDATE Address SET Street = <street> WHERE Aid = <id>;
+}
+
+update updateCity(int id, String city) {
+    UPDATE Address SET City = <city> WHERE Aid = <id>;
+}
+
+update updatePost(int id, int post) {
+    UPDATE Address SET PostCode = <post> WHERE Aid = <id>;
+}
+
+update updateCountry(int id, int country) {
+    UPDATE Address SET CountryCode = <country> WHERE Aid = <id>;
+}
+
+query getAddress(int aid) {
+    SELECT Street, City, Name, CountryCode FROM Address JOIN State ON Address.StatePOID_fk = State.StatePOID WHERE Aid = <aid>;
+}
+
+query getStateName(int code) {
+    SELECT Name FROM State WHERE StateCode = <code>;
+}
+

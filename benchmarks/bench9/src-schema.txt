@@ -1,0 +1,16 @@
+CREATE TABLE Address (
+    AddressId INT,
+    Street VARCHAR,
+    City VARCHAR,
+    StateCode_fk INT,
+    ZipCode INT,
+    FOREIGN KEY (StateCode_fk) REFERENCES State (StateCode),
+    PRIMARY KEY (AddressId)
+);
+
+CREATE TABLE State (
+    StateCode INT,
+    Name VARCHAR,
+    PRIMARY KEY (StateCode)
+);
+

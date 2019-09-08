@@ -1,0 +1,142 @@
+CREATE TABLE comments (
+    id INT,
+    body VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    rating_id INT,
+    FOREIGN KEY (rating_id) REFERENCES ratings (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE dj_genres (
+    id INT,
+    dj_id INT,
+    genre_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (dj_id) REFERENCES djs (id),
+    FOREIGN KEY (genre_id) REFERENCES genres (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE djs (
+    id INT,
+    name VARCHAR,
+    image_url VARCHAR,
+    bio VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    uid VARCHAR,
+    past_venues VARCHAR,
+    email VARCHAR,
+    phone VARCHAR,
+    dj_status VARCHAR,
+    sdcl_followers INT,
+    sdcl_id INT,
+    city VARCHAR,
+    twitter_hdl VARCHAR,
+    agent_status VARCHAR,
+    rate VARCHAR,
+    can_produce VARCHAR,
+    slug VARCHAR,
+    fb_likes INT,
+    fbpage_id VARCHAR,
+    fb_bio VARCHAR,
+    talking_about_count INT,
+    fb_location VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE events (
+    id INT,
+    name VARCHAR,
+    date VARCHAR,
+    time VARCHAR,
+    description VARCHAR,
+    dj_id INT,
+    venue_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (dj_id) REFERENCES djs (id),
+    FOREIGN KEY (venue_id) REFERENCES venues (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE genres (
+    id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    name VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE ratings (
+    id INT,
+    dj_id INT,
+    score VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    user_id INT,
+    venue_id INT,
+    seen_live VARCHAR,
+    FOREIGN KEY (dj_id) REFERENCES djs (id),
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (venue_id) REFERENCES venues (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE replies (
+    id INT,
+    body VARCHAR,
+    comment_id INT,
+    FOREIGN KEY (comment_id) REFERENCES comments (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE tracks (
+    id INT,
+    demo VARCHAR,
+    dj_id INT,
+    playback_count INT,
+    favoritings_count INT,
+    title VARCHAR,
+    tag_list VARCHAR,
+    FOREIGN KEY (dj_id) REFERENCES djs (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE users (
+    id INT,
+    name VARCHAR,
+    venue_status VARCHAR,
+    dj_status VARCHAR,
+    sdcl_id INT,
+    uid VARCHAR,
+    image_url VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    email VARCHAR,
+    phone VARCHAR,
+    first_name VARCHAR,
+    gender VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE venues (
+    id INT,
+    name VARCHAR,
+    address VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    phone VARCHAR,
+    image_url VARCHAR,
+    cross_streets VARCHAR,
+    neighborhood VARCHAR,
+    latitude VARCHAR,
+    longitude VARCHAR,
+    yelp_rating VARCHAR,
+    yelp_id VARCHAR,
+    category VARCHAR,
+    PRIMARY KEY (id)
+);
+

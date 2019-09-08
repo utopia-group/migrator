@@ -1,0 +1,6 @@
+CREATE TABLE Customer (
+    CustomerID INT,
+    Fname VARCHAR,
+    PRIMARY KEY (CustomerID)
+);
+

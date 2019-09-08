@@ -1,0 +1,84 @@
+update createEmployee(int id, String name, String addr, int zip, String wkPhone, String mbPhone, String faxNumber, String email, String p_email, String title, String j_desc) {
+    INSERT INTO EMPLOYEE (eid, ename, street, zipcode, work_phone, mobile, fax, work_email, personal_email, job_title, job_desc) VALUES (<id>, <name>, <addr>, <zip>, <wkPhone>, <mbPhone>, <faxNumber>, <email>, <p_email>, <title>, <j_desc>);
+}
+
+update createProject(int id, String name, String desc) {
+    INSERT INTO PROJECT (pid, pname, pdesc) VALUES (<id>, <name>, <desc>);
+}
+
+update createAssignment(int id, int projId, int empId) {
+    INSERT INTO PROJ_EMP (peid, pid_fk, eid_fk) VALUES (<id>, <projId>, <empId>);
+}
+
+update deleteEmployee(int id) {
+    DELETE FROM EMPLOYEE WHERE eid = <id>;
+    DELETE FROM PROJ_EMP WHERE eid_fk = <id>;
+}
+
+update deleteProject(int id) {
+    DELETE FROM PROJECT WHERE pid = <id>;
+    DELETE FROM PROJ_EMP WHERE pid_fk = <id>;
+}
+
+update deleteAssignment(int id) {
+    DELETE FROM PROJ_EMP WHERE peid = <id>;
+}
+
+update updateEmployeeAddress(int id, String addr, int zip) {
+    UPDATE EMPLOYEE SET street = <addr> WHERE eid = <id>;
+    UPDATE EMPLOYEE SET zipcode = <zip> WHERE eid = <id>;
+}
+
+update updateEmployeePhone(int id, String wkPhone, String mbPhone, String faxNumber) {
+    UPDATE EMPLOYEE SET work_phone = <wkPhone> WHERE eid = <id>;
+    UPDATE EMPLOYEE SET mobile = <mbPhone> WHERE eid = <id>;
+    UPDATE EMPLOYEE SET fax = <faxNumber> WHERE eid = <id>;
+}
+
+update updateEmployeeEmail(int id, String email, String pEmail) {
+    UPDATE EMPLOYEE SET work_email = <email> WHERE eid = <id>;
+    UPDATE EMPLOYEE SET personal_email = <pEmail> WHERE eid = <id>;
+}
+
+update updateEmployeeJob(int id, String title, int jDesc) {
+    UPDATE EMPLOYEE SET job_title = <title> WHERE eid = <id>;
+    UPDATE EMPLOYEE SET job_desc = <jDesc> WHERE eid = <id>;
+}
+
+update updateProjectInfo(int id, String name, int desc) {
+    UPDATE PROJECT SET pname = <name> WHERE pid = <id>;
+    UPDATE PROJECT SET pdesc = <desc> WHERE pid = <id>;
+}
+
+query getEmployeeId(String name) {
+    SELECT eid FROM EMPLOYEE WHERE ename = <name>;
+}
+
+query getEmployeeAddress(int id) {
+    SELECT street, zipcode FROM EMPLOYEE WHERE eid = <id>;
+}
+
+query getEmployeePhone(int id) {
+    SELECT work_phone, mobile, fax FROM EMPLOYEE WHERE eid = <id>;
+}
+
+query getEmployeeEmail(int id) {
+    SELECT work_email, personal_email FROM EMPLOYEE WHERE eid = <id>;
+}
+
+query getEmployeeJob(int id) {
+    SELECT job_title, job_desc FROM EMPLOYEE WHERE eid = <id>;
+}
+
+query getProjectInfo(int id) {
+    SELECT pname, pdesc FROM PROJECT WHERE pid = <id>;
+}
+
+query getProjEmployees(String name) {
+    SELECT ename FROM PROJECT JOIN PROJ_EMP ON PROJECT.pid = PROJ_EMP.pid_fk JOIN EMPLOYEE ON PROJ_EMP.eid_fk = EMPLOYEE.eid WHERE pname = <name>;
+}
+
+query getEmpProjects(String name) {
+    SELECT pname FROM EMPLOYEE JOIN PROJ_EMP ON EMPLOYEE.eid = PROJ_EMP.eid_fk JOIN PROJECT ON PROJ_EMP.pid_fk = PROJECT.pid WHERE ename = <name>;
+}
+

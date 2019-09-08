@@ -1,0 +1,218 @@
+CREATE TABLE activation_tokens (
+    id INT,
+    value VARCHAR,
+    client_id VARCHAR,
+    device_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (device_id) REFERENCES devices (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE activations (
+    id INT,
+    activation_token_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (activation_token_id) REFERENCES activation_tokens (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE device_models (
+    id INT,
+    name VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE device_models_manifests (
+    id INT,
+    manifest_id INT,
+    device_model_id INT,
+    FOREIGN KEY (manifest_id) REFERENCES manifests (id),
+    FOREIGN KEY (device_model_id) REFERENCES device_models (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE devices (
+    id INT,
+    name VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    secret_key VARCHAR,
+    institution_id INT,
+    device_model_id INT,
+    FOREIGN KEY (institution_id) REFERENCES institutions (id),
+    FOREIGN KEY (device_model_id) REFERENCES device_models (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE devices_laboratories (
+    id INT,
+    device_id INT,
+    laboratory_id INT,
+    FOREIGN KEY (device_id) REFERENCES devices (id),
+    FOREIGN KEY (laboratory_id) REFERENCES laboratories (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE events (
+    id INT,
+    device_id INT,
+    raw_data VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    sensitive_data VARCHAR,
+    uuid VARCHAR,
+    custom_fields VARCHAR,
+    event_id VARCHAR,
+    index_failed INT,
+    index_failure_reason VARCHAR,
+    FOREIGN KEY (device_id) REFERENCES devices (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE identities (
+    id INT,
+    user_id INT,
+    provider VARCHAR,
+    token VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE institutions (
+    id INT,
+    name VARCHAR,
+    user_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE laboratories (
+    id INT,
+    name VARCHAR,
+    institution_id INT,
+    address VARCHAR,
+    city VARCHAR,
+    state VARCHAR,
+    zip_code VARCHAR,
+    country VARCHAR,
+    region VARCHAR,
+    lat VARCHAR,
+    lng VARCHAR,
+    location_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (institution_id) REFERENCES institutions (id),
+    FOREIGN KEY (location_id) REFERENCES locations (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE locations (
+    id INT,
+    name VARCHAR,
+    parent_id INT,
+    lft INT,
+    rgt INT,
+    lat VARCHAR,
+    lng VARCHAR,
+    depth INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    admin_level INT,
+    geo_id VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE manifests (
+    id INT,
+    version VARCHAR,
+    definition VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    api_version VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE policies (
+    id INT,
+    user_id INT,
+    granter_id INT,
+    definition VARCHAR,
+    delegable INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    name VARCHAR,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (granter_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE ssh_keys (
+    id INT,
+    public_key VARCHAR,
+    device_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (device_id) REFERENCES devices (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE subscribers (
+    id INT,
+    user_id INT,
+    name VARCHAR,
+    url VARCHAR,
+    fields VARCHAR,
+    last_run_at VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    url_user VARCHAR,
+    url_password VARCHAR,
+    filter_id INT,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (filter_id) REFERENCES filters (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE filters (
+    id INT,
+    user_id INT,
+    param_name VARCHAR,
+    filter_params VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE users (
+    id INT,
+    email VARCHAR,
+    encrypted_password VARCHAR,
+    reset_password_token VARCHAR,
+    reset_password_sent_at VARCHAR,
+    remember_created_at VARCHAR,
+    sign_in_count INT,
+    current_sign_in_at VARCHAR,
+    last_sign_in_at VARCHAR,
+    current_sign_in_ip VARCHAR,
+    last_sign_in_ip VARCHAR,
+    confirmation_token VARCHAR,
+    confirmed_at VARCHAR,
+    confirmation_sent_at VARCHAR,
+    unconfirmed_email VARCHAR,
+    failed_attempts INT,
+    unlock_token VARCHAR,
+    locked_at VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+

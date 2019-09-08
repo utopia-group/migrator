@@ -1,0 +1,16 @@
+CREATE TABLE Employee (
+    EmployeeNumber INT,
+    Name VARCHAR,
+    PhoneNumber VARCHAR,
+    PRIMARY KEY (EmployeeNumber)
+);
+
+CREATE TABLE EmployeeIdentification (
+    EmployeeNumber_fk INT,
+    Picture VARCHAR,
+    VoicePrint VARCHAR,
+    RetinalPrint VARCHAR,
+    FOREIGN KEY (EmployeeNumber_fk) REFERENCES Employee (EmployeeNumber),
+    PRIMARY KEY (EmployeeNumber_fk)
+);
+

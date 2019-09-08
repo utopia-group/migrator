@@ -1,0 +1,42 @@
+update createEmployee(int eid, String name, String phone, String pic, String voice, String retinal) {
+    INSERT INTO Employee (EmployeeNumber, Name, PhoneNumber) VALUES (<eid>, <name>, <phone>);
+    INSERT INTO EmployeeIdentification (EmployeeNumber_fk, Picture, VoicePrint, RetinalPrint) VALUES (<eid>, <pic>, <voice>, <retinal>);
+}
+
+update deleteEmployee(int eid) {
+    DELETE FROM Employee WHERE EmployeeNumber = <eid>;
+    DELETE FROM EmployeeIdentification WHERE EmployeeNumber_fk = <eid>;
+}
+
+update updateEmpPhone(int eid, String phone) {
+    UPDATE Employee SET PhoneNumber = <phone> WHERE EmployeeNumber = <eid>;
+}
+
+query getEmployeeNumber(String name) {
+    SELECT EmployeeNumber FROM Employee WHERE Name = <name>;
+}
+
+query getEmpName(int eid) {
+    SELECT Name FROM Employee WHERE EmployeeNumber = <eid>;
+}
+
+query getEmpPhone(int eid) {
+    SELECT PhoneNumber FROM Employee WHERE EmployeeNumber = <eid>;
+}
+
+query getEmpPicture(int eid) {
+    SELECT Picture FROM EmployeeIdentification WHERE EmployeeNumber_fk = <eid>;
+}
+
+query getEmpVoice(int eid) {
+    SELECT VoicePrint FROM EmployeeIdentification WHERE EmployeeNumber_fk = <eid>;
+}
+
+query getEmpRetina(int eid) {
+    SELECT RetinalPrint FROM EmployeeIdentification WHERE EmployeeNumber_fk = <eid>;
+}
+
+query getEmployeeInfo(int eid) {
+    SELECT Name, PhoneNumber, Picture, VoicePrint, RetinalPrint FROM Employee JOIN EmployeeIdentification ON Employee.EmployeeNumber = EmployeeIdentification.EmployeeNumber_fk WHERE EmployeeNumber = <eid>;
+}
+

@@ -1,0 +1,627 @@
+update createActivationToken(int id, String value, String device_secret_key, int device_id, String created_at, String updated_at) {
+    INSERT INTO activation_tokens (activation_tokens.id, activation_tokens.value, activation_tokens.device_secret_key, activation_tokens.device_id, activation_tokens.created_at, activation_tokens.updated_at) VALUES (<id>, <value>, <device_secret_key>, <device_id>, <created_at>, <updated_at>);
+}
+
+update deleteActivationToken(int id) {
+    DELETE FROM activation_tokens WHERE activation_tokens.id = <id>;
+}
+
+update updateActivationToken(int id, String value, String device_secret_key, int device_id, String updated_at) {
+    UPDATE activation_tokens SET activation_tokens.value = <value> WHERE activation_tokens.id = <id>;
+    UPDATE activation_tokens SET activation_tokens.device_secret_key = <device_secret_key> WHERE activation_tokens.id = <id>;
+    UPDATE activation_tokens SET activation_tokens.device_id = <device_id> WHERE activation_tokens.id = <id>;
+    UPDATE activation_tokens SET activation_tokens.updated_at = <updated_at> WHERE activation_tokens.id = <id>;
+}
+
+query readActivationToken(int id) {
+    SELECT activation_tokens.value, activation_tokens.device_secret_key, activation_tokens.device_id FROM activation_tokens WHERE activation_tokens.id = <id>;
+}
+
+query readActivationTokenCreateTime(int id) {
+    SELECT activation_tokens.created_at FROM activation_tokens WHERE activation_tokens.id = <id>;
+}
+
+query readActivationTokenUpdateTime(int id) {
+    SELECT activation_tokens.updated_at FROM activation_tokens WHERE activation_tokens.id = <id>;
+}
+
+update createActivation(int id, int activation_token_id, String created_at, String updated_at) {
+    INSERT INTO activations (activations.id, activations.activation_token_id, activations.created_at, activations.updated_at) VALUES (<id>, <activation_token_id>, <created_at>, <updated_at>);
+}
+
+update deleteActivation(int id) {
+    DELETE FROM activations WHERE activations.id = <id>;
+}
+
+update updateActivation(int id, int activation_token_id, String updated_at) {
+    UPDATE activations SET activations.activation_token_id = <activation_token_id> WHERE activations.id = <id>;
+    UPDATE activations SET activations.updated_at = <updated_at> WHERE activations.id = <id>;
+}
+
+query readActivation(int id) {
+    SELECT activations.activation_token_id FROM activations WHERE activations.id = <id>;
+}
+
+query readActivationCreateTime(int id) {
+    SELECT activations.created_at FROM activations WHERE activations.id = <id>;
+}
+
+query readActivationUpdateTime(int id) {
+    SELECT activations.updated_at FROM activations WHERE activations.id = <id>;
+}
+
+update createDeviceModel(int id, String name, String created_at, String updated_at) {
+    INSERT INTO device_models (device_models.id, device_models.name, device_models.created_at, device_models.updated_at) VALUES (<id>, <name>, <created_at>, <updated_at>);
+}
+
+update deleteDeviceModel(int id) {
+    DELETE FROM device_models WHERE device_models.id = <id>;
+}
+
+update updateDeviceModel(int id, String name, String updated_at) {
+    UPDATE device_models SET device_models.name = <name> WHERE device_models.id = <id>;
+    UPDATE device_models SET device_models.updated_at = <updated_at> WHERE device_models.id = <id>;
+}
+
+query readDeviceModel(int id) {
+    SELECT device_models.name FROM device_models WHERE device_models.id = <id>;
+}
+
+query readDeviceModelCreateTime(int id) {
+    SELECT device_models.created_at FROM device_models WHERE device_models.id = <id>;
+}
+
+query readDeviceModelUpdateTime(int id) {
+    SELECT device_models.updated_at FROM device_models WHERE device_models.id = <id>;
+}
+
+update createDeviceModelManifest(int id, int manifest_id, int device_model_id) {
+    INSERT INTO device_models_manifests (device_models_manifests.id, device_models_manifests.manifest_id, device_models_manifests.device_model_id) VALUES (<id>, <manifest_id>, <device_model_id>);
+}
+
+update assignDeviceModelManifests(int id, int device_model_id, int manifest_id) {
+    INSERT INTO device_models_manifests (device_models_manifests.id, device_models_manifests.manifest_id, device_models_manifests.device_model_id) VALUES (<id>, <device_model_id>, <manifest_id>);
+}
+
+update removeDeviceModelManifests(int id) {
+    DELETE FROM device_models_manifests WHERE device_models_manifests.id = <id>;
+}
+
+update createDevice(int id, String name, String created_at, String updated_at, String secret_key, int institution_id, int device_model_id) {
+    INSERT INTO devices (devices.id, devices.name, devices.created_at, devices.updated_at, devices.secret_key, devices.institution_id, devices.device_model_id) VALUES (<id>, <name>, <created_at>, <updated_at>, <secret_key>, <institution_id>, <device_model_id>);
+}
+
+update deleteDevice(int id) {
+    DELETE FROM devices WHERE devices.id = <id>;
+    DELETE FROM devices_laboratories WHERE devices_laboratories.device_id = <id>;
+}
+
+update updateDevice(int id, String name, int device_model_id, String updated_at) {
+    UPDATE devices SET devices.name = <name> WHERE devices.id = <id>;
+    UPDATE devices SET devices.device_model_id = <device_model_id> WHERE devices.id = <id>;
+    UPDATE devices SET devices.updated_at = <updated_at> WHERE devices.id = <id>;
+}
+
+update updateDeviceSecretKey(int id, String _key, String updated_at) {
+    UPDATE devices SET devices.secret_key = <_key> WHERE devices.id = <id>;
+    UPDATE devices SET devices.updated_at = <updated_at> WHERE devices.id = <id>;
+}
+
+query readDevice(int id) {
+    SELECT devices.name, devices.secret_key, devices.institution_id, devices.device_model_id FROM devices WHERE devices.id = <id>;
+}
+
+query readDeviceName(int id) {
+    SELECT devices.name FROM devices WHERE devices.id = <id>;
+}
+
+query readDeviceSecretKey(int id) {
+    SELECT devices.secret_key FROM devices WHERE devices.id = <id>;
+}
+
+query readDeviceCreateTime(int id) {
+    SELECT devices.created_at FROM devices WHERE devices.id = <id>;
+}
+
+query readDeviceUpdateTime(int id) {
+    SELECT devices.updated_at FROM devices WHERE devices.id = <id>;
+}
+
+update assignDeviceLaboratories(int id, int device_id, int lab_id) {
+    INSERT INTO devices_laboratories (devices_laboratories.id, devices_laboratories.device_id, devices_laboratories.laboratory_id) VALUES (<id>, <device_id>, <lab_id>);
+}
+
+update removeDeviceLaboratories(int id) {
+    DELETE FROM devices_laboratories WHERE devices_laboratories.id = <id>;
+}
+
+update createEvent(int id, int device_id, String raw_data, String created_at, String updated_at, String sensitive_data, String uuid, String custom_fields, String event_id, int index_failed, String index_failure_reason) {
+    INSERT INTO events (events.id, events.device_id, events.raw_data, events.created_at, events.updated_at, events.sensitive_data, events.uuid, events.custom_fields, events.event_id, events.index_failed, events.index_failure_reason) VALUES (<id>, <device_id>, <raw_data>, <created_at>, <updated_at>, <sensitive_data>, <uuid>, <custom_fields>, <event_id>, <index_failed>, <index_failure_reason>);
+}
+
+update deleteEvent(int id) {
+    DELETE FROM events WHERE events.id = <id>;
+}
+
+update updateEvent(int id, int device_id, String raw_data, String updated_at, String sensitive_data, String uuid, String custom_fields, String event_id, int index_failed, String index_failure_reason) {
+    UPDATE events SET events.device_id = <device_id> WHERE events.id = <id>;
+    UPDATE events SET events.raw_data = <raw_data> WHERE events.id = <id>;
+    UPDATE events SET events.updated_at = <updated_at> WHERE events.id = <id>;
+    UPDATE events SET events.sensitive_data = <sensitive_data> WHERE events.id = <id>;
+    UPDATE events SET events.uuid = <uuid> WHERE events.id = <id>;
+    UPDATE events SET events.custom_fields = <custom_fields> WHERE events.id = <id>;
+    UPDATE events SET events.event_id = <event_id> WHERE events.id = <id>;
+    UPDATE events SET events.index_failed = <index_failed> WHERE events.id = <id>;
+    UPDATE events SET events.index_failure_reason = <index_failure_reason> WHERE events.id = <id>;
+}
+
+query readEvent(int id) {
+    SELECT events.device_id, events.raw_data, events.sensitive_data, events.uuid, events.custom_fields, events.event_id, events.index_failed, events.index_failure_reason FROM events WHERE events.id = <id>;
+}
+
+query readEventCreateTime(int id) {
+    SELECT events.created_at FROM events WHERE events.id = <id>;
+}
+
+query readEventUpdateTime(int id) {
+    SELECT events.updated_at FROM events WHERE events.id = <id>;
+}
+
+update createIdentity(int id, int user_id, String provider, String token, String created_at, String updated_at) {
+    INSERT INTO identities (identities.id, identities.user_id, identities.provider, identities.token, identities.created_at, identities.updated_at) VALUES (<id>, <user_id>, <provider>, <token>, <created_at>, <updated_at>);
+}
+
+update deleteIdentity(int id) {
+    DELETE FROM identities WHERE identities.id = <id>;
+}
+
+update updateIdentity(int id, int user_id, String provider, String token, String updated_at) {
+    UPDATE identities SET identities.user_id = <user_id> WHERE identities.id = <id>;
+    UPDATE identities SET identities.provider = <provider> WHERE identities.id = <id>;
+    UPDATE identities SET identities.token = <token> WHERE identities.id = <id>;
+    UPDATE identities SET identities.updated_at = <updated_at> WHERE identities.id = <id>;
+}
+
+query readIdentity(int id) {
+    SELECT identities.user_id, identities.provider, identities.token FROM identities WHERE identities.id = <id>;
+}
+
+query readIdentityCreateTime(int id) {
+    SELECT identities.created_at FROM identities WHERE identities.id = <id>;
+}
+
+query readIdentityUpdateTime(int id) {
+    SELECT identities.updated_at FROM identities WHERE identities.id = <id>;
+}
+
+update createInstitution(int id, String name, int user_id, String created_at, String updated_at) {
+    INSERT INTO institutions (institutions.id, institutions.name, institutions.user_id, institutions.created_at, institutions.updated_at) VALUES (<id>, <name>, <user_id>, <created_at>, <updated_at>);
+}
+
+update deleteInstitution(int id) {
+    DELETE FROM institutions WHERE institutions.id = <id>;
+}
+
+update updateInstitution(int id, String name, String updated_at) {
+    UPDATE institutions SET institutions.name = <name> WHERE institutions.id = <id>;
+    UPDATE institutions SET institutions.updated_at = <updated_at> WHERE institutions.id = <id>;
+}
+
+query readInstitution(int id) {
+    SELECT institutions.name, institutions.user_id FROM institutions WHERE institutions.id = <id>;
+}
+
+query readInstitutionName(int id) {
+    SELECT institutions.name FROM institutions WHERE institutions.id = <id>;
+}
+
+query readInstitutionCreateTime(int id) {
+    SELECT institutions.created_at FROM institutions WHERE institutions.id = <id>;
+}
+
+query readInstitutionUpdateTime(int id) {
+    SELECT institutions.updated_at FROM institutions WHERE institutions.id = <id>;
+}
+
+update createLaboratory(int id, String name, int institution_id, String address, String city, String state, String zip_code, String country, String region, String lat, String lng, int location_id, String created_at, String updated_at) {
+    INSERT INTO laboratories (laboratories.id, laboratories.name, laboratories.institution_id, laboratories.address, laboratories.city, laboratories.state, laboratories.zip_code, laboratories.country, laboratories.region, laboratories.lat, laboratories.lng, laboratories.location_id, laboratories.created_at, laboratories.updated_at) VALUES (<id>, <name>, <institution_id>, <address>, <city>, <state>, <zip_code>, <country>, <region>, <lat>, <lng>, <location_id>, <created_at>, <updated_at>);
+}
+
+update deleteLaboratory(int id) {
+    DELETE FROM laboratories WHERE laboratories.id = <id>;
+}
+
+update updateLaboratory(int id, String name, int institution_id, String address, String city, String state, String zip_code, String country, String region, String lat, String lng, int location_id, String updated_at) {
+    UPDATE laboratories SET laboratories.name = <name> WHERE laboratories.id = <id>;
+    UPDATE laboratories SET laboratories.institution_id = <institution_id> WHERE laboratories.id = <id>;
+    UPDATE laboratories SET laboratories.address = <address> WHERE laboratories.id = <id>;
+    UPDATE laboratories SET laboratories.city = <city> WHERE laboratories.id = <id>;
+    UPDATE laboratories SET laboratories.state = <state> WHERE laboratories.id = <id>;
+    UPDATE laboratories SET laboratories.zip_code = <zip_code> WHERE laboratories.id = <id>;
+    UPDATE laboratories SET laboratories.country = <country> WHERE laboratories.id = <id>;
+    UPDATE laboratories SET laboratories.region = <region> WHERE laboratories.id = <id>;
+    UPDATE laboratories SET laboratories.lat = <lat> WHERE laboratories.id = <id>;
+    UPDATE laboratories SET laboratories.lng = <lng> WHERE laboratories.id = <id>;
+    UPDATE laboratories SET laboratories.location_id = <location_id> WHERE laboratories.id = <id>;
+    UPDATE laboratories SET laboratories.updated_at = <updated_at> WHERE laboratories.id = <id>;
+}
+
+query readLaboratory(int id) {
+    SELECT laboratories.name, laboratories.institution_id, laboratories.address, laboratories.city, laboratories.state, laboratories.zip_code, laboratories.country, laboratories.region, laboratories.lat, laboratories.lng, laboratories.location_id FROM laboratories WHERE laboratories.id = <id>;
+}
+
+query readLaboratoryCreateTime(int id) {
+    SELECT laboratories.created_at FROM laboratories WHERE laboratories.id = <id>;
+}
+
+query readLaboratoryUpdateTime(int id) {
+    SELECT laboratories.updated_at FROM laboratories WHERE laboratories.id = <id>;
+}
+
+update createLocation(int id, String name, int parent_id, int lft, int rgt, String lat, String lng, int depth, String created_at, String updated_at, int admin_level, String geo_id) {
+    INSERT INTO locations (locations.id, locations.name, locations.parent_id, locations.lft, locations.rgt, locations.lat, locations.lng, locations.depth, locations.created_at, locations.updated_at, locations.admin_level, locations.geo_id) VALUES (<id>, <name>, <parent_id>, <lft>, <rgt>, <lat>, <lng>, <depth>, <created_at>, <updated_at>, <admin_level>, <geo_id>);
+}
+
+update deleteLocation(int id) {
+    DELETE FROM locations WHERE locations.id = <id>;
+}
+
+update updateLocation(int id, String name, int parent_id, int admin_level, int geo_id, String updated_at) {
+    UPDATE locations SET locations.name = <name> WHERE locations.id = <id>;
+    UPDATE locations SET locations.parent_id = <parent_id> WHERE locations.id = <id>;
+    UPDATE locations SET locations.admin_level = <admin_level> WHERE locations.id = <id>;
+    UPDATE locations SET locations.geo_id = <geo_id> WHERE locations.id = <id>;
+    UPDATE locations SET locations.updated_at = <updated_at> WHERE locations.id = <id>;
+}
+
+update updateLocationPosition(int id, int lft, int rgt, String lat, String lng, int depth, String updated_at) {
+    UPDATE locations SET locations.lft = <lft> WHERE locations.id = <id>;
+    UPDATE locations SET locations.rgt = <rgt> WHERE locations.id = <id>;
+    UPDATE locations SET locations.lat = <lat> WHERE locations.id = <id>;
+    UPDATE locations SET locations.lng = <lng> WHERE locations.id = <id>;
+    UPDATE locations SET locations.depth = <depth> WHERE locations.id = <id>;
+    UPDATE locations SET locations.updated_at = <updated_at> WHERE locations.id = <id>;
+}
+
+query readLocation(int id) {
+    SELECT locations.name, locations.parent_id, locations.lft, locations.rgt, locations.lat, locations.lng, locations.depth, locations.admin_level, locations.geo_id FROM locations WHERE locations.id = <id>;
+}
+
+query readLocationPosition(int id) {
+    SELECT locations.name, locations.lft, locations.rgt, locations.lat, locations.lng, locations.depth FROM locations WHERE locations.id = <id>;
+}
+
+query readLocationCreateTime(int id) {
+    SELECT locations.created_at FROM locations WHERE locations.id = <id>;
+}
+
+query readLocationUpdateTime(int id) {
+    SELECT locations.updated_at FROM locations WHERE locations.id = <id>;
+}
+
+update createManifest(int id, String version, String definition, String created_at, String updated_at, String api_version) {
+    INSERT INTO manifests (manifests.id, manifests.version, manifests.definition, manifests.created_at, manifests.updated_at, manifests.api_version) VALUES (<id>, <version>, <definition>, <created_at>, <updated_at>, <api_version>);
+}
+
+update deleteManifest(int id) {
+    DELETE FROM manifests WHERE manifests.id = <id>;
+    DELETE FROM device_models_manifests WHERE device_models_manifests.manifest_id = <id>;
+}
+
+update updateManifest(int id, String definition, String updated_at) {
+    UPDATE manifests SET manifests.definition = <definition> WHERE manifests.id = <id>;
+    UPDATE manifests SET manifests.updated_at = <updated_at> WHERE manifests.id = <id>;
+}
+
+update updateManifestVersion(int id, String version, String updated_at) {
+    UPDATE manifests SET manifests.version = <version> WHERE manifests.id = <id>;
+    UPDATE manifests SET manifests.updated_at = <updated_at> WHERE manifests.id = <id>;
+}
+
+update updateManifestApiVersion(int id, String api_version, String updated_at) {
+    UPDATE manifests SET manifests.api_version = <api_version> WHERE manifests.id = <id>;
+    UPDATE manifests SET manifests.updated_at = <updated_at> WHERE manifests.id = <id>;
+}
+
+query readManifest(int id) {
+    SELECT manifests.version, manifests.definition, manifests.api_version FROM manifests WHERE manifests.id = <id>;
+}
+
+query readManifestVersion(int id) {
+    SELECT manifests.version FROM manifests WHERE manifests.id = <id>;
+}
+
+query readManifestApiVersion(int id) {
+    SELECT manifests.api_version FROM manifests WHERE manifests.id = <id>;
+}
+
+query readManifestCreateTime(int id) {
+    SELECT manifests.created_at FROM manifests WHERE manifests.id = <id>;
+}
+
+query readManifestUpdateTime(int id) {
+    SELECT manifests.updated_at FROM manifests WHERE manifests.id = <id>;
+}
+
+update createPolicy(int id, int user_id, int granter_id, String definition, int delegable, String created_at, String updated_at, String name) {
+    INSERT INTO policies (policies.id, policies.user_id, policies.granter_id, policies.definition, policies.delegable, policies.created_at, policies.updated_at, policies.name) VALUES (<id>, <user_id>, <granter_id>, <definition>, <delegable>, <created_at>, <updated_at>, <name>);
+}
+
+update deletePolicy(int id) {
+    DELETE FROM policies WHERE policies.id = <id>;
+}
+
+update updatePolicy(int id, int user_id, int granter_id, String definition, int delegable, String updated_at, String name) {
+    UPDATE policies SET policies.user_id = <user_id> WHERE policies.id = <id>;
+    UPDATE policies SET policies.granter_id = <granter_id> WHERE policies.id = <id>;
+    UPDATE policies SET policies.definition = <definition> WHERE policies.id = <id>;
+    UPDATE policies SET policies.delegable = <delegable> WHERE policies.id = <id>;
+    UPDATE policies SET policies.updated_at = <updated_at> WHERE policies.id = <id>;
+    UPDATE policies SET policies.name = <name> WHERE policies.id = <id>;
+}
+
+query readPolicy(int id) {
+    SELECT policies.user_id, policies.granter_id, policies.definition, policies.delegable, policies.name FROM policies WHERE policies.id = <id>;
+}
+
+query readPolicyCreateTime(int id) {
+    SELECT policies.created_at FROM policies WHERE policies.id = <id>;
+}
+
+query readPolicyUpdateTime(int id) {
+    SELECT policies.updated_at FROM policies WHERE policies.id = <id>;
+}
+
+update createSshKey(int id, String public_key, int device_id, String created_at, String updated_at) {
+    INSERT INTO ssh_keys (ssh_keys.id, ssh_keys.public_key, ssh_keys.device_id, ssh_keys.created_at, ssh_keys.updated_at) VALUES (<id>, <public_key>, <device_id>, <created_at>, <updated_at>);
+}
+
+update deleteSshKey(int id) {
+    DELETE FROM ssh_keys WHERE ssh_keys.id = <id>;
+}
+
+update updateSshKey(int id, String public_key, int device_id, String updated_at) {
+    UPDATE ssh_keys SET ssh_keys.public_key = <public_key> WHERE ssh_keys.id = <id>;
+    UPDATE ssh_keys SET ssh_keys.device_id = <device_id> WHERE ssh_keys.id = <id>;
+    UPDATE ssh_keys SET ssh_keys.updated_at = <updated_at> WHERE ssh_keys.id = <id>;
+}
+
+query readSshKey(int id) {
+    SELECT ssh_keys.public_key, ssh_keys.device_id FROM ssh_keys WHERE ssh_keys.id = <id>;
+}
+
+query readSshKeyCreateTime(int id) {
+    SELECT ssh_keys.created_at FROM ssh_keys WHERE ssh_keys.id = <id>;
+}
+
+query readSshKeyUpdateTime(int id) {
+    SELECT ssh_keys.updated_at FROM ssh_keys WHERE ssh_keys.id = <id>;
+}
+
+update createSubscriber(int id, int user_id, String name, String url, String filter, String fields, String last_run_at, String created_at, String updated_at, String url_user, String url_password) {
+    INSERT INTO subscribers (subscribers.id, subscribers.user_id, subscribers.name, subscribers.url, subscribers.filter, subscribers.fields, subscribers.last_run_at, subscribers.created_at, subscribers.updated_at, subscribers.url_user, subscribers.url_password) VALUES (<id>, <user_id>, <name>, <url>, <filter>, <fields>, <last_run_at>, <created_at>, <updated_at>, <url_user>, <url_password>);
+}
+
+update deleteSubscriber(int id) {
+    DELETE FROM subscribers WHERE subscribers.id = <id>;
+}
+
+update updateSubscriber(int id, String name, String url, String updated_at, String url_user, String url_password) {
+    UPDATE subscribers SET subscribers.name = <name> WHERE subscribers.id = <id>;
+    UPDATE subscribers SET subscribers.url = <url> WHERE subscribers.id = <id>;
+    UPDATE subscribers SET subscribers.updated_at = <updated_at> WHERE subscribers.id = <id>;
+    UPDATE subscribers SET subscribers.url_user = <url_user> WHERE subscribers.id = <id>;
+    UPDATE subscribers SET subscribers.url_password = <url_password> WHERE subscribers.id = <id>;
+}
+
+update updateSubscriberFilter(int id, String filter, String updated_at) {
+    UPDATE subscribers SET subscribers.filter = <filter> WHERE subscribers.id = <id>;
+    UPDATE subscribers SET subscribers.updated_at = <updated_at> WHERE subscribers.id = <id>;
+}
+
+update updateSubscriberLastRunAt(int id, String last_run_at, String updated_at) {
+    UPDATE subscribers SET subscribers.last_run_at = <last_run_at> WHERE subscribers.id = <id>;
+    UPDATE subscribers SET subscribers.updated_at = <updated_at> WHERE subscribers.id = <id>;
+}
+
+query readSubscriber(int id) {
+    SELECT subscribers.user_id, subscribers.name, subscribers.url, subscribers.filter, subscribers.fields, subscribers.last_run_at, subscribers.url_user, subscribers.url_password FROM subscribers WHERE subscribers.id = <id>;
+}
+
+query readSubscriberCreateTime(int id) {
+    SELECT subscribers.created_at FROM subscribers WHERE subscribers.id = <id>;
+}
+
+query readSubscriberUpdateTime(int id) {
+    SELECT subscribers.updated_at FROM subscribers WHERE subscribers.id = <id>;
+}
+
+update createUser(int id, String email, String encrypted_password, String reset_password_token, String reset_password_sent_at, String remember_created_at, int sign_in_count, String current_sign_in_at, String last_sign_in_at, String current_sign_in_ip, String last_sign_in_ip, String confirmation_token, String confirmed_at, String confirmation_sent_at, String unconfirmed_email, int failed_attempts, String unlock_token, String locked_at, String created_at, String updated_at) {
+    INSERT INTO users (users.id, users.email, users.encrypted_password, users.reset_password_token, users.reset_password_sent_at, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.unconfirmed_email, users.failed_attempts, users.unlock_token, users.locked_at, users.created_at, users.updated_at) VALUES (<id>, <email>, <encrypted_password>, <reset_password_token>, <reset_password_sent_at>, <remember_created_at>, <sign_in_count>, <current_sign_in_at>, <last_sign_in_at>, <current_sign_in_ip>, <last_sign_in_ip>, <confirmation_token>, <confirmed_at>, <confirmation_sent_at>, <unconfirmed_email>, <failed_attempts>, <unlock_token>, <locked_at>, <created_at>, <updated_at>);
+}
+
+update deleteUser(int id) {
+    DELETE FROM users WHERE users.id = <id>;
+}
+
+update updateUserEmail(int id, String email, String updated_at) {
+    UPDATE users SET users.email = <email> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserPassword(int id, String encrypted_password, String updated_at) {
+    UPDATE users SET users.encrypted_password = <encrypted_password> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserResetPassword(int id, String reset_password_token, String reset_password_sent_at, String updated_at) {
+    UPDATE users SET users.reset_password_token = <reset_password_token> WHERE users.id = <id>;
+    UPDATE users SET users.reset_password_sent_at = <reset_password_sent_at> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserRememberCreatedAt(int id, String remember_created_at, String updated_at) {
+    UPDATE users SET users.remember_created_at = <remember_created_at> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserSignIn(int id, int sign_in_count, String current_sign_in_at, String last_sign_in_at, String current_sign_in_ip, String last_sign_in_ip, String updated_at) {
+    UPDATE users SET users.sign_in_count = <sign_in_count> WHERE users.id = <id>;
+    UPDATE users SET users.current_sign_in_at = <current_sign_in_at> WHERE users.id = <id>;
+    UPDATE users SET users.last_sign_in_at = <last_sign_in_at> WHERE users.id = <id>;
+    UPDATE users SET users.current_sign_in_ip = <current_sign_in_ip> WHERE users.id = <id>;
+    UPDATE users SET users.last_sign_in_ip = <last_sign_in_ip> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserEmailConfirmation(int id, String confirmation_token, String confirmed_at, String confirmation_sent_at, String unconfirmed_email, String updated_at) {
+    UPDATE users SET users.confirmation_token = <confirmation_token> WHERE users.id = <id>;
+    UPDATE users SET users.confirmed_at = <confirmed_at> WHERE users.id = <id>;
+    UPDATE users SET users.confirmation_sent_at = <confirmation_sent_at> WHERE users.id = <id>;
+    UPDATE users SET users.unconfirmed_email = <unconfirmed_email> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserLock(int id, int failed_attempts, String unlock_token, String locked_at, String updated_at) {
+    UPDATE users SET users.failed_attempts = <failed_attempts> WHERE users.id = <id>;
+    UPDATE users SET users.unlock_token = <unlock_token> WHERE users.id = <id>;
+    UPDATE users SET users.locked_at = <locked_at> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+query readUser(int id) {
+    SELECT users.email, users.encrypted_password, users.reset_password_token, users.reset_password_sent_at, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.unconfirmed_email, users.failed_attempts, users.unlock_token, users.locked_at FROM users WHERE users.id = <id>;
+}
+
+query findUserByEmail(String email) {
+    SELECT users.id FROM users WHERE users.email = <email>;
+}
+
+query readUserCreateTime(int id) {
+    SELECT users.created_at FROM users WHERE users.id = <id>;
+}
+
+query readUserUpdateTime(int id) {
+    SELECT users.updated_at FROM users WHERE users.id = <id>;
+}
+
+query readActivationTokenDevice(int id) {
+    SELECT devices.id, devices.name, devices.secret_key, devices.institution_id, devices.device_model_id FROM activation_tokens JOIN devices ON activation_tokens.device_id = devices.id WHERE activation_tokens.id = <id>;
+}
+
+query readDeviceActivationToken(int id) {
+    SELECT activation_tokens.id, activation_tokens.value, activation_tokens.device_secret_key, activation_tokens.device_id FROM activation_tokens JOIN devices ON activation_tokens.device_id = devices.id WHERE devices.id = <id>;
+}
+
+query readActivationActivationToken(int id) {
+    SELECT activation_tokens.id, activation_tokens.value, activation_tokens.device_secret_key, activation_tokens.device_id FROM activations JOIN activation_tokens ON activations.activation_token_id = activation_tokens.id WHERE activations.id = <id>;
+}
+
+query readActivationTokenActivation(int id) {
+    SELECT activations.id, activations.activation_token_id FROM activations JOIN activation_tokens ON activations.activation_token_id = activation_tokens.id WHERE activation_tokens.id = <id>;
+}
+
+query readManifestDeviceModels(int id) {
+    SELECT device_models.name FROM manifests JOIN device_models_manifests ON manifests.id = device_models_manifests.manifest_id JOIN device_models ON device_models_manifests.device_model_id = device_models.id WHERE manifests.id = <id>;
+}
+
+query readDeviceModelManifests(int id) {
+    SELECT manifests.definition FROM device_models JOIN device_models_manifests ON device_models.id = device_models_manifests.device_model_id JOIN manifests ON device_models_manifests.manifest_id = manifests.id WHERE device_models.id = <id>;
+}
+
+query readDeviceInstitution(int id) {
+    SELECT institutions.id, institutions.name, institutions.user_id FROM devices JOIN institutions ON devices.institution_id = institutions.id WHERE devices.id = <id>;
+}
+
+query readInstitutionDevice(int id) {
+    SELECT devices.id, devices.name, devices.secret_key, devices.institution_id, devices.device_model_id FROM devices JOIN institutions ON devices.institution_id = institutions.id WHERE institutions.id = <id>;
+}
+
+query readDeviceDeviceModel(int id) {
+    SELECT device_models.id, device_models.name FROM devices JOIN device_models ON devices.device_model_id = device_models.id WHERE devices.id = <id>;
+}
+
+query readDeviceModelDevice(int id) {
+    SELECT devices.id, devices.name, devices.secret_key, devices.institution_id, devices.device_model_id FROM devices JOIN device_models ON devices.device_model_id = device_models.id WHERE device_models.id = <id>;
+}
+
+query readLaboratoryDevices(int id) {
+    SELECT devices.name, devices.secret_key, devices.institution_id, devices.device_model_id FROM devices_laboratories JOIN laboratories ON devices_laboratories.laboratory_id = laboratories.id JOIN devices ON devices_laboratories.device_id = devices.id WHERE laboratories.id = <id>;
+}
+
+query readDeviceLaboratories(int id) {
+    SELECT laboratories.name, laboratories.institution_id, laboratories.address, laboratories.city, laboratories.state, laboratories.zip_code, laboratories.country, laboratories.region, laboratories.lat, laboratories.lng, laboratories.location_id FROM devices_laboratories JOIN devices ON devices_laboratories.device_id = devices.id JOIN laboratories ON devices_laboratories.laboratory_id = laboratories.id WHERE devices.id = <id>;
+}
+
+query readEventDevice(int id) {
+    SELECT devices.id, devices.name, devices.secret_key, devices.institution_id, devices.device_model_id FROM events JOIN devices ON events.device_id = devices.id WHERE events.id = <id>;
+}
+
+query readDeviceEvent(int id) {
+    SELECT events.id, events.device_id, events.raw_data, events.sensitive_data, events.uuid, events.custom_fields, events.event_id, events.index_failed, events.index_failure_reason FROM events JOIN devices ON events.device_id = devices.id WHERE devices.id = <id>;
+}
+
+query readIdentityUser(int id) {
+    SELECT users.id, users.email, users.encrypted_password, users.reset_password_token, users.reset_password_sent_at, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.unconfirmed_email, users.failed_attempts, users.unlock_token, users.locked_at FROM identities JOIN users ON identities.user_id = users.id WHERE identities.id = <id>;
+}
+
+query readUserIdentity(int id) {
+    SELECT identities.id, identities.user_id, identities.provider, identities.token FROM identities JOIN users ON identities.user_id = users.id WHERE users.id = <id>;
+}
+
+query readInstitutionUser(int id) {
+    SELECT users.id, users.email, users.encrypted_password, users.reset_password_token, users.reset_password_sent_at, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.unconfirmed_email, users.failed_attempts, users.unlock_token, users.locked_at FROM institutions JOIN users ON institutions.user_id = users.id WHERE institutions.id = <id>;
+}
+
+query readUserInstitution(int id) {
+    SELECT institutions.id, institutions.name, institutions.user_id FROM institutions JOIN users ON institutions.user_id = users.id WHERE users.id = <id>;
+}
+
+query readLaboratoryInstitution(int id) {
+    SELECT institutions.id, institutions.name, institutions.user_id FROM laboratories JOIN institutions ON laboratories.institution_id = institutions.id WHERE laboratories.id = <id>;
+}
+
+query readInstitutionLaboratory(int id) {
+    SELECT laboratories.id, laboratories.name, laboratories.institution_id, laboratories.address, laboratories.city, laboratories.state, laboratories.zip_code, laboratories.country, laboratories.region, laboratories.lat, laboratories.lng, laboratories.location_id FROM laboratories JOIN institutions ON laboratories.institution_id = institutions.id WHERE institutions.id = <id>;
+}
+
+query readLaboratoryLocation(int id) {
+    SELECT locations.id, locations.name, locations.parent_id, locations.lft, locations.rgt, locations.lat, locations.lng, locations.depth, locations.admin_level, locations.geo_id FROM laboratories JOIN locations ON laboratories.location_id = locations.id WHERE laboratories.id = <id>;
+}
+
+query readLocationLaboratory(int id) {
+    SELECT laboratories.id, laboratories.name, laboratories.institution_id, laboratories.address, laboratories.city, laboratories.state, laboratories.zip_code, laboratories.country, laboratories.region, laboratories.lat, laboratories.lng, laboratories.location_id FROM laboratories JOIN locations ON laboratories.location_id = locations.id WHERE locations.id = <id>;
+}
+
+query readPolicyUser(int id) {
+    SELECT users.id, users.email, users.encrypted_password, users.reset_password_token, users.reset_password_sent_at, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.unconfirmed_email, users.failed_attempts, users.unlock_token, users.locked_at FROM policies JOIN users ON policies.user_id = users.id WHERE policies.id = <id>;
+}
+
+query readUserPolicy(int id) {
+    SELECT policies.id, policies.user_id, policies.granter_id, policies.definition, policies.delegable, policies.name FROM policies JOIN users ON policies.user_id = users.id WHERE users.id = <id>;
+}
+
+query readPolicyUser2(int id) {
+    SELECT users.id, users.email, users.encrypted_password, users.reset_password_token, users.reset_password_sent_at, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.unconfirmed_email, users.failed_attempts, users.unlock_token, users.locked_at FROM policies JOIN users ON policies.user_id = users.id WHERE policies.id = <id>;
+}
+
+query readUserPolicy2(int id) {
+    SELECT policies.id, policies.user_id, policies.granter_id, policies.definition, policies.delegable, policies.name FROM policies JOIN users ON policies.user_id = users.id WHERE users.id = <id>;
+}
+
+query readSshKeyDevice(int id) {
+    SELECT devices.id, devices.name, devices.secret_key, devices.institution_id, devices.device_model_id FROM ssh_keys JOIN devices ON ssh_keys.device_id = devices.id WHERE ssh_keys.id = <id>;
+}
+
+query readDeviceSshKey(int id) {
+    SELECT ssh_keys.id, ssh_keys.public_key, ssh_keys.device_id FROM ssh_keys JOIN devices ON ssh_keys.device_id = devices.id WHERE devices.id = <id>;
+}
+
+query readSubscriberUser(int id) {
+    SELECT users.id, users.email, users.encrypted_password, users.reset_password_token, users.reset_password_sent_at, users.remember_created_at, users.sign_in_count, users.current_sign_in_at, users.last_sign_in_at, users.current_sign_in_ip, users.last_sign_in_ip, users.confirmation_token, users.confirmed_at, users.confirmation_sent_at, users.unconfirmed_email, users.failed_attempts, users.unlock_token, users.locked_at FROM subscribers JOIN users ON subscribers.user_id = users.id WHERE subscribers.id = <id>;
+}
+
+query readUserSubscriber(int id) {
+    SELECT subscribers.id, subscribers.user_id, subscribers.name, subscribers.url, subscribers.filter, subscribers.fields, subscribers.last_run_at, subscribers.url_user, subscribers.url_password FROM subscribers JOIN users ON subscribers.user_id = users.id WHERE users.id = <id>;
+}
+

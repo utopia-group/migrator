@@ -1,0 +1,97 @@
+CREATE TABLE addresses (
+    id INT,
+    user_id INT,
+    street_number VARCHAR,
+    street VARCHAR,
+    city VARCHAR,
+    state VARCHAR,
+    zip VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE carts (
+    id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE categories (
+    id INT,
+    title VARCHAR,
+    description VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE item_categories (
+    id INT,
+    item_id INT,
+    category_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (item_id) REFERENCES items (id),
+    FOREIGN KEY (category_id) REFERENCES categories (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE items (
+    id INT,
+    title VARCHAR,
+    description VARCHAR,
+    price VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    image_file_name VARCHAR,
+    image_content_type VARCHAR,
+    image_file_size INT,
+    image_updated_at VARCHAR,
+    available VARCHAR,
+    status VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE line_items (
+    id INT,
+    item_id INT,
+    cart_id INT,
+    quantity INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (item_id) REFERENCES items (id),
+    FOREIGN KEY (cart_id) REFERENCES carts (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE orders (
+    id INT,
+    user_id INT,
+    status VARCHAR,
+    pickup_or_delivery VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    line_items VARCHAR,
+    address_id INT,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (address_id) REFERENCES addresses (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE users (
+    id INT,
+    name VARCHAR,
+    password_digest VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    admin VARCHAR,
+    email VARCHAR,
+    username VARCHAR,
+    PRIMARY KEY (id)
+);
+

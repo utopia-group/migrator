@@ -1,0 +1,32 @@
+update createCustomer(int cid, String name) {
+    INSERT INTO Customer (CustomerID, Name) VALUES (<cid>, <name>);
+}
+
+update createPolicy(int pid, int cid, int amount) {
+    INSERT INTO Policy (PolicyID, CustomerID_fk, Amount) VALUES (<pid>, <cid>, <amount>);
+}
+
+update deleteCustomer(int cid) {
+    DELETE FROM Customer WHERE CustomerID = <cid>;
+}
+
+update deletePolicy(int pid) {
+    DELETE FROM Policy WHERE PolicyID = <pid>;
+}
+
+update updatePolicyAmount(int pid, int amount) {
+    UPDATE Policy SET Amount = <amount> WHERE PolicyID = <pid>;
+}
+
+query getCustomerID(String name) {
+    SELECT CustomerID FROM Customer WHERE Name = <name>;
+}
+
+query getPolicy(int cid) {
+    SELECT PolicyID, Amount FROM Customer JOIN Policy ON Customer.CustomerID = Policy.CustomerID_fk WHERE CustomerID = <cid>;
+}
+
+query getPolicyByName(String name) {
+    SELECT PolicyID, Amount FROM Customer JOIN Policy ON Customer.CustomerID = Policy.CustomerID_fk WHERE Name = <name>;
+}
+

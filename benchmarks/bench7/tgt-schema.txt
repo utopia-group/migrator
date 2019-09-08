@@ -1,0 +1,19 @@
+CREATE TABLE Customer (
+    CustomerID INT,
+    Name VARCHAR,
+    PRIMARY KEY (CustomerID)
+);
+
+CREATE TABLE Policy (
+    PolicyID INT,
+    Amount INT,
+    PRIMARY KEY (PolicyID)
+);
+
+CREATE TABLE Holds (
+    CustomerID_fk INT,
+    PolicyID_fk INT,
+    FOREIGN KEY (CustomerID_fk) REFERENCES Customer (CustomerID),
+    FOREIGN KEY (PolicyID_fk) REFERENCES Policy (PolicyID)
+);
+

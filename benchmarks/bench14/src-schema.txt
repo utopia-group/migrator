@@ -1,0 +1,107 @@
+CREATE TABLE active_admin_comments (
+    id INT,
+    resource_id VARCHAR,
+    resource_type VARCHAR,
+    author_id INT,
+    author_type VARCHAR,
+    body VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    namespace VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE admin_users (
+    id INT,
+    email VARCHAR,
+    encrypted_password VARCHAR,
+    reset_password_token VARCHAR,
+    reset_password_sent_at VARCHAR,
+    remember_created_at VARCHAR,
+    sign_in_count INT,
+    current_sign_in_at VARCHAR,
+    last_sign_in_at VARCHAR,
+    current_sign_in_ip VARCHAR,
+    last_sign_in_ip VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE customers (
+    id INT,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    address VARCHAR,
+    city VARCHAR,
+    postal_code VARCHAR,
+    email VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    province_id INT,
+    FOREIGN KEY (province_id) REFERENCES provinces (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE line_items (
+    id INT,
+    quantity INT,
+    price VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    order_id INT,
+    product_id INT,
+    FOREIGN KEY (order_id) REFERENCES orders (id),
+    FOREIGN KEY (product_id) REFERENCES products (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE orders (
+    id INT,
+    status VARCHAR,
+    pst_rate VARCHAR,
+    gst_rate VARCHAR,
+    hst_rate VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    customer_id INT,
+    FOREIGN KEY (customer_id) REFERENCES customers (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE products (
+    id INT,
+    name VARCHAR,
+    description VARCHAR,
+    price VARCHAR,
+    stock_quantity INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    category VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE provinces (
+    id INT,
+    name VARCHAR,
+    pst VARCHAR,
+    gst VARCHAR,
+    hst VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE reviews (
+    id INT,
+    content VARCHAR,
+    rating VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    customer_id INT,
+    product_id INT,
+    FOREIGN KEY (customer_id) REFERENCES customers (id),
+    FOREIGN KEY (product_id) REFERENCES products (id),
+    PRIMARY KEY (id)
+);
+

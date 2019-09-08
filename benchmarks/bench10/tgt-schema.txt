@@ -1,0 +1,28 @@
+CREATE TABLE Employees (
+    EmployeeId INT,
+    EmployeeName VARCHAR,
+    PRIMARY KEY (EmployeeId)
+);
+
+CREATE TABLE Customers (
+    CustomerId INT,
+    Name VARCHAR,
+    Address VARCHAR,
+    CityId INT,
+    EmployeeId_fk INT,
+    FOREIGN KEY (EmployeeId_fk) REFERENCES Employees (EmployeeId),
+    PRIMARY KEY (CustomerId)
+);
+
+CREATE TABLE Invoices (
+    InvoiceId INT,
+    CustomerId_fk INT,
+    InvoiceDate VARCHAR,
+    EmpId_fk INT,
+    CustomerName VARCHAR,
+    CustomerAddress VARCHAR,
+    FOREIGN KEY (CustomerId_fk) REFERENCES Customers (CustomerId),
+    FOREIGN KEY (EmpId_fk) REFERENCES Employees (EmployeeId),
+    PRIMARY KEY (InvoiceId)
+);
+

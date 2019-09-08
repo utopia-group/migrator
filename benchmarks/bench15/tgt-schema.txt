@@ -1,0 +1,253 @@
+CREATE TABLE articles (
+    id INT,
+    title VARCHAR,
+    content VARCHAR,
+    user_id INT,
+    public VARCHAR,
+    published VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    permalink VARCHAR,
+    category_id INT,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (category_id) REFERENCES categories (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE blog_posts (
+    id INT,
+    blog_id INT,
+    content VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    public VARCHAR,
+    FOREIGN KEY (blog_id) REFERENCES blogs (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE blogs (
+    id INT,
+    title VARCHAR,
+    user_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE categories (
+    id INT,
+    name VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE comments (
+    id INT,
+    commenter_id INT,
+    commentable_id INT,
+    commentable_type VARCHAR,
+    content VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    public VARCHAR,
+    commenter_name VARCHAR,
+    FOREIGN KEY (commenter_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE conversations (
+    id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE events (
+    id INT,
+    name VARCHAR,
+    city VARCHAR,
+    country VARCHAR,
+    state VARCHAR,
+    start_date VARCHAR,
+    end_date VARCHAR,
+    user_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE attendants (
+    id INT,
+    user_id INT,
+    role VARCHAR,
+    event_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (event_id) REFERENCES events (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE feeds (
+    id INT,
+    name VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    store_name VARCHAR,
+    hidden VARCHAR,
+    user_id INT,
+    permalink VARCHAR,
+    description VARCHAR,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE likes (
+    id INT,
+    liker_id INT,
+    liked_item_id INT,
+    liked_item_type VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (liker_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE messages (
+    id INT,
+    content VARCHAR,
+    sender_id INT,
+    recipient_id INT,
+    read VARCHAR,
+    conversation_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (sender_id) REFERENCES users (id),
+    FOREIGN KEY (recipient_id) REFERENCES users (id),
+    FOREIGN KEY (conversation_id) REFERENCES conversations (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE notifications (
+    id INT,
+    user_id INT,
+    sender_id INT,
+    item_id INT,
+    item_type VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    action_type VARCHAR,
+    action_id INT,
+    public VARCHAR,
+    read VARCHAR,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (sender_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE pages (
+    id INT,
+    content VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    name VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE posts (
+    id INT,
+    content VARCHAR,
+    user_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    public VARCHAR,
+    sticky VARCHAR,
+    feed_id INT,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (feed_id) REFERENCES feeds (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE taggings (
+    id INT,
+    tag_id INT,
+    taggable_id INT,
+    taggable_type VARCHAR,
+    tagger_id INT,
+    tagger_type VARCHAR,
+    context VARCHAR,
+    created_at VARCHAR,
+    FOREIGN KEY (tag_id) REFERENCES tags (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE tags (
+    id INT,
+    name VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE users (
+    id INT,
+    name VARCHAR,
+    email VARCHAR,
+    remember_token VARCHAR,
+    password_digest VARCHAR,
+    admin VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    gravatar_suffix VARCHAR,
+    nickname VARCHAR,
+    reset_code VARCHAR,
+    country VARCHAR,
+    city VARCHAR,
+    modified_user VARCHAR,
+    author VARCHAR,
+    birthday VARCHAR,
+    started_playing VARCHAR,
+    bap VARCHAR,
+    bap_name VARCHAR,
+    bap_induction VARCHAR,
+    motto VARCHAR,
+    hobbies VARCHAR,
+    privacy_settings INT,
+    latitude VARCHAR,
+    longitude VARCHAR,
+    last_visit VARCHAR,
+    about_title VARCHAR,
+    about_content VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE users_videos (
+    id INT,
+    user_id INT,
+    video_id INT,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (video_id) REFERENCES videos (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE videos (
+    id INT,
+    user_id INT,
+    title VARCHAR,
+    vendor VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    uid VARCHAR,
+    url VARCHAR,
+    public VARCHAR,
+    location VARCHAR,
+    maker VARCHAR,
+    players VARCHAR,
+    for_feedback VARCHAR,
+    feed_id INT,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (feed_id) REFERENCES feeds (id),
+    PRIMARY KEY (id)
+);
+

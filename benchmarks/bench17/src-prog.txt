@@ -1,0 +1,262 @@
+update createCart(int id, String created_at, String updated_at, int user_id) {
+    INSERT INTO carts (carts.id, carts.created_at, carts.updated_at, carts.user_id) VALUES (<id>, <created_at>, <updated_at>, <user_id>);
+}
+
+update deleteCart(int id) {
+    DELETE FROM carts WHERE carts.id = <id>;
+}
+
+update updateCart(int id, String updated_at, int user_id) {
+    UPDATE carts SET carts.updated_at = <updated_at> WHERE carts.id = <id>;
+    UPDATE carts SET carts.user_id = <user_id> WHERE carts.id = <id>;
+}
+
+query readCart(int id) {
+    SELECT carts.user_id FROM carts WHERE carts.id = <id>;
+}
+
+query readCartCreateTime(int id) {
+    SELECT carts.created_at FROM carts WHERE carts.id = <id>;
+}
+
+query readCartUpdateTime(int id) {
+    SELECT carts.updated_at FROM carts WHERE carts.id = <id>;
+}
+
+update createCategory(int id, String title, String description, String created_at, String updated_at) {
+    INSERT INTO categories (categories.id, categories.title, categories.description, categories.created_at, categories.updated_at) VALUES (<id>, <title>, <description>, <created_at>, <updated_at>);
+}
+
+update deleteCategory(int id) {
+    DELETE FROM categories WHERE categories.id = <id>;
+}
+
+update updateCategory(int id, String title, String description, String updated_at) {
+    UPDATE categories SET categories.title = <title> WHERE categories.id = <id>;
+    UPDATE categories SET categories.description = <description> WHERE categories.id = <id>;
+    UPDATE categories SET categories.updated_at = <updated_at> WHERE categories.id = <id>;
+}
+
+query readCategory(int id) {
+    SELECT categories.title, categories.description FROM categories WHERE categories.id = <id>;
+}
+
+query readCategoryCreateTime(int id) {
+    SELECT categories.created_at FROM categories WHERE categories.id = <id>;
+}
+
+query readCategoryUpdateTime(int id) {
+    SELECT categories.updated_at FROM categories WHERE categories.id = <id>;
+}
+
+update createItemCategory(int id, int item_id, int category_id, String created_at, String updated_at) {
+    INSERT INTO item_categories (item_categories.id, item_categories.item_id, item_categories.category_id, item_categories.created_at, item_categories.updated_at) VALUES (<id>, <item_id>, <category_id>, <created_at>, <updated_at>);
+}
+
+update deleteItemCategory(int id) {
+    DELETE FROM item_categories WHERE item_categories.id = <id>;
+}
+
+update updateItemCategory(int id, int item_id, int category_id, String updated_at) {
+    UPDATE item_categories SET item_categories.item_id = <item_id> WHERE item_categories.id = <id>;
+    UPDATE item_categories SET item_categories.category_id = <category_id> WHERE item_categories.id = <id>;
+    UPDATE item_categories SET item_categories.updated_at = <updated_at> WHERE item_categories.id = <id>;
+}
+
+query readItemCategory(int id) {
+    SELECT item_categories.item_id, item_categories.category_id FROM item_categories WHERE item_categories.id = <id>;
+}
+
+query readItemCategoryCreateTime(int id) {
+    SELECT item_categories.created_at FROM item_categories WHERE item_categories.id = <id>;
+}
+
+query readItemCategoryUpdateTime(int id) {
+    SELECT item_categories.updated_at FROM item_categories WHERE item_categories.id = <id>;
+}
+
+update createItem(int id, String title, String description, String price, String created_at, String updated_at, String image_file_name, String image_content_type, int image_file_size, String image_updated_at, String available, String status) {
+    INSERT INTO items (items.id, items.title, items.description, items.price, items.created_at, items.updated_at, items.image_file_name, items.image_content_type, items.image_file_size, items.image_updated_at, items.available, items.status) VALUES (<id>, <title>, <description>, <price>, <created_at>, <updated_at>, <image_file_name>, <image_content_type>, <image_file_size>, <image_updated_at>, <available>, <status>);
+}
+
+update deleteItem(int id) {
+    DELETE FROM items WHERE items.id = <id>;
+}
+
+update updateItem(int id, String title, String description, String price, String updated_at, String image_file_name, String image_content_type, int image_file_size, String image_updated_at, String available, String status) {
+    UPDATE items SET items.title = <title> WHERE items.id = <id>;
+    UPDATE items SET items.description = <description> WHERE items.id = <id>;
+    UPDATE items SET items.price = <price> WHERE items.id = <id>;
+    UPDATE items SET items.updated_at = <updated_at> WHERE items.id = <id>;
+    UPDATE items SET items.image_file_name = <image_file_name> WHERE items.id = <id>;
+    UPDATE items SET items.image_content_type = <image_content_type> WHERE items.id = <id>;
+    UPDATE items SET items.image_file_size = <image_file_size> WHERE items.id = <id>;
+    UPDATE items SET items.image_updated_at = <image_updated_at> WHERE items.id = <id>;
+    UPDATE items SET items.available = <available> WHERE items.id = <id>;
+    UPDATE items SET items.status = <status> WHERE items.id = <id>;
+}
+
+query readItem(int id) {
+    SELECT items.title, items.description, items.price, items.image_file_name, items.image_content_type, items.image_file_size, items.image_updated_at, items.available, items.status FROM items WHERE items.id = <id>;
+}
+
+query readItemCreateTime(int id) {
+    SELECT items.created_at FROM items WHERE items.id = <id>;
+}
+
+query readItemUpdateTime(int id) {
+    SELECT items.updated_at FROM items WHERE items.id = <id>;
+}
+
+update createLineItem(int id, int item_id, int cart_id, int quantity, String created_at, String updated_at) {
+    INSERT INTO line_items (line_items.id, line_items.item_id, line_items.cart_id, line_items.quantity, line_items.created_at, line_items.updated_at) VALUES (<id>, <item_id>, <cart_id>, <quantity>, <created_at>, <updated_at>);
+}
+
+update deleteLineItem(int id) {
+    DELETE FROM line_items WHERE line_items.id = <id>;
+}
+
+update updateLineItem(int id, int item_id, int cart_id, int quantity, String updated_at) {
+    UPDATE line_items SET line_items.item_id = <item_id> WHERE line_items.id = <id>;
+    UPDATE line_items SET line_items.cart_id = <cart_id> WHERE line_items.id = <id>;
+    UPDATE line_items SET line_items.quantity = <quantity> WHERE line_items.id = <id>;
+    UPDATE line_items SET line_items.updated_at = <updated_at> WHERE line_items.id = <id>;
+}
+
+query readLineItem(int id) {
+    SELECT line_items.item_id, line_items.cart_id, line_items.quantity FROM line_items WHERE line_items.id = <id>;
+}
+
+query readLineItemCreateTime(int id) {
+    SELECT line_items.created_at FROM line_items WHERE line_items.id = <id>;
+}
+
+query readLineItemUpdateTime(int id) {
+    SELECT line_items.updated_at FROM line_items WHERE line_items.id = <id>;
+}
+
+update createOrder(int id, int user_id, String status, String pickup_or_delivery, String street_number, String street, String city, String state, String zip, String created_at, String updated_at, String line_items) {
+    INSERT INTO orders (orders.id, orders.user_id, orders.status, orders.pickup_or_delivery, orders.street_number, orders.street, orders.city, orders.state, orders.zip, orders.created_at, orders.updated_at, orders.line_items) VALUES (<id>, <user_id>, <status>, <pickup_or_delivery>, <street_number>, <street>, <city>, <state>, <zip>, <created_at>, <updated_at>, <line_items>);
+}
+
+update deleteOrder(int id) {
+    DELETE FROM orders WHERE orders.id = <id>;
+}
+
+update updateOrderStatus(int id, String status, String updated_at) {
+    UPDATE orders SET orders.status = <status> WHERE orders.id = <id>;
+    UPDATE orders SET orders.updated_at = <updated_at> WHERE orders.id = <id>;
+}
+
+update updateOrderPickup(int id, String pickup_or_delivery, String updated_at) {
+    UPDATE orders SET orders.pickup_or_delivery = <pickup_or_delivery> WHERE orders.id = <id>;
+    UPDATE orders SET orders.updated_at = <updated_at> WHERE orders.id = <id>;
+}
+
+update updateOrderLineItem(int id, String line_items, String updated_at) {
+    UPDATE orders SET orders.line_items = <line_items> WHERE orders.id = <id>;
+    UPDATE orders SET orders.updated_at = <updated_at> WHERE orders.id = <id>;
+}
+
+update updateOrderStreet(int id, String street_number, String street, String updated_at) {
+    UPDATE orders SET orders.street_number = <street_number> WHERE orders.id = <id>;
+    UPDATE orders SET orders.street = <street> WHERE orders.id = <id>;
+    UPDATE orders SET orders.updated_at = <updated_at> WHERE orders.id = <id>;
+}
+
+update updateOrderCity(int id, String city, String state, String zip, String updated_at) {
+    UPDATE orders SET orders.city = <city> WHERE orders.id = <id>;
+    UPDATE orders SET orders.state = <state> WHERE orders.id = <id>;
+    UPDATE orders SET orders.zip = <zip> WHERE orders.id = <id>;
+    UPDATE orders SET orders.updated_at = <updated_at> WHERE orders.id = <id>;
+}
+
+query readOrder(int id) {
+    SELECT orders.user_id, orders.status, orders.pickup_or_delivery, orders.street_number, orders.street, orders.city, orders.state, orders.zip, orders.line_items FROM orders WHERE orders.id = <id>;
+}
+
+query readOrderCreateTime(int id) {
+    SELECT orders.created_at FROM orders WHERE orders.id = <id>;
+}
+
+query readOrderUpdateTime(int id) {
+    SELECT orders.updated_at FROM orders WHERE orders.id = <id>;
+}
+
+update createUser(int id, String name, String password_digest, String created_at, String updated_at, String admin, String email, String username) {
+    INSERT INTO users (users.id, users.name, users.password_digest, users.created_at, users.updated_at, users.admin, users.email, users.username) VALUES (<id>, <name>, <password_digest>, <created_at>, <updated_at>, <admin>, <email>, <username>);
+}
+
+update deleteUser(int id) {
+    DELETE FROM users WHERE users.id = <id>;
+}
+
+update updateUser(int id, String name, String password_digest, String updated_at, String admin, String email, String username) {
+    UPDATE users SET users.name = <name> WHERE users.id = <id>;
+    UPDATE users SET users.password_digest = <password_digest> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+    UPDATE users SET users.admin = <admin> WHERE users.id = <id>;
+    UPDATE users SET users.email = <email> WHERE users.id = <id>;
+    UPDATE users SET users.username = <username> WHERE users.id = <id>;
+}
+
+query readUser(int id) {
+    SELECT users.name, users.password_digest, users.admin, users.email, users.username FROM users WHERE users.id = <id>;
+}
+
+query readUserCreateTime(int id) {
+    SELECT users.created_at FROM users WHERE users.id = <id>;
+}
+
+query readUserUpdateTime(int id) {
+    SELECT users.updated_at FROM users WHERE users.id = <id>;
+}
+
+query readCartUser(int id) {
+    SELECT users.id, users.name, users.password_digest, users.admin, users.email, users.username FROM carts JOIN users ON carts.user_id = users.id WHERE carts.id = <id>;
+}
+
+query readUserCart(int id) {
+    SELECT carts.id, carts.user_id FROM carts JOIN users ON carts.user_id = users.id WHERE users.id = <id>;
+}
+
+query readItemCategoryItem(int id) {
+    SELECT items.id, items.title, items.description, items.price, items.image_file_name, items.image_content_type, items.image_file_size, items.image_updated_at, items.available, items.status FROM item_categories JOIN items ON item_categories.item_id = items.id WHERE item_categories.id = <id>;
+}
+
+query readItemItemCategory(int id) {
+    SELECT item_categories.id, item_categories.item_id, item_categories.category_id FROM item_categories JOIN items ON item_categories.item_id = items.id WHERE items.id = <id>;
+}
+
+query readItemCategoryCategory(int id) {
+    SELECT categories.id, categories.title, categories.description FROM item_categories JOIN categories ON item_categories.category_id = categories.id WHERE item_categories.id = <id>;
+}
+
+query readCategoryItemCategory(int id) {
+    SELECT item_categories.id, item_categories.item_id, item_categories.category_id FROM item_categories JOIN categories ON item_categories.category_id = categories.id WHERE categories.id = <id>;
+}
+
+query readLineItemItem(int id) {
+    SELECT items.id, items.title, items.description, items.price, items.image_file_name, items.image_content_type, items.image_file_size, items.image_updated_at, items.available, items.status FROM line_items JOIN items ON line_items.item_id = items.id WHERE line_items.id = <id>;
+}
+
+query readItemLineItem(int id) {
+    SELECT line_items.id, line_items.item_id, line_items.cart_id, line_items.quantity FROM line_items JOIN items ON line_items.item_id = items.id WHERE items.id = <id>;
+}
+
+query readLineItemCart(int id) {
+    SELECT carts.id, carts.user_id FROM line_items JOIN carts ON line_items.cart_id = carts.id WHERE line_items.id = <id>;
+}
+
+query readCartLineItem(int id) {
+    SELECT line_items.id, line_items.item_id, line_items.cart_id, line_items.quantity FROM line_items JOIN carts ON line_items.cart_id = carts.id WHERE carts.id = <id>;
+}
+
+query readOrderUser(int id) {
+    SELECT users.id, users.name, users.password_digest, users.admin, users.email, users.username FROM orders JOIN users ON orders.user_id = users.id WHERE orders.id = <id>;
+}
+
+query readUserOrder(int id) {
+    SELECT orders.id, orders.user_id, orders.status, orders.pickup_or_delivery, orders.street_number, orders.street, orders.city, orders.state, orders.zip, orders.line_items FROM orders JOIN users ON orders.user_id = users.id WHERE users.id = <id>;
+}
+

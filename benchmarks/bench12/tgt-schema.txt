@@ -1,0 +1,80 @@
+CREATE TABLE courses (
+    id INT,
+    title VARCHAR,
+    description VARCHAR,
+    price INT,
+    coach_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    sport VARCHAR,
+    max_participants INT,
+    location_id INT,
+    FOREIGN KEY (coach_id) REFERENCES users (id),
+    FOREIGN KEY (location_id) REFERENCES locations (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE locations (
+    id INT,
+    latitude VARCHAR,
+    longitude VARCHAR,
+    address VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE subscriptions (
+    id INT,
+    course_id INT,
+    user_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (course_id) REFERENCES courses (id),
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE training_sessions (
+    id INT,
+    description VARCHAR,
+    starts_at VARCHAR,
+    ends_at VARCHAR,
+    lat VARCHAR,
+    lng VARCHAR,
+    course_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (course_id) REFERENCES courses (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE users (
+    id INT,
+    email VARCHAR,
+    encrypted_password VARCHAR,
+    reset_password_token VARCHAR,
+    reset_password_sent_at VARCHAR,
+    remember_created_at VARCHAR,
+    sign_in_count VARCHAR,
+    current_sign_in_at VARCHAR,
+    last_sign_in_at VARCHAR,
+    current_sign_in_ip VARCHAR,
+    last_sign_in_ip VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    username VARCHAR,
+    name VARCHAR,
+    last_name VARCHAR,
+    address VARCHAR,
+    country VARCHAR,
+    phone VARCHAR,
+    date_of_birth VARCHAR,
+    trophies VARCHAR,
+    personal_records VARCHAR,
+    education VARCHAR,
+    bio VARCHAR,
+    aboutme VARCHAR,
+    PRIMARY KEY (id)
+);
+

@@ -1,0 +1,2 @@
+CREATE TABLE Foo (id INT, num INT, PRIMARY KEY (id));
+CREATE TABLE Bar (id INT, num INT, PRIMARY KEY (id));

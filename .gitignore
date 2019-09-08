@@ -7,4 +7,5 @@
 *.log
 /bin/
 .idea/
+migrator.jar
 

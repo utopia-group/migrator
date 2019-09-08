@@ -1,0 +1,81 @@
+CREATE TABLE instructions (
+    id INT,
+    description VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE lessons (
+    id INT,
+    title VARCHAR,
+    chapter INT,
+    section INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    subject_id INT,
+    FOREIGN KEY (subject_id) REFERENCES subjects (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE math_problem_templates (
+    id INT,
+    lesson_id INT,
+    instruction_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    display_mode VARCHAR,
+    FOREIGN KEY (lesson_id) REFERENCES lessons (id),
+    FOREIGN KEY (instruction_id) REFERENCES instructions (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE math_problems (
+    id INT,
+    problem_level_id INT,
+    question_markup VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    answer_markup VARCHAR,
+    FOREIGN KEY (problem_level_id) REFERENCES problem_levels (template_id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE problem_levels (
+    template_id INT,
+    math_problem_template_id INT,
+    difficulty INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (math_problem_template_id) REFERENCES math_problem_templates (id),
+    PRIMARY KEY (template_id)
+);
+
+CREATE TABLE subjects (
+    id INT,
+    title VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE worksheet_problems (
+    id INT,
+    worksheet_id INT,
+    math_problem_id INT,
+    problem_number INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (worksheet_id) REFERENCES worksheets (id),
+    FOREIGN KEY (math_problem_id) REFERENCES math_problems (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE worksheets (
+    id INT,
+    title VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+

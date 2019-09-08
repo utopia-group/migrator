@@ -1,0 +1,17 @@
+CREATE TABLE MEMBER (
+    mid INT,
+    mname VARCHAR,
+    afk INT,
+    FOREIGN KEY (afk) REFERENCES ADDRESS (aid),
+    PRIMARY KEY (mid)
+);
+
+CREATE TABLE ADDRESS (
+    aid INT,
+    address VARCHAR,
+    city VARCHAR,
+    state VARCHAR,
+    zipcode VARCHAR,
+    PRIMARY KEY (aid)
+);
+

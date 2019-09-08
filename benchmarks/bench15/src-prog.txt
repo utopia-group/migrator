@@ -1,0 +1,699 @@
+update createArticle(int id, String title, String content, int user_id, String public, String published, String created_at, String updated_at, String permalink, int category_id) {
+    INSERT INTO articles (articles.id, articles.title, articles.content, articles.user_id, articles.public, articles.published, articles.created_at, articles.updated_at, articles.permalink, articles.category_id) VALUES (<id>, <title>, <content>, <user_id>, <public>, <published>, <created_at>, <updated_at>, <permalink>, <category_id>);
+}
+
+update deleteArticle(int id) {
+    DELETE FROM articles WHERE articles.id = <id>;
+}
+
+update updateArticle(int id, String title, String content, int user_id, String public, String published, String updated_at, String permalink, int category_id) {
+    UPDATE articles SET articles.title = <title> WHERE articles.id = <id>;
+    UPDATE articles SET articles.content = <content> WHERE articles.id = <id>;
+    UPDATE articles SET articles.user_id = <user_id> WHERE articles.id = <id>;
+    UPDATE articles SET articles.public = <public> WHERE articles.id = <id>;
+    UPDATE articles SET articles.published = <published> WHERE articles.id = <id>;
+    UPDATE articles SET articles.updated_at = <updated_at> WHERE articles.id = <id>;
+    UPDATE articles SET articles.permalink = <permalink> WHERE articles.id = <id>;
+    UPDATE articles SET articles.category_id = <category_id> WHERE articles.id = <id>;
+}
+
+query readArticle(int id) {
+    SELECT articles.title, articles.content, articles.user_id, articles.public, articles.published, articles.permalink, articles.category_id FROM articles WHERE articles.id = <id>;
+}
+
+query readArticleCreateTime(int id) {
+    SELECT articles.created_at FROM articles WHERE articles.id = <id>;
+}
+
+query readArticleUpdateTime(int id) {
+    SELECT articles.updated_at FROM articles WHERE articles.id = <id>;
+}
+
+update createBlogPost(int id, int blog_id, String content, String created_at, String updated_at, String public) {
+    INSERT INTO blog_posts (blog_posts.id, blog_posts.blog_id, blog_posts.content, blog_posts.created_at, blog_posts.updated_at, blog_posts.public) VALUES (<id>, <blog_id>, <content>, <created_at>, <updated_at>, <public>);
+}
+
+update deleteBlogPost(int id) {
+    DELETE FROM blog_posts WHERE blog_posts.id = <id>;
+}
+
+update updateBlogPost(int id, int blog_id, String content, String updated_at, String public) {
+    UPDATE blog_posts SET blog_posts.blog_id = <blog_id> WHERE blog_posts.id = <id>;
+    UPDATE blog_posts SET blog_posts.content = <content> WHERE blog_posts.id = <id>;
+    UPDATE blog_posts SET blog_posts.updated_at = <updated_at> WHERE blog_posts.id = <id>;
+    UPDATE blog_posts SET blog_posts.public = <public> WHERE blog_posts.id = <id>;
+}
+
+query readBlogPost(int id) {
+    SELECT blog_posts.blog_id, blog_posts.content, blog_posts.public FROM blog_posts WHERE blog_posts.id = <id>;
+}
+
+query readBlogPostCreateTime(int id) {
+    SELECT blog_posts.created_at FROM blog_posts WHERE blog_posts.id = <id>;
+}
+
+query readBlogPostUpdateTime(int id) {
+    SELECT blog_posts.updated_at FROM blog_posts WHERE blog_posts.id = <id>;
+}
+
+update createBlog(int id, String title, int user_id, String created_at, String updated_at) {
+    INSERT INTO blogs (blogs.id, blogs.title, blogs.user_id, blogs.created_at, blogs.updated_at) VALUES (<id>, <title>, <user_id>, <created_at>, <updated_at>);
+}
+
+update deleteBlog(int id) {
+    DELETE FROM blogs WHERE blogs.id = <id>;
+}
+
+update updateBlog(int id, String title, int user_id, String updated_at) {
+    UPDATE blogs SET blogs.title = <title> WHERE blogs.id = <id>;
+    UPDATE blogs SET blogs.user_id = <user_id> WHERE blogs.id = <id>;
+    UPDATE blogs SET blogs.updated_at = <updated_at> WHERE blogs.id = <id>;
+}
+
+query readBlog(int id) {
+    SELECT blogs.title, blogs.user_id FROM blogs WHERE blogs.id = <id>;
+}
+
+query readBlogCreateTime(int id) {
+    SELECT blogs.created_at FROM blogs WHERE blogs.id = <id>;
+}
+
+query readBlogUpdateTime(int id) {
+    SELECT blogs.updated_at FROM blogs WHERE blogs.id = <id>;
+}
+
+update createCategory(int id, String name, String created_at, String updated_at) {
+    INSERT INTO categories (categories.id, categories.name, categories.created_at, categories.updated_at) VALUES (<id>, <name>, <created_at>, <updated_at>);
+}
+
+update deleteCategory(int id) {
+    DELETE FROM categories WHERE categories.id = <id>;
+}
+
+update updateCategory(int id, String name, String updated_at) {
+    UPDATE categories SET categories.name = <name> WHERE categories.id = <id>;
+    UPDATE categories SET categories.updated_at = <updated_at> WHERE categories.id = <id>;
+}
+
+query readCategory(int id) {
+    SELECT categories.name FROM categories WHERE categories.id = <id>;
+}
+
+query readCategoryCreateTime(int id) {
+    SELECT categories.created_at FROM categories WHERE categories.id = <id>;
+}
+
+query readCategoryUpdateTime(int id) {
+    SELECT categories.updated_at FROM categories WHERE categories.id = <id>;
+}
+
+update createComment(int id, int commenter_id, int commentable_id, String commentable_type, String content, String created_at, String updated_at, String public, String commenter_name) {
+    INSERT INTO comments (comments.id, comments.commenter_id, comments.commentable_id, comments.commentable_type, comments.content, comments.created_at, comments.updated_at, comments.public, comments.commenter_name) VALUES (<id>, <commenter_id>, <commentable_id>, <commentable_type>, <content>, <created_at>, <updated_at>, <public>, <commenter_name>);
+}
+
+update deleteComment(int id) {
+    DELETE FROM comments WHERE comments.id = <id>;
+}
+
+update updateComment(int id, int commenter_id, int commentable_id, String commentable_type, String content, String updated_at, String public, String commenter_name) {
+    UPDATE comments SET comments.commenter_id = <commenter_id> WHERE comments.id = <id>;
+    UPDATE comments SET comments.commentable_id = <commentable_id> WHERE comments.id = <id>;
+    UPDATE comments SET comments.commentable_type = <commentable_type> WHERE comments.id = <id>;
+    UPDATE comments SET comments.content = <content> WHERE comments.id = <id>;
+    UPDATE comments SET comments.updated_at = <updated_at> WHERE comments.id = <id>;
+    UPDATE comments SET comments.public = <public> WHERE comments.id = <id>;
+    UPDATE comments SET comments.commenter_name = <commenter_name> WHERE comments.id = <id>;
+}
+
+query readComment(int id) {
+    SELECT comments.commenter_id, comments.commentable_id, comments.commentable_type, comments.content, comments.public, comments.commenter_name FROM comments WHERE comments.id = <id>;
+}
+
+query readCommentCreateTime(int id) {
+    SELECT comments.created_at FROM comments WHERE comments.id = <id>;
+}
+
+query readCommentUpdateTime(int id) {
+    SELECT comments.updated_at FROM comments WHERE comments.id = <id>;
+}
+
+update createConversation(int id, String created_at, String updated_at) {
+    INSERT INTO conversations (conversations.id, conversations.created_at, conversations.updated_at) VALUES (<id>, <created_at>, <updated_at>);
+}
+
+update deleteConversation(int id) {
+    DELETE FROM conversations WHERE conversations.id = <id>;
+}
+
+update updateConversation(int id, String updated_at) {
+    UPDATE conversations SET conversations.updated_at = <updated_at> WHERE conversations.id = <id>;
+}
+
+query readConversationCreateTime(int id) {
+    SELECT conversations.created_at FROM conversations WHERE conversations.id = <id>;
+}
+
+query readConversationUpdateTime(int id) {
+    SELECT conversations.updated_at FROM conversations WHERE conversations.id = <id>;
+}
+
+update createEvent(int id, String name, String city, String country, String state, String start_date, String end_date, int user_id, String created_at, String updated_at) {
+    INSERT INTO events (events.id, events.name, events.city, events.country, events.state, events.start_date, events.end_date, events.user_id, events.created_at, events.updated_at) VALUES (<id>, <name>, <city>, <country>, <state>, <start_date>, <end_date>, <user_id>, <created_at>, <updated_at>);
+}
+
+update deleteEvent(int id) {
+    DELETE FROM events WHERE events.id = <id>;
+}
+
+update updateEvent(int id, String name, String city, String country, String state, String start_date, String end_date, int user_id, String updated_at) {
+    UPDATE events SET events.name = <name> WHERE events.id = <id>;
+    UPDATE events SET events.city = <city> WHERE events.id = <id>;
+    UPDATE events SET events.country = <country> WHERE events.id = <id>;
+    UPDATE events SET events.state = <state> WHERE events.id = <id>;
+    UPDATE events SET events.start_date = <start_date> WHERE events.id = <id>;
+    UPDATE events SET events.end_date = <end_date> WHERE events.id = <id>;
+    UPDATE events SET events.user_id = <user_id> WHERE events.id = <id>;
+    UPDATE events SET events.updated_at = <updated_at> WHERE events.id = <id>;
+}
+
+query readEvent(int id) {
+    SELECT events.name, events.city, events.country, events.state, events.start_date, events.end_date, events.user_id FROM events WHERE events.id = <id>;
+}
+
+query readEventCreateTime(int id) {
+    SELECT events.created_at FROM events WHERE events.id = <id>;
+}
+
+query readEventUpdateTime(int id) {
+    SELECT events.updated_at FROM events WHERE events.id = <id>;
+}
+
+update createEventUser(int id, int user_id, int event_id) {
+    INSERT INTO events_users (events_users.id, events_users.user_id, events_users.event_id) VALUES (<id>, <user_id>, <event_id>);
+}
+
+update deleteEventUser(int id) {
+    DELETE FROM events_users WHERE events_users.id = <id>;
+}
+
+update updateEventUser(int id, int user_id, int event_id) {
+    UPDATE events_users SET events_users.user_id = <user_id> WHERE events_users.id = <id>;
+    UPDATE events_users SET events_users.event_id = <event_id> WHERE events_users.id = <id>;
+}
+
+query readEventUser(int id) {
+    SELECT events_users.user_id, events_users.event_id FROM events_users WHERE events_users.id = <id>;
+}
+
+update createFeed(int id, String name, String created_at, String updated_at, String store_name, String hidden, int user_id, String permalink, String description) {
+    INSERT INTO feeds (feeds.id, feeds.name, feeds.created_at, feeds.updated_at, feeds.store_name, feeds.hidden, feeds.user_id, feeds.permalink, feeds.description) VALUES (<id>, <name>, <created_at>, <updated_at>, <store_name>, <hidden>, <user_id>, <permalink>, <description>);
+}
+
+update deleteFeed(int id) {
+    DELETE FROM feeds WHERE feeds.id = <id>;
+}
+
+update updateFeed(int id, String name, String updated_at, String store_name, String hidden, int user_id, String permalink, String description) {
+    UPDATE feeds SET feeds.name = <name> WHERE feeds.id = <id>;
+    UPDATE feeds SET feeds.updated_at = <updated_at> WHERE feeds.id = <id>;
+    UPDATE feeds SET feeds.store_name = <store_name> WHERE feeds.id = <id>;
+    UPDATE feeds SET feeds.hidden = <hidden> WHERE feeds.id = <id>;
+    UPDATE feeds SET feeds.user_id = <user_id> WHERE feeds.id = <id>;
+    UPDATE feeds SET feeds.permalink = <permalink> WHERE feeds.id = <id>;
+    UPDATE feeds SET feeds.description = <description> WHERE feeds.id = <id>;
+}
+
+query readFeed(int id) {
+    SELECT feeds.name, feeds.store_name, feeds.hidden, feeds.user_id, feeds.permalink, feeds.description FROM feeds WHERE feeds.id = <id>;
+}
+
+query readFeedCreateTime(int id) {
+    SELECT feeds.created_at FROM feeds WHERE feeds.id = <id>;
+}
+
+query readFeedUpdateTime(int id) {
+    SELECT feeds.updated_at FROM feeds WHERE feeds.id = <id>;
+}
+
+update createLike(int id, int liker_id, int liked_item_id, String liked_item_type, String created_at, String updated_at) {
+    INSERT INTO likes (likes.id, likes.liker_id, likes.liked_item_id, likes.liked_item_type, likes.created_at, likes.updated_at) VALUES (<id>, <liker_id>, <liked_item_id>, <liked_item_type>, <created_at>, <updated_at>);
+}
+
+update deleteLike(int id) {
+    DELETE FROM likes WHERE likes.id = <id>;
+}
+
+update updateLike(int id, int liker_id, int liked_item_id, String liked_item_type, String updated_at) {
+    UPDATE likes SET likes.liker_id = <liker_id> WHERE likes.id = <id>;
+    UPDATE likes SET likes.liked_item_id = <liked_item_id> WHERE likes.id = <id>;
+    UPDATE likes SET likes.liked_item_type = <liked_item_type> WHERE likes.id = <id>;
+    UPDATE likes SET likes.updated_at = <updated_at> WHERE likes.id = <id>;
+}
+
+query readLike(int id) {
+    SELECT likes.liker_id, likes.liked_item_id, likes.liked_item_type FROM likes WHERE likes.id = <id>;
+}
+
+query readLikeCreateTime(int id) {
+    SELECT likes.created_at FROM likes WHERE likes.id = <id>;
+}
+
+query readLikeUpdateTime(int id) {
+    SELECT likes.updated_at FROM likes WHERE likes.id = <id>;
+}
+
+update createMessage(int id, String content, int sender_id, int recipient_id, String read, int conversation_id, String created_at, String updated_at) {
+    INSERT INTO messages (messages.id, messages.content, messages.sender_id, messages.recipient_id, messages.read, messages.conversation_id, messages.created_at, messages.updated_at) VALUES (<id>, <content>, <sender_id>, <recipient_id>, <read>, <conversation_id>, <created_at>, <updated_at>);
+}
+
+update deleteMessage(int id) {
+    DELETE FROM messages WHERE messages.id = <id>;
+}
+
+update updateMessage(int id, String content, int sender_id, int recipient_id, String read, int conversation_id, String updated_at) {
+    UPDATE messages SET messages.content = <content> WHERE messages.id = <id>;
+    UPDATE messages SET messages.sender_id = <sender_id> WHERE messages.id = <id>;
+    UPDATE messages SET messages.recipient_id = <recipient_id> WHERE messages.id = <id>;
+    UPDATE messages SET messages.read = <read> WHERE messages.id = <id>;
+    UPDATE messages SET messages.conversation_id = <conversation_id> WHERE messages.id = <id>;
+    UPDATE messages SET messages.updated_at = <updated_at> WHERE messages.id = <id>;
+}
+
+query readMessage(int id) {
+    SELECT messages.content, messages.sender_id, messages.recipient_id, messages.read, messages.conversation_id FROM messages WHERE messages.id = <id>;
+}
+
+query readMessageCreateTime(int id) {
+    SELECT messages.created_at FROM messages WHERE messages.id = <id>;
+}
+
+query readMessageUpdateTime(int id) {
+    SELECT messages.updated_at FROM messages WHERE messages.id = <id>;
+}
+
+update createNotification(int id, int user_id, int sender_id, int item_id, String item_type, String created_at, String updated_at, String action_type, int action_id, String public, String read) {
+    INSERT INTO notifications (notifications.id, notifications.user_id, notifications.sender_id, notifications.item_id, notifications.item_type, notifications.created_at, notifications.updated_at, notifications.action_type, notifications.action_id, notifications.public, notifications.read) VALUES (<id>, <user_id>, <sender_id>, <item_id>, <item_type>, <created_at>, <updated_at>, <action_type>, <action_id>, <public>, <read>);
+}
+
+update deleteNotification(int id) {
+    DELETE FROM notifications WHERE notifications.id = <id>;
+}
+
+update updateNotification(int id, int user_id, int sender_id, int item_id, String item_type, String updated_at, String action_type, int action_id, String public, String read) {
+    UPDATE notifications SET notifications.user_id = <user_id> WHERE notifications.id = <id>;
+    UPDATE notifications SET notifications.sender_id = <sender_id> WHERE notifications.id = <id>;
+    UPDATE notifications SET notifications.item_id = <item_id> WHERE notifications.id = <id>;
+    UPDATE notifications SET notifications.item_type = <item_type> WHERE notifications.id = <id>;
+    UPDATE notifications SET notifications.updated_at = <updated_at> WHERE notifications.id = <id>;
+    UPDATE notifications SET notifications.action_type = <action_type> WHERE notifications.id = <id>;
+    UPDATE notifications SET notifications.action_id = <action_id> WHERE notifications.id = <id>;
+    UPDATE notifications SET notifications.public = <public> WHERE notifications.id = <id>;
+    UPDATE notifications SET notifications.read = <read> WHERE notifications.id = <id>;
+}
+
+query readNotification(int id) {
+    SELECT notifications.user_id, notifications.sender_id, notifications.item_id, notifications.item_type, notifications.action_type, notifications.action_id, notifications.public, notifications.read FROM notifications WHERE notifications.id = <id>;
+}
+
+query readNotificationCreateTime(int id) {
+    SELECT notifications.created_at FROM notifications WHERE notifications.id = <id>;
+}
+
+query readNotificationUpdateTime(int id) {
+    SELECT notifications.updated_at FROM notifications WHERE notifications.id = <id>;
+}
+
+update createPage(int id, String content, String created_at, String updated_at, String name) {
+    INSERT INTO pages (pages.id, pages.content, pages.created_at, pages.updated_at, pages.name) VALUES (<id>, <content>, <created_at>, <updated_at>, <name>);
+}
+
+update deletePage(int id) {
+    DELETE FROM pages WHERE pages.id = <id>;
+}
+
+update updatePage(int id, String content, String updated_at, String name) {
+    UPDATE pages SET pages.content = <content> WHERE pages.id = <id>;
+    UPDATE pages SET pages.updated_at = <updated_at> WHERE pages.id = <id>;
+    UPDATE pages SET pages.name = <name> WHERE pages.id = <id>;
+}
+
+query readPage(int id) {
+    SELECT pages.content, pages.name FROM pages WHERE pages.id = <id>;
+}
+
+query readPageCreateTime(int id) {
+    SELECT pages.created_at FROM pages WHERE pages.id = <id>;
+}
+
+query readPageUpdateTime(int id) {
+    SELECT pages.updated_at FROM pages WHERE pages.id = <id>;
+}
+
+update createPost(int id, String content, int user_id, String created_at, String updated_at, String public, String sticky, int feed_id) {
+    INSERT INTO posts (posts.id, posts.content, posts.user_id, posts.created_at, posts.updated_at, posts.public, posts.sticky, posts.feed_id) VALUES (<id>, <content>, <user_id>, <created_at>, <updated_at>, <public>, <sticky>, <feed_id>);
+}
+
+update deletePost(int id) {
+    DELETE FROM posts WHERE posts.id = <id>;
+}
+
+update updatePost(int id, String content, int user_id, String updated_at, String public, String sticky, int feed_id) {
+    UPDATE posts SET posts.content = <content> WHERE posts.id = <id>;
+    UPDATE posts SET posts.user_id = <user_id> WHERE posts.id = <id>;
+    UPDATE posts SET posts.updated_at = <updated_at> WHERE posts.id = <id>;
+    UPDATE posts SET posts.public = <public> WHERE posts.id = <id>;
+    UPDATE posts SET posts.sticky = <sticky> WHERE posts.id = <id>;
+    UPDATE posts SET posts.feed_id = <feed_id> WHERE posts.id = <id>;
+}
+
+query readPost(int id) {
+    SELECT posts.content, posts.user_id, posts.public, posts.sticky, posts.feed_id FROM posts WHERE posts.id = <id>;
+}
+
+query readPostCreateTime(int id) {
+    SELECT posts.created_at FROM posts WHERE posts.id = <id>;
+}
+
+query readPostUpdateTime(int id) {
+    SELECT posts.updated_at FROM posts WHERE posts.id = <id>;
+}
+
+update createTagging(int id, int tag_id, int taggable_id, String taggable_type, int tagger_id, String tagger_type, String context, String created_at) {
+    INSERT INTO taggings (taggings.id, taggings.tag_id, taggings.taggable_id, taggings.taggable_type, taggings.tagger_id, taggings.tagger_type, taggings.context, taggings.created_at) VALUES (<id>, <tag_id>, <taggable_id>, <taggable_type>, <tagger_id>, <tagger_type>, <context>, <created_at>);
+}
+
+update deleteTagging(int id) {
+    DELETE FROM taggings WHERE taggings.id = <id>;
+}
+
+update updateTagging(int id, int tag_id, int taggable_id, String taggable_type, int tagger_id, String tagger_type, String context) {
+    UPDATE taggings SET taggings.tag_id = <tag_id> WHERE taggings.id = <id>;
+    UPDATE taggings SET taggings.taggable_id = <taggable_id> WHERE taggings.id = <id>;
+    UPDATE taggings SET taggings.taggable_type = <taggable_type> WHERE taggings.id = <id>;
+    UPDATE taggings SET taggings.tagger_id = <tagger_id> WHERE taggings.id = <id>;
+    UPDATE taggings SET taggings.tagger_type = <tagger_type> WHERE taggings.id = <id>;
+    UPDATE taggings SET taggings.context = <context> WHERE taggings.id = <id>;
+}
+
+query readTagging(int id) {
+    SELECT taggings.tag_id, taggings.taggable_id, taggings.taggable_type, taggings.tagger_id, taggings.tagger_type, taggings.context FROM taggings WHERE taggings.id = <id>;
+}
+
+query readTaggingCreateTime(int id) {
+    SELECT taggings.created_at FROM taggings WHERE taggings.id = <id>;
+}
+
+update createTag(int id, String name) {
+    INSERT INTO tags (tags.id, tags.name) VALUES (<id>, <name>);
+}
+
+update deleteTag(int id) {
+    DELETE FROM tags WHERE tags.id = <id>;
+}
+
+update updateTag(int id, String name) {
+    UPDATE tags SET tags.name = <name> WHERE tags.id = <id>;
+}
+
+query readTag(int id) {
+    SELECT tags.name FROM tags WHERE tags.id = <id>;
+}
+
+update createUser(int id, String name, String email, String remember_token, String password_digest, String admin, String created_at, String updated_at, String gravatar_suffix, String nickname, String reset_code, String country, String city, String modified_user, String author, String birthday, String started_playing, String bap, String bap_name, String bap_induction, String motto, String hobbies, int privacy_settings, String latitude, String longitude, String last_visit, String about_title, String about_content) {
+    INSERT INTO users (users.id, users.name, users.email, users.remember_token, users.password_digest, users.admin, users.created_at, users.updated_at, users.gravatar_suffix, users.nickname, users.reset_code, users.country, users.city, users.modified_user, users.author, users.birthday, users.started_playing, users.bap, users.bap_name, users.bap_induction, users.motto, users.hobbies, users.privacy_settings, users.latitude, users.longitude, users.last_visit, users.about_title, users.about_content) VALUES (<id>, <name>, <email>, <remember_token>, <password_digest>, <admin>, <created_at>, <updated_at>, <gravatar_suffix>, <nickname>, <reset_code>, <country>, <city>, <modified_user>, <author>, <birthday>, <started_playing>, <bap>, <bap_name>, <bap_induction>, <motto>, <hobbies>, <privacy_settings>, <latitude>, <longitude>, <last_visit>, <about_title>, <about_content>);
+}
+
+update deleteUser(int id) {
+    DELETE FROM users WHERE users.id = <id>;
+}
+
+update updateUserProfile(int id, String name, String email, String nickname, String birthday, String country, String city, String motto, String hobbies, String updated_at) {
+    UPDATE users SET users.name = <name> WHERE users.id = <id>;
+    UPDATE users SET users.email = <email> WHERE users.id = <id>;
+    UPDATE users SET users.nickname = <nickname> WHERE users.id = <id>;
+    UPDATE users SET users.birthday = <birthday> WHERE users.id = <id>;
+    UPDATE users SET users.country = <country> WHERE users.id = <id>;
+    UPDATE users SET users.city = <city> WHERE users.id = <id>;
+    UPDATE users SET users.motto = <motto> WHERE users.id = <id>;
+    UPDATE users SET users.hobbies = <hobbies> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserAdmin(int id, String admin, String updated_at) {
+    UPDATE users SET users.admin = <admin> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserPassword(int id, String remember_token, String password_digest, String updated_at) {
+    UPDATE users SET users.remember_token = <remember_token> WHERE users.id = <id>;
+    UPDATE users SET users.password_digest = <password_digest> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserGravatar(int id, String gravatar_suffix, String reset_code, String updated_at) {
+    UPDATE users SET users.gravatar_suffix = <gravatar_suffix> WHERE users.id = <id>;
+    UPDATE users SET users.reset_code = <reset_code> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserBap(int id, String bap, String bap_name, String bap_induction, String updated_at) {
+    UPDATE users SET users.bap = <bap> WHERE users.id = <id>;
+    UPDATE users SET users.bap_name = <bap_name> WHERE users.id = <id>;
+    UPDATE users SET users.bap_induction = <bap_induction> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserPrivateSettings(int id, String privacy_settings, String updated_at) {
+    UPDATE users SET users.privacy_settings = <privacy_settings> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserVisitInfo(int id, String latitude, String longitude, String last_visit, String updated_at) {
+    UPDATE users SET users.latitude = <latitude> WHERE users.id = <id>;
+    UPDATE users SET users.longitude = <longitude> WHERE users.id = <id>;
+    UPDATE users SET users.last_visit = <last_visit> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+update updateUserAbout(int id, String about_title, String about_content, String updated_at) {
+    UPDATE users SET users.about_title = <about_title> WHERE users.id = <id>;
+    UPDATE users SET users.about_content = <about_content> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+query findUserByEmail(String email) {
+    SELECT users.id FROM users WHERE users.email = <email>;
+}
+
+query readUser(int id) {
+    SELECT users.name, users.email, users.remember_token, users.password_digest, users.admin, users.gravatar_suffix, users.nickname, users.reset_code, users.country, users.city, users.modified_user, users.author, users.birthday, users.started_playing, users.bap, users.bap_name, users.bap_induction, users.motto, users.hobbies, users.privacy_settings, users.latitude, users.longitude, users.last_visit, users.about_title, users.about_content FROM users WHERE users.id = <id>;
+}
+
+query readUserCreateTime(int id) {
+    SELECT users.created_at FROM users WHERE users.id = <id>;
+}
+
+query readUserUpdateTime(int id) {
+    SELECT users.updated_at FROM users WHERE users.id = <id>;
+}
+
+update createUserVideo(int id, int user_id, int video_id) {
+    INSERT INTO users_videos (users_videos.id, users_videos.user_id, users_videos.video_id) VALUES (<id>, <user_id>, <video_id>);
+}
+
+update deleteUserVideo(int id) {
+    DELETE FROM users_videos WHERE users_videos.id = <id>;
+}
+
+update updateUserVideo(int id, int user_id, int video_id) {
+    UPDATE users_videos SET users_videos.user_id = <user_id> WHERE users_videos.id = <id>;
+    UPDATE users_videos SET users_videos.video_id = <video_id> WHERE users_videos.id = <id>;
+}
+
+query readUserVideoId(int id) {
+    SELECT users_videos.user_id, users_videos.video_id FROM users_videos WHERE users_videos.id = <id>;
+}
+
+update createVideo(int id, int user_id, String title, String vendor, String created_at, String updated_at, String uid, String url, String public, String location, String maker, String players, String for_feedback, int feed_id) {
+    INSERT INTO videos (videos.id, videos.user_id, videos.title, videos.vendor, videos.created_at, videos.updated_at, videos.uid, videos.url, videos.public, videos.location, videos.maker, videos.players, videos.for_feedback, videos.feed_id) VALUES (<id>, <user_id>, <title>, <vendor>, <created_at>, <updated_at>, <uid>, <url>, <public>, <location>, <maker>, <players>, <for_feedback>, <feed_id>);
+}
+
+update deleteVideo(int id) {
+    DELETE FROM videos WHERE videos.id = <id>;
+}
+
+update updateVideo(int id, int user_id, String title, String vendor, String updated_at, String uid, String url, String public, String location, String maker, String players, String for_feedback, int feed_id) {
+    UPDATE videos SET videos.user_id = <user_id> WHERE videos.id = <id>;
+    UPDATE videos SET videos.title = <title> WHERE videos.id = <id>;
+    UPDATE videos SET videos.vendor = <vendor> WHERE videos.id = <id>;
+    UPDATE videos SET videos.updated_at = <updated_at> WHERE videos.id = <id>;
+    UPDATE videos SET videos.uid = <uid> WHERE videos.id = <id>;
+    UPDATE videos SET videos.url = <url> WHERE videos.id = <id>;
+    UPDATE videos SET videos.public = <public> WHERE videos.id = <id>;
+    UPDATE videos SET videos.location = <location> WHERE videos.id = <id>;
+    UPDATE videos SET videos.maker = <maker> WHERE videos.id = <id>;
+    UPDATE videos SET videos.players = <players> WHERE videos.id = <id>;
+    UPDATE videos SET videos.for_feedback = <for_feedback> WHERE videos.id = <id>;
+    UPDATE videos SET videos.feed_id = <feed_id> WHERE videos.id = <id>;
+}
+
+query readVideo(int id) {
+    SELECT videos.user_id, videos.title, videos.vendor, videos.uid, videos.url, videos.public, videos.location, videos.maker, videos.players, videos.for_feedback, videos.feed_id FROM videos WHERE videos.id = <id>;
+}
+
+query readVideoCreateTime(int id) {
+    SELECT videos.created_at FROM videos WHERE videos.id = <id>;
+}
+
+query readVideoUpdateTime(int id) {
+    SELECT videos.updated_at FROM videos WHERE videos.id = <id>;
+}
+
+query readArticleUser(int id) {
+    SELECT users.id, users.name, users.email, users.remember_token, users.password_digest, users.admin, users.gravatar_suffix, users.nickname, users.reset_code, users.country, users.city, users.modified_user, users.author, users.birthday, users.started_playing, users.bap, users.bap_name, users.bap_induction, users.motto, users.hobbies, users.privacy_settings, users.latitude, users.longitude, users.last_visit, users.about_title, users.about_content FROM articles JOIN users ON articles.user_id = users.id WHERE articles.id = <id>;
+}
+
+query readUserArticle(int id) {
+    SELECT articles.id, articles.title, articles.content, articles.user_id, articles.public, articles.published, articles.permalink, articles.category_id FROM articles JOIN users ON articles.user_id = users.id WHERE users.id = <id>;
+}
+
+query readArticleCategory(int id) {
+    SELECT categories.id, categories.name FROM articles JOIN categories ON articles.category_id = categories.id WHERE articles.id = <id>;
+}
+
+query readCategoryArticle(int id) {
+    SELECT articles.id, articles.title, articles.content, articles.user_id, articles.public, articles.published, articles.permalink, articles.category_id FROM articles JOIN categories ON articles.category_id = categories.id WHERE categories.id = <id>;
+}
+
+query readBlogPostBlog(int id) {
+    SELECT blogs.id, blogs.title, blogs.user_id FROM blog_posts JOIN blogs ON blog_posts.blog_id = blogs.id WHERE blog_posts.id = <id>;
+}
+
+query readBlogBlogPost(int id) {
+    SELECT blog_posts.id, blog_posts.blog_id, blog_posts.content, blog_posts.public FROM blog_posts JOIN blogs ON blog_posts.blog_id = blogs.id WHERE blogs.id = <id>;
+}
+
+query readBlogUser(int id) {
+    SELECT users.id, users.name, users.email, users.remember_token, users.password_digest, users.admin, users.gravatar_suffix, users.nickname, users.reset_code, users.country, users.city, users.modified_user, users.author, users.birthday, users.started_playing, users.bap, users.bap_name, users.bap_induction, users.motto, users.hobbies, users.privacy_settings, users.latitude, users.longitude, users.last_visit, users.about_title, users.about_content FROM blogs JOIN users ON blogs.user_id = users.id WHERE blogs.id = <id>;
+}
+
+query readUserBlog(int id) {
+    SELECT blogs.id, blogs.title, blogs.user_id FROM blogs JOIN users ON blogs.user_id = users.id WHERE users.id = <id>;
+}
+
+query readCommentUser(int id) {
+    SELECT users.id, users.name, users.email, users.remember_token, users.password_digest, users.admin, users.gravatar_suffix, users.nickname, users.reset_code, users.country, users.city, users.modified_user, users.author, users.birthday, users.started_playing, users.bap, users.bap_name, users.bap_induction, users.motto, users.hobbies, users.privacy_settings, users.latitude, users.longitude, users.last_visit, users.about_title, users.about_content FROM comments JOIN users ON comments.commenter_id = users.id WHERE comments.id = <id>;
+}
+
+query readUserComment(int id) {
+    SELECT comments.id, comments.commenter_id, comments.commentable_id, comments.commentable_type, comments.content, comments.public, comments.commenter_name FROM comments JOIN users ON comments.commenter_id = users.id WHERE users.id = <id>;
+}
+
+query getEventUser(int id) {
+    SELECT users.name, users.email, users.nickname, users.country, users.city, users.birthday FROM events_users JOIN events ON events_users.event_id = events.id JOIN users ON events_users.user_id = users.id WHERE events.id = <id>;
+}
+
+query getUserEvent(int id) {
+    SELECT events.name, events.city, events.country, events.state, events.start_date, events.end_date FROM events_users JOIN users ON events_users.user_id = users.id JOIN events ON events_users.event_id = events.id WHERE users.id = <id>;
+}
+
+query readFeedUser(int id) {
+    SELECT users.id, users.name, users.email, users.remember_token, users.password_digest, users.admin, users.gravatar_suffix, users.nickname, users.reset_code, users.country, users.city, users.modified_user, users.author, users.birthday, users.started_playing, users.bap, users.bap_name, users.bap_induction, users.motto, users.hobbies, users.privacy_settings, users.latitude, users.longitude, users.last_visit, users.about_title, users.about_content FROM feeds JOIN users ON feeds.user_id = users.id WHERE feeds.id = <id>;
+}
+
+query readUserFeed(int id) {
+    SELECT feeds.id, feeds.name, feeds.store_name, feeds.hidden, feeds.user_id, feeds.permalink, feeds.description FROM feeds JOIN users ON feeds.user_id = users.id WHERE users.id = <id>;
+}
+
+query readLikeUser(int id) {
+    SELECT users.id, users.name, users.email, users.remember_token, users.password_digest, users.admin, users.gravatar_suffix, users.nickname, users.reset_code, users.country, users.city, users.modified_user, users.author, users.birthday, users.started_playing, users.bap, users.bap_name, users.bap_induction, users.motto, users.hobbies, users.privacy_settings, users.latitude, users.longitude, users.last_visit, users.about_title, users.about_content FROM likes JOIN users ON likes.liker_id = users.id WHERE likes.id = <id>;
+}
+
+query readUserLike(int id) {
+    SELECT likes.id, likes.liker_id, likes.liked_item_id, likes.liked_item_type FROM likes JOIN users ON likes.liker_id = users.id WHERE users.id = <id>;
+}
+
+query readMessageUser(int id) {
+    SELECT users.id, users.name, users.email, users.remember_token, users.password_digest, users.admin, users.gravatar_suffix, users.nickname, users.reset_code, users.country, users.city, users.modified_user, users.author, users.birthday, users.started_playing, users.bap, users.bap_name, users.bap_induction, users.motto, users.hobbies, users.privacy_settings, users.latitude, users.longitude, users.last_visit, users.about_title, users.about_content FROM messages JOIN users ON messages.sender_id = users.id WHERE messages.id = <id>;
+}
+
+query readUserMessage(int id) {
+    SELECT messages.id, messages.content, messages.sender_id, messages.recipient_id, messages.read, messages.conversation_id FROM messages JOIN users ON messages.sender_id = users.id WHERE users.id = <id>;
+}
+
+query readMessageUser2(int id) {
+    SELECT users.id, users.name, users.email, users.remember_token, users.password_digest, users.admin, users.gravatar_suffix, users.nickname, users.reset_code, users.country, users.city, users.modified_user, users.author, users.birthday, users.started_playing, users.bap, users.bap_name, users.bap_induction, users.motto, users.hobbies, users.privacy_settings, users.latitude, users.longitude, users.last_visit, users.about_title, users.about_content FROM messages JOIN users ON messages.sender_id = users.id WHERE messages.id = <id>;
+}
+
+query readUserMessage2(int id) {
+    SELECT messages.id, messages.content, messages.sender_id, messages.recipient_id, messages.read, messages.conversation_id FROM messages JOIN users ON messages.sender_id = users.id WHERE users.id = <id>;
+}
+
+query readMessageConversation(int id) {
+    SELECT conversations.id FROM messages JOIN conversations ON messages.conversation_id = conversations.id WHERE messages.id = <id>;
+}
+
+query readConversationMessage(int id) {
+    SELECT messages.id, messages.content, messages.sender_id, messages.recipient_id, messages.read, messages.conversation_id FROM messages JOIN conversations ON messages.conversation_id = conversations.id WHERE conversations.id = <id>;
+}
+
+query readNotificationUser(int id) {
+    SELECT users.id, users.name, users.email, users.remember_token, users.password_digest, users.admin, users.gravatar_suffix, users.nickname, users.reset_code, users.country, users.city, users.modified_user, users.author, users.birthday, users.started_playing, users.bap, users.bap_name, users.bap_induction, users.motto, users.hobbies, users.privacy_settings, users.latitude, users.longitude, users.last_visit, users.about_title, users.about_content FROM notifications JOIN users ON notifications.user_id = users.id WHERE notifications.id = <id>;
+}
+
+query readUserNotification(int id) {
+    SELECT notifications.id, notifications.user_id, notifications.sender_id, notifications.item_id, notifications.item_type, notifications.action_type, notifications.action_id, notifications.public, notifications.read FROM notifications JOIN users ON notifications.user_id = users.id WHERE users.id = <id>;
+}
+
+query readNotificationUser2(int id) {
+    SELECT users.id, users.name, users.email, users.remember_token, users.password_digest, users.admin, users.gravatar_suffix, users.nickname, users.reset_code, users.country, users.city, users.modified_user, users.author, users.birthday, users.started_playing, users.bap, users.bap_name, users.bap_induction, users.motto, users.hobbies, users.privacy_settings, users.latitude, users.longitude, users.last_visit, users.about_title, users.about_content FROM notifications JOIN users ON notifications.user_id = users.id WHERE notifications.id = <id>;
+}
+
+query readUserNotification2(int id) {
+    SELECT notifications.id, notifications.user_id, notifications.sender_id, notifications.item_id, notifications.item_type, notifications.action_type, notifications.action_id, notifications.public, notifications.read FROM notifications JOIN users ON notifications.user_id = users.id WHERE users.id = <id>;
+}
+
+query readPostUser(int id) {
+    SELECT users.id, users.name, users.email, users.remember_token, users.password_digest, users.admin, users.gravatar_suffix, users.nickname, users.reset_code, users.country, users.city, users.modified_user, users.author, users.birthday, users.started_playing, users.bap, users.bap_name, users.bap_induction, users.motto, users.hobbies, users.privacy_settings, users.latitude, users.longitude, users.last_visit, users.about_title, users.about_content FROM posts JOIN users ON posts.user_id = users.id WHERE posts.id = <id>;
+}
+
+query readUserPost(int id) {
+    SELECT posts.id, posts.content, posts.user_id, posts.public, posts.sticky, posts.feed_id FROM posts JOIN users ON posts.user_id = users.id WHERE users.id = <id>;
+}
+
+query readPostFeed(int id) {
+    SELECT feeds.id, feeds.name, feeds.store_name, feeds.hidden, feeds.user_id, feeds.permalink, feeds.description FROM posts JOIN feeds ON posts.feed_id = feeds.id WHERE posts.id = <id>;
+}
+
+query readFeedPost(int id) {
+    SELECT posts.id, posts.content, posts.user_id, posts.public, posts.sticky, posts.feed_id FROM posts JOIN feeds ON posts.feed_id = feeds.id WHERE feeds.id = <id>;
+}
+
+query readTaggingTag(int id) {
+    SELECT tags.id, tags.name FROM taggings JOIN tags ON taggings.tag_id = tags.id WHERE taggings.id = <id>;
+}
+
+query readTagTagging(int id) {
+    SELECT taggings.id, taggings.tag_id, taggings.taggable_id, taggings.taggable_type, taggings.tagger_id, taggings.tagger_type, taggings.context FROM taggings JOIN tags ON taggings.tag_id = tags.id WHERE tags.id = <id>;
+}
+
+query readUserVideoUser(int id) {
+    SELECT users.id, users.name, users.email, users.remember_token, users.password_digest, users.admin, users.gravatar_suffix, users.nickname, users.reset_code, users.country, users.city, users.modified_user, users.author, users.birthday, users.started_playing, users.bap, users.bap_name, users.bap_induction, users.motto, users.hobbies, users.privacy_settings, users.latitude, users.longitude, users.last_visit, users.about_title, users.about_content FROM users_videos JOIN users ON users_videos.user_id = users.id WHERE users_videos.id = <id>;
+}
+
+query readVideoUser(int id) {
+    SELECT users.name, users.email, users.nickname, users.country, users.city, users.birthday FROM users_videos JOIN videos ON users_videos.video_id = videos.id JOIN users ON videos.user_id = users.id WHERE videos.id = <id>;
+}
+
+query readUserVideo(int id) {
+    SELECT videos.title, videos.vendor, videos.uid, videos.url, videos.location, videos.maker, videos.players FROM users_videos JOIN videos ON users_videos.video_id = videos.id JOIN users ON videos.user_id = users.id WHERE users.id = <id>;
+}
+
+query readVideoFeed(int id) {
+    SELECT feeds.id, feeds.name, feeds.store_name, feeds.hidden, feeds.user_id, feeds.permalink, feeds.description FROM videos JOIN feeds ON videos.feed_id = feeds.id WHERE videos.id = <id>;
+}
+
+query readFeedVideo(int id) {
+    SELECT videos.id, videos.user_id, videos.title, videos.vendor, videos.uid, videos.url, videos.public, videos.location, videos.maker, videos.players, videos.for_feedback, videos.feed_id FROM videos JOIN feeds ON videos.feed_id = feeds.id WHERE feeds.id = <id>;
+}
+

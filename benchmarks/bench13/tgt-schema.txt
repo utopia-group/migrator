@@ -1,0 +1,232 @@
+CREATE TABLE categories (
+    id INT,
+    name VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE email_addresses (
+    id INT,
+    address VARCHAR,
+    user_id INT,
+    email_address_type_id INT,
+    _primary VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE events (
+    id INT,
+    active VARCHAR,
+    name VARCHAR,
+    start_at VARCHAR,
+    end_at VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    url_friendly VARCHAR,
+    description VARCHAR,
+    sponsored VARCHAR,
+    max_attendance INT,
+    sponsor_file_name VARCHAR,
+    sponsor_content_type VARCHAR,
+    sponsor_file_size INT,
+    sponsor_updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE guests (
+    id INT,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    email VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE items (
+    id INT,
+    product_id INT,
+    product_type VARCHAR,
+    name VARCHAR,
+    price VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE locations (
+    id INT,
+    participant_id INT,
+    address VARCHAR,
+    address_cont VARCHAR,
+    city VARCHAR,
+    state VARCHAR,
+    zip VARCHAR,
+    phone VARCHAR,
+    region_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (participant_id) REFERENCES participants (id),
+    FOREIGN KEY (region_id) REFERENCES regions (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE memberships (
+    id INT,
+    name VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE order_items (
+    id INT,
+    order_id INT,
+    item_id INT,
+    quantity INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (order_id) REFERENCES orders (id),
+    FOREIGN KEY (item_id) REFERENCES items (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE orders (
+    id INT,
+    customer_id INT,
+    customer_type VARCHAR,
+    amount VARCHAR,
+    express_token VARCHAR,
+    express_payer_id VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    complete VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE participants (
+    id INT,
+    name VARCHAR,
+    url VARCHAR,
+    bio VARCHAR,
+    benefit VARCHAR,
+    instructions VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    logo_file_name VARCHAR,
+    logo_content_type VARCHAR,
+    logo_file_size INT,
+    logo_updated_at VARCHAR,
+    category_id INT,
+    FOREIGN KEY (category_id) REFERENCES categories (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE regions (
+    id INT,
+    name VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE registrations (
+    id INT,
+    user_id INT,
+    email VARCHAR,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    address VARCHAR,
+    address2 VARCHAR,
+    city VARCHAR,
+    state VARCHAR,
+    zip VARCHAR,
+    phone_number VARCHAR,
+    profession VARCHAR,
+    employer VARCHAR,
+    education VARCHAR,
+    about2030 VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE states (
+    id INT,
+    title VARCHAR,
+    code VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE user_addresses (
+    id INT,
+    user_id INT,
+    address2 VARCHAR,
+    address_type_id INT,
+    is_primary VARCHAR,
+    sort_order INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    address VARCHAR,
+    city VARCHAR,
+    state_code VARCHAR,
+    zip VARCHAR,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE user_profiles (
+    id INT,
+    user_id INT,
+    phone_number VARCHAR,
+    profession VARCHAR,
+    employer VARCHAR,
+    education VARCHAR,
+    about2030 VARCHAR,
+    birthdate VARCHAR,
+    bio VARCHAR,
+    avatar_file_name VARCHAR,
+    avatar_content_type VARCHAR,
+    avatar_file_size INT,
+    avatar_updated_at VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    gender VARCHAR,
+    member_notes VARCHAR,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE users (
+    id INT,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    url_friendly VARCHAR,
+    email VARCHAR,
+    crypted_password VARCHAR,
+    password_salt VARCHAR,
+    persistence_token VARCHAR,
+    single_access_token VARCHAR,
+    perishable_token VARCHAR,
+    login_count INT,
+    failed_login_count INT,
+    last_request_at VARCHAR,
+    current_login_at VARCHAR,
+    last_login_at VARCHAR,
+    current_login_ip VARCHAR,
+    last_login_ip VARCHAR,
+    joined_at VARCHAR,
+    expired_at VARCHAR,
+    activated_at VARCHAR,
+    active VARCHAR,
+    activated VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+

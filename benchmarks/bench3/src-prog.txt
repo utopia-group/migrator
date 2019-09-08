@@ -1,0 +1,40 @@
+update createEmployee(int eid, String name, String phone, String pic, String voice, String retinal) {
+    INSERT INTO Employee (EmployeeNumber, Name, PhoneNumber, Picture, VoicePrint, RetinalPrint) VALUES (<eid>, <name>, <phone>, <pic>, <voice>, <retinal>);
+}
+
+update deleteEmployee(int eid) {
+    DELETE FROM Employee WHERE EmployeeNumber = <eid>;
+}
+
+update updateEmpPhone(int eid, String phone) {
+    UPDATE Employee SET PhoneNumber = <phone> WHERE EmployeeNumber = <eid>;
+}
+
+query getEmployeeNumber(String name) {
+    SELECT EmployeeNumber FROM Employee WHERE Name = <name>;
+}
+
+query getEmpName(int eid) {
+    SELECT Name FROM Employee WHERE EmployeeNumber = <eid>;
+}
+
+query getEmpPhone(int eid) {
+    SELECT PhoneNumber FROM Employee WHERE EmployeeNumber = <eid>;
+}
+
+query getEmpPicture(int eid) {
+    SELECT Picture FROM Employee WHERE EmployeeNumber = <eid>;
+}
+
+query getEmpVoice(int eid) {
+    SELECT VoicePrint FROM Employee WHERE EmployeeNumber = <eid>;
+}
+
+query getEmpRetina(int eid) {
+    SELECT RetinalPrint FROM Employee WHERE EmployeeNumber = <eid>;
+}
+
+query getEmployeeInfo(int eid) {
+    SELECT Name, PhoneNumber, Picture, VoicePrint, RetinalPrint FROM Employee WHERE EmployeeNumber = <eid>;
+}
+

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="Migrator">
+    <property file="ant.settings"/>
+
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <property name="classes.dir" value="classes"/>
+    <property name="src.dir" value="src"/>
+    <property name="test.dir" value="test"/>
+
+    <path id="build.classpath">
+        <pathelement location="lib/antlr-4.6.jar"/>
+        <pathelement location="lib/gson-2.8.0.jar"/>
+        <pathelement location="lib/sat4j-maxsat.jar"/>
+        <pathelement location="lib/mediator-0.1.jar"/>
+        <pathelement location="lib/z3.jar"/>
+        <pathelement location="lib/args4j-2.33.jar"/>
+    </path>
+
+    <target name="clean">
+        <delete dir="${classes.dir}"/>
+    </target>
+
+    <target name="build">
+        <mkdir dir="${classes.dir}"/>
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="false" srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false" source="${source}" target="${target}">
+            <classpath refid="build.classpath"/>
+        </javac>
+    </target>
+
+    <target name="jar" depends="build">
+        <jar destfile="migrator.jar">
+            <fileset dir="classes"/>
+        </jar>
+    </target>
+
+    <path id="test.classpath">
+        <path refid="build.classpath"/>
+        <pathelement location="lib/junit-4.12.jar"/>
+        <pathelement location="lib/hamcrest-core-1.3.jar"/>
+    </path>
+
+    <target name="test-build" depends="build">
+        <javac srcdir="${test.dir}" destdir="${classes.dir}" includeantruntime="false" source="${source}" target="${target}">
+            <classpath refid="test.classpath"/>
+        </javac>
+    </target>
+
+    <target name="test" depends="test-build">
+        <junit printsummary="on" haltonfailure="yes" fork="true">
+            <jvmarg value="-ea"/>
+            <jvmarg value="-Xmx32g"/>
+            <classpath>
+                <path refid="test.classpath"/>
+                <pathelement location="${classes.dir}"/>
+            </classpath>
+            <formatter type="brief" usefile="false"/>
+            <batchtest>
+                <fileset dir="${test.dir}" includes="**/*Test.java" />
+            </batchtest>
+        </junit>
+    </target>
+
+</project>

@@ -1,0 +1,20 @@
+update insertMember(String name, String addr, String ct, String st, int zip) {
+    INSERT INTO ADDRESS (aid, address, city, state, zipcode) VALUES (FRESH(1), <addr>, <ct>, <st>, <zip>);
+    INSERT INTO MEMBER (mid, mname, afk) VALUES (FRESH(2), <name>, FRESH(1));
+}
+
+update deleteMember(string name) {
+    DELETE MEMBER, ADDRESS FROM MEMBER JOIN ADDRESS ON MEMBER.afk = ADDRESS.aid WHERE mname = <name>;
+}
+
+update updateAddress(String name, String addr, String ct, String st, int zip) {
+    UPDATE ADDRESS JOIN MEMBER ON ADDRESS.aid = MEMBER.afk SET address = <addr> WHERE mname = <name>;
+    UPDATE ADDRESS JOIN MEMBER ON ADDRESS.aid = MEMBER.afk SET city = <ct> WHERE mname = <name>;
+    UPDATE ADDRESS JOIN MEMBER ON ADDRESS.aid = MEMBER.afk SET state = <st> WHERE mname = <name>;
+    UPDATE ADDRESS JOIN MEMBER ON ADDRESS.aid = MEMBER.afk SET zipcode = <zip> WHERE mname = <name>;
+}
+
+query getMemberAddress(string name) {
+    SELECT address, city, state, zipcode FROM MEMBER JOIN ADDRESS ON MEMBER.afk = ADDRESS.aid WHERE mname = <name>;
+}
+

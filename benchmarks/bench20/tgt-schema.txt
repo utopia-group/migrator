@@ -1,0 +1,132 @@
+CREATE TABLE departments (
+    id INT,
+    name VARCHAR,
+    user_id INT,
+    active VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE groups (
+    id INT,
+    name VARCHAR,
+    description VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE groups_permissions (
+    id INT,
+    group_id INT,
+    permission_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (group_id) REFERENCES groups (id),
+    FOREIGN KEY (permission_id) REFERENCES permissions (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE groups_users (
+    id INT,
+    group_id INT,
+    user_id INT,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (group_id) REFERENCES groups (id),
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE incidental_types (
+    id INT,
+    name VARCHAR,
+    description VARCHAR,
+    base VARCHAR,
+    modifier_amount VARCHAR,
+    modifier_description VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE incurred_incidentals (
+    id INT,
+    incidental_type_id INT,
+    times_modified VARCHAR,
+    notes VARCHAR,
+    document VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (incidental_type_id) REFERENCES incidental_types (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE item_types (
+    id INT,
+    name VARCHAR,
+    disclaimer VARCHAR,
+    base_fee VARCHAR,
+    fee_per_day VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE permissions (
+    id INT,
+    controller VARCHAR,
+    action VARCHAR,
+    id_field VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE rentals (
+    id INT,
+    rental_status VARCHAR,
+    user_id INT,
+    department_id INT,
+    reservation_id INT,
+    item_type_id INT,
+    start_date VARCHAR,
+    end_date VARCHAR,
+    checked_in_at VARCHAR,
+    checked_out_at VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (department_id) REFERENCES departments (id),
+    FOREIGN KEY (item_type_id) REFERENCES item_types (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE users (
+    id INT,
+    first_name VARCHAR,
+    last_name VARCHAR,
+    email VARCHAR,
+    phone INT,
+    spire_id INT,
+    department_id INT,
+    active VARCHAR,
+    created_at VARCHAR,
+    updated_at VARCHAR,
+    FOREIGN KEY (department_id) REFERENCES departments (id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE versions (
+    id INT,
+    item_type VARCHAR,
+    item_id INT,
+    event VARCHAR,
+    whodunnit VARCHAR,
+    object VARCHAR,
+    created_at VARCHAR,
+    PRIMARY KEY (id)
+);
+

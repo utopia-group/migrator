@@ -1,0 +1,341 @@
+update createComment(int id, String body, int dj_id, int user_id, String seen_live, int venue_id, String score, String created_at, String updated_at) {
+    INSERT INTO ratings (ratings.id, ratings.dj_id, ratings.score, ratings.created_at, ratings.updated_at, ratings.user_id, ratings.venue_id, ratings.seen_live) VALUES (FRESH(1), <dj_id>, <score>, <created_at>, <updated_at>, <user_id>, <venue_id>, <seen_live>);
+    INSERT INTO comments (comments.id, comments.body, comments.created_at, comments.updated_at, comments.rating_id) VALUES (<id>, <body>, <created_at>, <updated_at>, FRESH(1));
+}
+
+update deleteComment(int id) {
+    DELETE comments, ratings FROM comments JOIN ratings ON comments.rating_id = ratings.id WHERE comments.id = <id>;
+}
+
+update updateComment(int id, String body, String score, String seen_live, String updated_at) {
+    UPDATE comments SET comments.body = <body> WHERE comments.id = <id>;
+    UPDATE comments SET comments.updated_at = <updated_at> WHERE comments.id = <id>;
+    UPDATE ratings JOIN comments ON ratings.id = comments.rating_id SET ratings.score = <score> WHERE comments.id = <id>;
+    UPDATE ratings JOIN comments ON ratings.id = comments.rating_id SET ratings.seen_live = <seen_live> WHERE comments.id = <id>;
+    UPDATE ratings JOIN comments ON ratings.id = comments.rating_id SET ratings.updated_at = <updated_at> WHERE comments.id = <id>;
+}
+
+query readComment(int id) {
+    SELECT comments.body, ratings.dj_id, ratings.score, ratings.user_id, ratings.venue_id, ratings.seen_live FROM comments JOIN ratings ON comments.rating_id = ratings.id WHERE comments.id = <id>;
+}
+
+query readCommentCreateTime(int id) {
+    SELECT comments.created_at FROM comments WHERE comments.id = <id>;
+}
+
+query readCommentUpdateTime(int id) {
+    SELECT comments.updated_at FROM comments WHERE comments.id = <id>;
+}
+
+update createDjGenre(int id, int dj_id, int genre_id, String created_at, String updated_at) {
+    INSERT INTO dj_genres (dj_genres.id, dj_genres.dj_id, dj_genres.genre_id, dj_genres.created_at, dj_genres.updated_at) VALUES (<id>, <dj_id>, <genre_id>, <created_at>, <updated_at>);
+}
+
+update deleteDjGenre(int id) {
+    DELETE FROM dj_genres WHERE dj_genres.id = <id>;
+}
+
+update updateDjGenre(int id, int dj_id, int genre_id, String updated_at) {
+    UPDATE dj_genres SET dj_genres.dj_id = <dj_id> WHERE dj_genres.id = <id>;
+    UPDATE dj_genres SET dj_genres.genre_id = <genre_id> WHERE dj_genres.id = <id>;
+    UPDATE dj_genres SET dj_genres.updated_at = <updated_at> WHERE dj_genres.id = <id>;
+}
+
+query readDjGenre(int id) {
+    SELECT dj_genres.dj_id, dj_genres.genre_id FROM dj_genres WHERE dj_genres.id = <id>;
+}
+
+query readDjGenreCreateTime(int id) {
+    SELECT dj_genres.created_at FROM dj_genres WHERE dj_genres.id = <id>;
+}
+
+query readDjGenreUpdateTime(int id) {
+    SELECT dj_genres.updated_at FROM dj_genres WHERE dj_genres.id = <id>;
+}
+
+update createDj(int id, String name, String image_url, String bio, String created_at, String updated_at, String uid, String past_venues, String email, String phone, String dj_status, int sdcl_followers, int sdcl_id, String city, String twitter_hdl, String agent_status, String rate, String can_produce, String slug, int fb_likes, String fbpage_id, String fb_bio, int talking_about_count, String fb_location) {
+    INSERT INTO djs (djs.id, djs.name, djs.image_url, djs.bio, djs.created_at, djs.updated_at, djs.uid, djs.past_venues, djs.email, djs.phone, djs.dj_status, djs.sdcl_followers, djs.sdcl_id, djs.city, djs.twitter_hdl, djs.agent_status, djs.rate, djs.can_produce, djs.slug, djs.fb_likes, djs.fbpage_id, djs.fb_bio, djs.talking_about_count, djs.fb_location) VALUES (<id>, <name>, <image_url>, <bio>, <created_at>, <updated_at>, <uid>, <past_venues>, <email>, <phone>, <dj_status>, <sdcl_followers>, <sdcl_id>, <city>, <twitter_hdl>, <agent_status>, <rate>, <can_produce>, <slug>, <fb_likes>, <fbpage_id>, <fb_bio>, <talking_about_count>, <fb_location>);
+}
+
+update deleteDj(int id) {
+    DELETE FROM djs WHERE djs.id = <id>;
+}
+
+update updateDjProfile(int id, String name, String image_url, String bio, String past_venues, String email, String phone, String dj_status, String city, String agent_status, String rate, String can_produce, String slug, String updated_at) {
+    UPDATE djs SET djs.name = <name> WHERE djs.id = <id>;
+    UPDATE djs SET djs.image_url = <image_url> WHERE djs.id = <id>;
+    UPDATE djs SET djs.bio = <bio> WHERE djs.id = <id>;
+    UPDATE djs SET djs.past_venues = <past_venues> WHERE djs.id = <id>;
+    UPDATE djs SET djs.email = <email> WHERE djs.id = <id>;
+    UPDATE djs SET djs.phone = <phone> WHERE djs.id = <id>;
+    UPDATE djs SET djs.dj_status = <dj_status> WHERE djs.id = <id>;
+    UPDATE djs SET djs.city = <city> WHERE djs.id = <id>;
+    UPDATE djs SET djs.agent_status = <agent_status> WHERE djs.id = <id>;
+    UPDATE djs SET djs.rate = <rate> WHERE djs.id = <id>;
+    UPDATE djs SET djs.can_produce = <can_produce> WHERE djs.id = <id>;
+    UPDATE djs SET djs.slug = <slug> WHERE djs.id = <id>;
+    UPDATE djs SET djs.updated_at = <updated_at> WHERE djs.id = <id>;
+}
+
+update updateDjSocialMedia(int id, int sdcl_followers, int sdcl_id, String twitter_hdl, int fb_likes, String fbpage_id, String fb_bio, int talking_about_count, String fb_location, String updated_at) {
+    UPDATE djs SET djs.sdcl_followers = <sdcl_followers> WHERE djs.id = <id>;
+    UPDATE djs SET djs.sdcl_id = <sdcl_id> WHERE djs.id = <id>;
+    UPDATE djs SET djs.twitter_hdl = <twitter_hdl> WHERE djs.id = <id>;
+    UPDATE djs SET djs.fb_likes = <fb_likes> WHERE djs.id = <id>;
+    UPDATE djs SET djs.fbpage_id = <fbpage_id> WHERE djs.id = <id>;
+    UPDATE djs SET djs.fb_bio = <fb_bio> WHERE djs.id = <id>;
+    UPDATE djs SET djs.talking_about_count = <talking_about_count> WHERE djs.id = <id>;
+    UPDATE djs SET djs.fb_location = <fb_location> WHERE djs.id = <id>;
+    UPDATE djs SET djs.updated_at = <updated_at> WHERE djs.id = <id>;
+}
+
+query readDj(int id) {
+    SELECT djs.name, djs.image_url, djs.bio, djs.uid, djs.past_venues, djs.email, djs.phone, djs.dj_status, djs.sdcl_followers, djs.sdcl_id, djs.city, djs.twitter_hdl, djs.agent_status, djs.rate, djs.can_produce, djs.slug, djs.fb_likes, djs.fbpage_id, djs.fb_bio, djs.talking_about_count, djs.fb_location FROM djs WHERE djs.id = <id>;
+}
+
+query readDjCreateTime(int id) {
+    SELECT djs.created_at FROM djs WHERE djs.id = <id>;
+}
+
+query readDjUpdateTime(int id) {
+    SELECT djs.updated_at FROM djs WHERE djs.id = <id>;
+}
+
+update createEvent(int id, String name, String date, String time, String description, int dj_id, int venue_id, String created_at, String updated_at) {
+    INSERT INTO events (events.id, events.name, events.date, events.time, events.description, events.dj_id, events.venue_id, events.created_at, events.updated_at) VALUES (<id>, <name>, <date>, <time>, <description>, <dj_id>, <venue_id>, <created_at>, <updated_at>);
+}
+
+update deleteEvent(int id) {
+    DELETE FROM events WHERE events.id = <id>;
+}
+
+update updateEvent(int id, String name, String date, String time, String description, int dj_id, int venue_id, String updated_at) {
+    UPDATE events SET events.name = <name> WHERE events.id = <id>;
+    UPDATE events SET events.date = <date> WHERE events.id = <id>;
+    UPDATE events SET events.time = <time> WHERE events.id = <id>;
+    UPDATE events SET events.description = <description> WHERE events.id = <id>;
+    UPDATE events SET events.dj_id = <dj_id> WHERE events.id = <id>;
+    UPDATE events SET events.venue_id = <venue_id> WHERE events.id = <id>;
+    UPDATE events SET events.updated_at = <updated_at> WHERE events.id = <id>;
+}
+
+query readEvent(int id) {
+    SELECT events.name, events.date, events.time, events.description, events.dj_id, events.venue_id FROM events WHERE events.id = <id>;
+}
+
+query readEventCreateTime(int id) {
+    SELECT events.created_at FROM events WHERE events.id = <id>;
+}
+
+query readEventUpdateTime(int id) {
+    SELECT events.updated_at FROM events WHERE events.id = <id>;
+}
+
+update createGenre(int id, String created_at, String updated_at, String name) {
+    INSERT INTO genres (genres.id, genres.created_at, genres.updated_at, genres.name) VALUES (<id>, <created_at>, <updated_at>, <name>);
+}
+
+update deleteGenre(int id) {
+    DELETE FROM genres WHERE genres.id = <id>;
+}
+
+update updateGenre(int id, String updated_at, String name) {
+    UPDATE genres SET genres.updated_at = <updated_at> WHERE genres.id = <id>;
+    UPDATE genres SET genres.name = <name> WHERE genres.id = <id>;
+}
+
+query readGenre(int id) {
+    SELECT genres.name FROM genres WHERE genres.id = <id>;
+}
+
+query readGenreCreateTime(int id) {
+    SELECT genres.created_at FROM genres WHERE genres.id = <id>;
+}
+
+query readGenreUpdateTime(int id) {
+    SELECT genres.updated_at FROM genres WHERE genres.id = <id>;
+}
+
+update createReply(int id, String body, int comment_id) {
+    INSERT INTO replies (replies.id, replies.body, replies.comment_id) VALUES (<id>, <body>, <comment_id>);
+}
+
+update deleteReply(int id) {
+    DELETE FROM replies WHERE replies.id = <id>;
+}
+
+update updateReply(int id, String body, int comment_id) {
+    UPDATE replies SET replies.body = <body> WHERE replies.id = <id>;
+    UPDATE replies SET replies.comment_id = <comment_id> WHERE replies.id = <id>;
+}
+
+query readReply(int id) {
+    SELECT replies.body, replies.comment_id FROM replies WHERE replies.id = <id>;
+}
+
+update createTrack(int id, String demo, int dj_id, int playback_count, int favoritings_count, String title, String tag_list) {
+    INSERT INTO tracks (tracks.id, tracks.demo, tracks.dj_id, tracks.playback_count, tracks.favoritings_count, tracks.title, tracks.tag_list) VALUES (<id>, <demo>, <dj_id>, <playback_count>, <favoritings_count>, <title>, <tag_list>);
+}
+
+update deleteTrack(int id) {
+    DELETE FROM tracks WHERE tracks.id = <id>;
+}
+
+update updateTrack(int id, String demo, int dj_id, int playback_count, int favoritings_count, String title, String tag_list) {
+    UPDATE tracks SET tracks.demo = <demo> WHERE tracks.id = <id>;
+    UPDATE tracks SET tracks.dj_id = <dj_id> WHERE tracks.id = <id>;
+    UPDATE tracks SET tracks.playback_count = <playback_count> WHERE tracks.id = <id>;
+    UPDATE tracks SET tracks.favoritings_count = <favoritings_count> WHERE tracks.id = <id>;
+    UPDATE tracks SET tracks.title = <title> WHERE tracks.id = <id>;
+    UPDATE tracks SET tracks.tag_list = <tag_list> WHERE tracks.id = <id>;
+}
+
+query readTrack(int id) {
+    SELECT tracks.demo, tracks.dj_id, tracks.playback_count, tracks.favoritings_count, tracks.title, tracks.tag_list FROM tracks WHERE tracks.id = <id>;
+}
+
+update createUser(int id, String name, String venue_status, String dj_status, int sdcl_id, String uid, String image_url, String created_at, String updated_at, String email, String phone, String first_name, String gender) {
+    INSERT INTO users (users.id, users.name, users.venue_status, users.dj_status, users.sdcl_id, users.uid, users.image_url, users.created_at, users.updated_at, users.email, users.phone, users.first_name, users.gender) VALUES (<id>, <name>, <venue_status>, <dj_status>, <sdcl_id>, <uid>, <image_url>, <created_at>, <updated_at>, <email>, <phone>, <first_name>, <gender>);
+}
+
+update deleteUser(int id) {
+    DELETE FROM users WHERE users.id = <id>;
+}
+
+update updateUser(int id, String name, String venue_status, String dj_status, int sdcl_id, String uid, String image_url, String updated_at, String email, String phone, String first_name, String gender) {
+    UPDATE users SET users.name = <name> WHERE users.id = <id>;
+    UPDATE users SET users.venue_status = <venue_status> WHERE users.id = <id>;
+    UPDATE users SET users.dj_status = <dj_status> WHERE users.id = <id>;
+    UPDATE users SET users.sdcl_id = <sdcl_id> WHERE users.id = <id>;
+    UPDATE users SET users.uid = <uid> WHERE users.id = <id>;
+    UPDATE users SET users.image_url = <image_url> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+    UPDATE users SET users.email = <email> WHERE users.id = <id>;
+    UPDATE users SET users.phone = <phone> WHERE users.id = <id>;
+    UPDATE users SET users.first_name = <first_name> WHERE users.id = <id>;
+    UPDATE users SET users.gender = <gender> WHERE users.id = <id>;
+}
+
+query readUser(int id) {
+    SELECT users.name, users.venue_status, users.dj_status, users.sdcl_id, users.uid, users.image_url, users.email, users.phone, users.first_name, users.gender FROM users WHERE users.id = <id>;
+}
+
+query readUserCreateTime(int id) {
+    SELECT users.created_at FROM users WHERE users.id = <id>;
+}
+
+query readUserUpdateTime(int id) {
+    SELECT users.updated_at FROM users WHERE users.id = <id>;
+}
+
+update createVenue(int id, String name, String address, String created_at, String updated_at, String phone, String image_url, String cross_streets, String neighborhood, String latitude, String longitude, String yelp_rating, String yelp_id, String category) {
+    INSERT INTO venues (venues.id, venues.name, venues.address, venues.created_at, venues.updated_at, venues.phone, venues.image_url, venues.cross_streets, venues.neighborhood, venues.latitude, venues.longitude, venues.yelp_rating, venues.yelp_id, venues.category) VALUES (<id>, <name>, <address>, <created_at>, <updated_at>, <phone>, <image_url>, <cross_streets>, <neighborhood>, <latitude>, <longitude>, <yelp_rating>, <yelp_id>, <category>);
+}
+
+update deleteVenue(int id) {
+    DELETE FROM venues WHERE venues.id = <id>;
+}
+
+update updateVenue(int id, String name, String address, String updated_at, String phone, String image_url, String cross_streets, String latitude, String longitude, String yelp_rating, String yelp_id, String category) {
+    UPDATE venues SET venues.name = <name> WHERE venues.id = <id>;
+    UPDATE venues SET venues.address = <address> WHERE venues.id = <id>;
+    UPDATE venues SET venues.updated_at = <updated_at> WHERE venues.id = <id>;
+    UPDATE venues SET venues.phone = <phone> WHERE venues.id = <id>;
+    UPDATE venues SET venues.image_url = <image_url> WHERE venues.id = <id>;
+    UPDATE venues SET venues.cross_streets = <cross_streets> WHERE venues.id = <id>;
+    UPDATE venues SET venues.latitude = <latitude> WHERE venues.id = <id>;
+    UPDATE venues SET venues.longitude = <longitude> WHERE venues.id = <id>;
+    UPDATE venues SET venues.yelp_rating = <yelp_rating> WHERE venues.id = <id>;
+    UPDATE venues SET venues.yelp_id = <yelp_id> WHERE venues.id = <id>;
+    UPDATE venues SET venues.category = <category> WHERE venues.id = <id>;
+}
+
+update updateVenueNeighborhood(int id, String neighborhood, String updated_at) {
+    UPDATE venues SET venues.neighborhood = <neighborhood> WHERE venues.id = <id>;
+    UPDATE venues SET venues.updated_at = <updated_at> WHERE venues.id = <id>;
+}
+
+query readVenue(int id) {
+    SELECT venues.name, venues.address, venues.phone, venues.image_url, venues.cross_streets, venues.neighborhood, venues.latitude, venues.longitude, venues.yelp_rating, venues.yelp_id, venues.category FROM venues WHERE venues.id = <id>;
+}
+
+query readVenueCreateTime(int id) {
+    SELECT venues.created_at FROM venues WHERE venues.id = <id>;
+}
+
+query readVenueUpdateTime(int id) {
+    SELECT venues.updated_at FROM venues WHERE venues.id = <id>;
+}
+
+query readDjGenreDj(int id) {
+    SELECT djs.id, djs.name, djs.image_url, djs.bio, djs.uid, djs.past_venues, djs.email, djs.phone, djs.dj_status, djs.sdcl_followers, djs.sdcl_id, djs.city, djs.twitter_hdl, djs.agent_status, djs.rate, djs.can_produce, djs.slug, djs.fb_likes, djs.fbpage_id, djs.fb_bio, djs.talking_about_count, djs.fb_location FROM dj_genres JOIN djs ON dj_genres.dj_id = djs.id WHERE dj_genres.id = <id>;
+}
+
+query readDjDjGenre(int id) {
+    SELECT dj_genres.id, dj_genres.dj_id, dj_genres.genre_id FROM dj_genres JOIN djs ON dj_genres.dj_id = djs.id WHERE djs.id = <id>;
+}
+
+query readDjGenreGenre(int id) {
+    SELECT genres.id, genres.name FROM dj_genres JOIN genres ON dj_genres.genre_id = genres.id WHERE dj_genres.id = <id>;
+}
+
+query readGenreDjGenre(int id) {
+    SELECT dj_genres.id, dj_genres.dj_id, dj_genres.genre_id FROM dj_genres JOIN genres ON dj_genres.genre_id = genres.id WHERE genres.id = <id>;
+}
+
+query readEventDj(int id) {
+    SELECT djs.id, djs.name, djs.image_url, djs.bio, djs.uid, djs.past_venues, djs.email, djs.phone, djs.dj_status, djs.sdcl_followers, djs.sdcl_id, djs.city, djs.twitter_hdl, djs.agent_status, djs.rate, djs.can_produce, djs.slug, djs.fb_likes, djs.fbpage_id, djs.fb_bio, djs.talking_about_count, djs.fb_location FROM events JOIN djs ON events.dj_id = djs.id WHERE events.id = <id>;
+}
+
+query readDjEvent(int id) {
+    SELECT events.id, events.name, events.date, events.time, events.description, events.dj_id, events.venue_id FROM events JOIN djs ON events.dj_id = djs.id WHERE djs.id = <id>;
+}
+
+query readEventVenue(int id) {
+    SELECT venues.id, venues.name, venues.address, venues.phone, venues.image_url, venues.cross_streets, venues.neighborhood, venues.latitude, venues.longitude, venues.yelp_rating, venues.yelp_id, venues.category FROM events JOIN venues ON events.venue_id = venues.id WHERE events.id = <id>;
+}
+
+query readVenueEvent(int id) {
+    SELECT events.id, events.name, events.date, events.time, events.description, events.dj_id, events.venue_id FROM events JOIN venues ON events.venue_id = venues.id WHERE venues.id = <id>;
+}
+
+query readCommentDj(int id) {
+    SELECT djs.id, djs.name, djs.image_url, djs.bio, djs.uid, djs.past_venues, djs.email, djs.phone, djs.dj_status, djs.sdcl_followers, djs.sdcl_id, djs.city, djs.twitter_hdl, djs.agent_status, djs.rate, djs.can_produce, djs.slug, djs.fb_likes, djs.fbpage_id, djs.fb_bio, djs.talking_about_count, djs.fb_location FROM comments JOIN ratings ON comments.rating_id = ratings.id JOIN djs ON ratings.dj_id = djs.id WHERE comments.id = <id>;
+}
+
+query readDjComment(int id) {
+    SELECT comments.body, ratings.score, ratings.seen_live FROM comments JOIN ratings ON comments.rating_id = ratings.id JOIN djs ON ratings.dj_id = djs.id WHERE djs.id = <id>;
+}
+
+query readCommentUser(int id) {
+    SELECT users.id, users.name, users.venue_status, users.dj_status, users.sdcl_id, users.uid, users.image_url, users.email, users.phone, users.first_name, users.gender FROM comments JOIN ratings ON comments.rating_id = ratings.id JOIN users ON ratings.user_id = users.id WHERE comments.id = <id>;
+}
+
+query readUserComment(int id) {
+    SELECT comments.body, ratings.score, ratings.seen_live FROM comments JOIN ratings ON comments.rating_id = ratings.id JOIN users ON ratings.user_id = users.id WHERE users.id = <id>;
+}
+
+query readCommentVenue(int id) {
+    SELECT venues.id, venues.name, venues.address, venues.phone, venues.image_url, venues.cross_streets, venues.neighborhood, venues.latitude, venues.longitude, venues.yelp_rating, venues.yelp_id, venues.category FROM comments JOIN ratings ON comments.rating_id = ratings.id JOIN venues ON ratings.venue_id = venues.id WHERE comments.id = <id>;
+}
+
+query readVenueComment(int id) {
+    SELECT comments.body, ratings.score, ratings.seen_live FROM comments JOIN ratings ON comments.rating_id = ratings.id JOIN venues ON ratings.venue_id = venues.id WHERE venues.id = <id>;
+}
+
+query readReplyComment(int id) {
+    SELECT comments.id, comments.body, ratings.score, ratings.seen_live FROM replies JOIN comments ON replies.comment_id = comments.id JOIN ratings ON comments.rating_id = ratings.id WHERE replies.id = <id>;
+}
+
+query readCommentReply(int id) {
+    SELECT replies.id, replies.body FROM replies JOIN comments ON replies.comment_id = comments.id WHERE comments.id = <id>;
+}
+
+query readTrackDj(int id) {
+    SELECT djs.id, djs.name, djs.image_url, djs.bio, djs.uid, djs.past_venues, djs.email, djs.phone, djs.dj_status, djs.sdcl_followers, djs.sdcl_id, djs.city, djs.twitter_hdl, djs.agent_status, djs.rate, djs.can_produce, djs.slug, djs.fb_likes, djs.fbpage_id, djs.fb_bio, djs.talking_about_count, djs.fb_location FROM tracks JOIN djs ON tracks.dj_id = djs.id WHERE tracks.id = <id>;
+}
+
+query readDjTrack(int id) {
+    SELECT tracks.id, tracks.demo, tracks.dj_id, tracks.playback_count, tracks.favoritings_count, tracks.title, tracks.tag_list FROM tracks JOIN djs ON tracks.dj_id = djs.id WHERE djs.id = <id>;
+}
+

@@ -1,0 +1,387 @@
+update createDepartment(int id, String name, int user_id, String active, String created_at, String updated_at) {
+    INSERT INTO departments (departments.id, departments.name, departments.user_id, departments.active, departments.created_at, departments.updated_at) VALUES (<id>, <name>, <user_id>, <active>, <created_at>, <updated_at>);
+}
+
+update deleteDepartment(int id) {
+    DELETE FROM departments WHERE departments.id = <id>;
+}
+
+update updateDepartment(int id, String name, int user_id, String active, String updated_at) {
+    UPDATE departments SET departments.name = <name> WHERE departments.id = <id>;
+    UPDATE departments SET departments.user_id = <user_id> WHERE departments.id = <id>;
+    UPDATE departments SET departments.active = <active> WHERE departments.id = <id>;
+    UPDATE departments SET departments.updated_at = <updated_at> WHERE departments.id = <id>;
+}
+
+query readDepartment(int id) {
+    SELECT departments.name, departments.user_id, departments.active FROM departments WHERE departments.id = <id>;
+}
+
+query readDepartmentCreateTime(int id) {
+    SELECT departments.created_at FROM departments WHERE departments.id = <id>;
+}
+
+query readDepartmentUpdateTime(int id) {
+    SELECT departments.updated_at FROM departments WHERE departments.id = <id>;
+}
+
+update createGroup(int id, String name, String description, String created_at, String updated_at) {
+    INSERT INTO groups (groups.id, groups.name, groups.description, groups.created_at, groups.updated_at) VALUES (<id>, <name>, <description>, <created_at>, <updated_at>);
+}
+
+update deleteGroup(int id) {
+    DELETE FROM groups WHERE groups.id = <id>;
+}
+
+update updateGroup(int id, String name, String description, String updated_at) {
+    UPDATE groups SET groups.name = <name> WHERE groups.id = <id>;
+    UPDATE groups SET groups.description = <description> WHERE groups.id = <id>;
+    UPDATE groups SET groups.updated_at = <updated_at> WHERE groups.id = <id>;
+}
+
+query readGroup(int id) {
+    SELECT groups.name, groups.description FROM groups WHERE groups.id = <id>;
+}
+
+query readGroupCreateTime(int id) {
+    SELECT groups.created_at FROM groups WHERE groups.id = <id>;
+}
+
+query readGroupUpdateTime(int id) {
+    SELECT groups.updated_at FROM groups WHERE groups.id = <id>;
+}
+
+update createGroupPermission(int id, int group_id, int permission_id, String created_at, String updated_at) {
+    INSERT INTO groups_permissions (groups_permissions.id, groups_permissions.group_id, groups_permissions.permission_id, groups_permissions.created_at, groups_permissions.updated_at) VALUES (<id>, <group_id>, <permission_id>, <created_at>, <updated_at>);
+}
+
+update deleteGroupPermission(int id) {
+    DELETE FROM groups_permissions WHERE groups_permissions.id = <id>;
+}
+
+update updateGroupPermission(int id, int group_id, int permission_id, String updated_at) {
+    UPDATE groups_permissions SET groups_permissions.group_id = <group_id> WHERE groups_permissions.id = <id>;
+    UPDATE groups_permissions SET groups_permissions.permission_id = <permission_id> WHERE groups_permissions.id = <id>;
+    UPDATE groups_permissions SET groups_permissions.updated_at = <updated_at> WHERE groups_permissions.id = <id>;
+}
+
+query readGroupPermission(int id) {
+    SELECT groups_permissions.group_id, groups_permissions.permission_id FROM groups_permissions WHERE groups_permissions.id = <id>;
+}
+
+query readGroupPermissionCreateTime(int id) {
+    SELECT groups_permissions.created_at FROM groups_permissions WHERE groups_permissions.id = <id>;
+}
+
+query readGroupPermissionUpdateTime(int id) {
+    SELECT groups_permissions.updated_at FROM groups_permissions WHERE groups_permissions.id = <id>;
+}
+
+update createGroupUser(int id, int group_id, int user_id, String created_at, String updated_at) {
+    INSERT INTO groups_users (groups_users.id, groups_users.group_id, groups_users.user_id, groups_users.created_at, groups_users.updated_at) VALUES (<id>, <group_id>, <user_id>, <created_at>, <updated_at>);
+}
+
+update deleteGroupUser(int id) {
+    DELETE FROM groups_users WHERE groups_users.id = <id>;
+}
+
+update updateGroupUser(int id, int group_id, int user_id, String updated_at) {
+    UPDATE groups_users SET groups_users.group_id = <group_id> WHERE groups_users.id = <id>;
+    UPDATE groups_users SET groups_users.user_id = <user_id> WHERE groups_users.id = <id>;
+    UPDATE groups_users SET groups_users.updated_at = <updated_at> WHERE groups_users.id = <id>;
+}
+
+query readGroupUser(int id) {
+    SELECT groups_users.group_id, groups_users.user_id FROM groups_users WHERE groups_users.id = <id>;
+}
+
+query readGroupUserCreateTime(int id) {
+    SELECT groups_users.created_at FROM groups_users WHERE groups_users.id = <id>;
+}
+
+query readGroupUserUpdateTime(int id) {
+    SELECT groups_users.updated_at FROM groups_users WHERE groups_users.id = <id>;
+}
+
+update createIncidentalType(int id, String name, String description, String base, String modifier_amount, String modifier_description, String created_at, String updated_at) {
+    INSERT INTO incidental_types (incidental_types.id, incidental_types.name, incidental_types.description, incidental_types.base, incidental_types.modifier_amount, incidental_types.modifier_description, incidental_types.created_at, incidental_types.updated_at) VALUES (<id>, <name>, <description>, <base>, <modifier_amount>, <modifier_description>, <created_at>, <updated_at>);
+}
+
+update deleteIncidentalType(int id) {
+    DELETE FROM incidental_types WHERE incidental_types.id = <id>;
+}
+
+update updateIncidentalType(int id, String name, String description, String base, String modifier_amount, String modifier_description, String updated_at) {
+    UPDATE incidental_types SET incidental_types.name = <name> WHERE incidental_types.id = <id>;
+    UPDATE incidental_types SET incidental_types.description = <description> WHERE incidental_types.id = <id>;
+    UPDATE incidental_types SET incidental_types.base = <base> WHERE incidental_types.id = <id>;
+    UPDATE incidental_types SET incidental_types.modifier_amount = <modifier_amount> WHERE incidental_types.id = <id>;
+    UPDATE incidental_types SET incidental_types.modifier_description = <modifier_description> WHERE incidental_types.id = <id>;
+    UPDATE incidental_types SET incidental_types.updated_at = <updated_at> WHERE incidental_types.id = <id>;
+}
+
+query readIncidentalType(int id) {
+    SELECT incidental_types.name, incidental_types.description, incidental_types.base, incidental_types.modifier_amount, incidental_types.modifier_description FROM incidental_types WHERE incidental_types.id = <id>;
+}
+
+query readIncidentalTypeCreateTime(int id) {
+    SELECT incidental_types.created_at FROM incidental_types WHERE incidental_types.id = <id>;
+}
+
+query readIncidentalTypeUpdateTime(int id) {
+    SELECT incidental_types.updated_at FROM incidental_types WHERE incidental_types.id = <id>;
+}
+
+update createIncurredIncidental(int id, int incidental_type_id, String times_modified, String notes, String document, String created_at, String updated_at) {
+    INSERT INTO incurred_incidentals (incurred_incidentals.id, incurred_incidentals.incidental_type_id, incurred_incidentals.times_modified, incurred_incidentals.notes, incurred_incidentals.document, incurred_incidentals.created_at, incurred_incidentals.updated_at) VALUES (<id>, <incidental_type_id>, <times_modified>, <notes>, <document>, <created_at>, <updated_at>);
+}
+
+update deleteIncurredIncidental(int id) {
+    DELETE FROM incurred_incidentals WHERE incurred_incidentals.id = <id>;
+}
+
+update updateIncurredIncidental(int id, int incidental_type_id, String times_modified, String notes, String document, String updated_at) {
+    UPDATE incurred_incidentals SET incurred_incidentals.incidental_type_id = <incidental_type_id> WHERE incurred_incidentals.id = <id>;
+    UPDATE incurred_incidentals SET incurred_incidentals.times_modified = <times_modified> WHERE incurred_incidentals.id = <id>;
+    UPDATE incurred_incidentals SET incurred_incidentals.notes = <notes> WHERE incurred_incidentals.id = <id>;
+    UPDATE incurred_incidentals SET incurred_incidentals.document = <document> WHERE incurred_incidentals.id = <id>;
+    UPDATE incurred_incidentals SET incurred_incidentals.updated_at = <updated_at> WHERE incurred_incidentals.id = <id>;
+}
+
+query readIncurredIncidental(int id) {
+    SELECT incurred_incidentals.incidental_type_id, incurred_incidentals.times_modified, incurred_incidentals.notes, incurred_incidentals.document FROM incurred_incidentals WHERE incurred_incidentals.id = <id>;
+}
+
+query readIncurredIncidentalCreateTime(int id) {
+    SELECT incurred_incidentals.created_at FROM incurred_incidentals WHERE incurred_incidentals.id = <id>;
+}
+
+query readIncurredIncidentalUpdateTime(int id) {
+    SELECT incurred_incidentals.updated_at FROM incurred_incidentals WHERE incurred_incidentals.id = <id>;
+}
+
+update createItemType(int id, String name, String disclaimer, String base_amount, String amount_per_day, String created_at, String updated_at) {
+    INSERT INTO fee_schedules (fee_schedules.id, fee_schedules.base_amount, fee_schedules.amount_per_day, fee_schedules.item_type_id, fee_schedules.created_at, fee_schedules.updated_at) VALUES (FRESH(1), <base_amount>, <amount_per_day>, <id>, <created_at>, <updated_at>);
+    INSERT INTO item_types (item_types.id, item_types.name, item_types.disclaimer, item_types.fee_schedule_id, item_types.created_at, item_types.updated_at) VALUES (<id>, <name>, <disclaimer>, FRESH(1), <created_at>, <updated_at>);
+}
+
+update deleteItemType(int id) {
+    DELETE item_types, fee_schedules FROM item_types JOIN fee_schedules ON item_types.fee_schedule_id = fee_schedules.id WHERE item_types.id = <id>;
+}
+
+update updateItemType(int id, String name, String disclaimer, String base_amount, String amount_per_day, String updated_at) {
+    UPDATE item_types SET item_types.name = <name> WHERE item_types.id = <id>;
+    UPDATE item_types SET item_types.disclaimer = <disclaimer> WHERE item_types.id = <id>;
+    UPDATE fee_schedules JOIN item_types ON fee_schedules.id = item_types.fee_schedule_id SET fee_schedules.base_amount = <base_amount> WHERE item_types.id = <id>;
+    UPDATE fee_schedules JOIN item_types ON fee_schedules.id = item_types.fee_schedule_id SET fee_schedules.amount_per_day = <amount_per_day> WHERE item_types.id = <id>;
+    UPDATE fee_schedules JOIN item_types ON fee_schedules.id = item_types.fee_schedule_id SET fee_schedules.updated_at = <updated_at> WHERE item_types.id = <id>;
+    UPDATE item_types SET item_types.updated_at = <updated_at> WHERE item_types.id = <id>;
+}
+
+query readItemType(int id) {
+    SELECT item_types.name, item_types.disclaimer, fee_schedules.base_amount, fee_schedules.amount_per_day FROM item_types JOIN fee_schedules ON item_types.fee_schedule_id = fee_schedules.id WHERE item_types.id = <id>;
+}
+
+query readItemTypeCreateTime(int id) {
+    SELECT item_types.created_at FROM item_types WHERE item_types.id = <id>;
+}
+
+query readItemTypeUpdateTime(int id) {
+    SELECT item_types.updated_at FROM item_types WHERE item_types.id = <id>;
+}
+
+update createPermission(int id, String controller, String action, String id_field, String created_at, String updated_at) {
+    INSERT INTO permissions (permissions.id, permissions.controller, permissions.action, permissions.id_field, permissions.created_at, permissions.updated_at) VALUES (<id>, <controller>, <action>, <id_field>, <created_at>, <updated_at>);
+}
+
+update deletePermission(int id) {
+    DELETE FROM permissions WHERE permissions.id = <id>;
+}
+
+update updatePermission(int id, String controller, String action, String id_field, String updated_at) {
+    UPDATE permissions SET permissions.controller = <controller> WHERE permissions.id = <id>;
+    UPDATE permissions SET permissions.action = <action> WHERE permissions.id = <id>;
+    UPDATE permissions SET permissions.id_field = <id_field> WHERE permissions.id = <id>;
+    UPDATE permissions SET permissions.updated_at = <updated_at> WHERE permissions.id = <id>;
+}
+
+query readPermission(int id) {
+    SELECT permissions.controller, permissions.action, permissions.id_field FROM permissions WHERE permissions.id = <id>;
+}
+
+query readPermissionCreateTime(int id) {
+    SELECT permissions.created_at FROM permissions WHERE permissions.id = <id>;
+}
+
+query readPermissionUpdateTime(int id) {
+    SELECT permissions.updated_at FROM permissions WHERE permissions.id = <id>;
+}
+
+update createRental(int id, String rental_status, int user_id, int department_id, int reservation_id, int item_type_id, String start_date, String end_date, String checked_in_at, String checked_out_at, String created_at, String updated_at) {
+    INSERT INTO rentals (rentals.id, rentals.rental_status, rentals.user_id, rentals.department_id, rentals.reservation_id, rentals.item_type_id, rentals.start_date, rentals.end_date, rentals.checked_in_at, rentals.checked_out_at, rentals.created_at, rentals.updated_at) VALUES (<id>, <rental_status>, <user_id>, <department_id>, <reservation_id>, <item_type_id>, <start_date>, <end_date>, <checked_in_at>, <checked_out_at>, <created_at>, <updated_at>);
+}
+
+update deleteRental(int id) {
+    DELETE FROM rentals WHERE rentals.id = <id>;
+}
+
+update updateRental(int id, String rental_status, int user_id, int department_id, int reservation_id, int item_type_id, String start_date, String end_date, String checked_in_at, String checked_out_at, String updated_at) {
+    UPDATE rentals SET rentals.rental_status = <rental_status> WHERE rentals.id = <id>;
+    UPDATE rentals SET rentals.user_id = <user_id> WHERE rentals.id = <id>;
+    UPDATE rentals SET rentals.department_id = <department_id> WHERE rentals.id = <id>;
+    UPDATE rentals SET rentals.reservation_id = <reservation_id> WHERE rentals.id = <id>;
+    UPDATE rentals SET rentals.item_type_id = <item_type_id> WHERE rentals.id = <id>;
+    UPDATE rentals SET rentals.start_date = <start_date> WHERE rentals.id = <id>;
+    UPDATE rentals SET rentals.end_date = <end_date> WHERE rentals.id = <id>;
+    UPDATE rentals SET rentals.checked_in_at = <checked_in_at> WHERE rentals.id = <id>;
+    UPDATE rentals SET rentals.checked_out_at = <checked_out_at> WHERE rentals.id = <id>;
+    UPDATE rentals SET rentals.updated_at = <updated_at> WHERE rentals.id = <id>;
+}
+
+query readRental(int id) {
+    SELECT rentals.rental_status, rentals.user_id, rentals.department_id, rentals.reservation_id, rentals.item_type_id, rentals.start_date, rentals.end_date, rentals.checked_in_at, rentals.checked_out_at FROM rentals WHERE rentals.id = <id>;
+}
+
+query readRentalCreateTime(int id) {
+    SELECT rentals.created_at FROM rentals WHERE rentals.id = <id>;
+}
+
+query readRentalUpdateTime(int id) {
+    SELECT rentals.updated_at FROM rentals WHERE rentals.id = <id>;
+}
+
+update createUser(int id, String first_name, String last_name, String email, int phone, int spire_id, int department_id, String active, String created_at, String updated_at) {
+    INSERT INTO users (users.id, users.first_name, users.last_name, users.email, users.phone, users.spire_id, users.department_id, users.active, users.created_at, users.updated_at) VALUES (<id>, <first_name>, <last_name>, <email>, <phone>, <spire_id>, <department_id>, <active>, <created_at>, <updated_at>);
+}
+
+update deleteUser(int id) {
+    DELETE FROM users WHERE users.id = <id>;
+}
+
+update updateUser(int id, String first_name, String last_name, String email, int phone, int spire_id, int department_id, String active, String updated_at) {
+    UPDATE users SET users.first_name = <first_name> WHERE users.id = <id>;
+    UPDATE users SET users.last_name = <last_name> WHERE users.id = <id>;
+    UPDATE users SET users.email = <email> WHERE users.id = <id>;
+    UPDATE users SET users.phone = <phone> WHERE users.id = <id>;
+    UPDATE users SET users.spire_id = <spire_id> WHERE users.id = <id>;
+    UPDATE users SET users.department_id = <department_id> WHERE users.id = <id>;
+    UPDATE users SET users.active = <active> WHERE users.id = <id>;
+    UPDATE users SET users.updated_at = <updated_at> WHERE users.id = <id>;
+}
+
+query readUser(int id) {
+    SELECT users.first_name, users.last_name, users.email, users.phone, users.spire_id, users.department_id, users.active FROM users WHERE users.id = <id>;
+}
+
+query readUserCreateTime(int id) {
+    SELECT users.created_at FROM users WHERE users.id = <id>;
+}
+
+query readUserUpdateTime(int id) {
+    SELECT users.updated_at FROM users WHERE users.id = <id>;
+}
+
+update createVersion(int id, String item_type, int item_id, String event, String whodunnit, String object, String created_at) {
+    INSERT INTO versions (versions.id, versions.item_type, versions.item_id, versions.event, versions.whodunnit, versions.object, versions.created_at) VALUES (<id>, <item_type>, <item_id>, <event>, <whodunnit>, <object>, <created_at>);
+}
+
+update deleteVersion(int id) {
+    DELETE FROM versions WHERE versions.id = <id>;
+}
+
+update updateVersion(int id, String item_type, int item_id, String event, String whodunnit, String object) {
+    UPDATE versions SET versions.item_type = <item_type> WHERE versions.id = <id>;
+    UPDATE versions SET versions.item_id = <item_id> WHERE versions.id = <id>;
+    UPDATE versions SET versions.event = <event> WHERE versions.id = <id>;
+    UPDATE versions SET versions.whodunnit = <whodunnit> WHERE versions.id = <id>;
+    UPDATE versions SET versions.object = <object> WHERE versions.id = <id>;
+}
+
+query readVersion(int id) {
+    SELECT versions.item_type, versions.item_id, versions.event, versions.whodunnit, versions.object FROM versions WHERE versions.id = <id>;
+}
+
+query readVersionCreateTime(int id) {
+    SELECT versions.created_at FROM versions WHERE versions.id = <id>;
+}
+
+query readDepartmentUser(int id) {
+    SELECT users.id, users.first_name, users.last_name, users.email, users.phone, users.spire_id, users.department_id, users.active FROM departments JOIN users ON departments.user_id = users.id WHERE departments.id = <id>;
+}
+
+query readUserDepartment(int id) {
+    SELECT departments.id, departments.name, departments.user_id, departments.active FROM departments JOIN users ON departments.user_id = users.id WHERE users.id = <id>;
+}
+
+query readGroupPermissionGroup(int id) {
+    SELECT groups.id, groups.name, groups.description FROM groups_permissions JOIN groups ON groups_permissions.group_id = groups.id WHERE groups_permissions.id = <id>;
+}
+
+query readGroupGroupPermission(int id) {
+    SELECT groups_permissions.id, groups_permissions.group_id, groups_permissions.permission_id FROM groups_permissions JOIN groups ON groups_permissions.group_id = groups.id WHERE groups.id = <id>;
+}
+
+query readGroupPermissionPermission(int id) {
+    SELECT permissions.id, permissions.controller, permissions.action, permissions.id_field FROM groups_permissions JOIN permissions ON groups_permissions.permission_id = permissions.id WHERE groups_permissions.id = <id>;
+}
+
+query readPermissionGroupPermission(int id) {
+    SELECT groups_permissions.id, groups_permissions.group_id, groups_permissions.permission_id FROM groups_permissions JOIN permissions ON groups_permissions.permission_id = permissions.id WHERE permissions.id = <id>;
+}
+
+query readGroupUserGroup(int id) {
+    SELECT groups.id, groups.name, groups.description FROM groups_users JOIN groups ON groups_users.group_id = groups.id WHERE groups_users.id = <id>;
+}
+
+query readGroupGroupUser(int id) {
+    SELECT groups_users.id, groups_users.group_id, groups_users.user_id FROM groups_users JOIN groups ON groups_users.group_id = groups.id WHERE groups.id = <id>;
+}
+
+query readGroupUserUser(int id) {
+    SELECT users.id, users.first_name, users.last_name, users.email, users.phone, users.spire_id, users.department_id, users.active FROM groups_users JOIN users ON groups_users.user_id = users.id WHERE groups_users.id = <id>;
+}
+
+query readUserGroupUser(int id) {
+    SELECT groups_users.id, groups_users.group_id, groups_users.user_id FROM groups_users JOIN users ON groups_users.user_id = users.id WHERE users.id = <id>;
+}
+
+query readIncurredIncidentalIncidentalType(int id) {
+    SELECT incidental_types.id, incidental_types.name, incidental_types.description, incidental_types.base, incidental_types.modifier_amount, incidental_types.modifier_description FROM incurred_incidentals JOIN incidental_types ON incurred_incidentals.incidental_type_id = incidental_types.id WHERE incurred_incidentals.id = <id>;
+}
+
+query readIncidentalTypeIncurredIncidental(int id) {
+    SELECT incurred_incidentals.id, incurred_incidentals.incidental_type_id, incurred_incidentals.times_modified, incurred_incidentals.notes, incurred_incidentals.document FROM incurred_incidentals JOIN incidental_types ON incurred_incidentals.incidental_type_id = incidental_types.id WHERE incidental_types.id = <id>;
+}
+
+query readRentalUser(int id) {
+    SELECT users.id, users.first_name, users.last_name, users.email, users.phone, users.spire_id, users.department_id, users.active FROM rentals JOIN users ON rentals.user_id = users.id WHERE rentals.id = <id>;
+}
+
+query readUserRental(int id) {
+    SELECT rentals.id, rentals.rental_status, rentals.user_id, rentals.department_id, rentals.reservation_id, rentals.item_type_id, rentals.start_date, rentals.end_date, rentals.checked_in_at, rentals.checked_out_at FROM rentals JOIN users ON rentals.user_id = users.id WHERE users.id = <id>;
+}
+
+query readRentalDepartment(int id) {
+    SELECT departments.id, departments.name, departments.user_id, departments.active FROM rentals JOIN departments ON rentals.department_id = departments.id WHERE rentals.id = <id>;
+}
+
+query readDepartmentRental(int id) {
+    SELECT rentals.id, rentals.rental_status, rentals.user_id, rentals.department_id, rentals.reservation_id, rentals.item_type_id, rentals.start_date, rentals.end_date, rentals.checked_in_at, rentals.checked_out_at FROM rentals JOIN departments ON rentals.department_id = departments.id WHERE departments.id = <id>;
+}
+
+query readRentalItemType(int id) {
+    SELECT item_types.id, item_types.name, item_types.disclaimer, fee_schedules.base_amount, fee_schedules.amount_per_day FROM rentals JOIN item_types ON rentals.item_type_id = item_types.id JOIN fee_schedules ON item_types.fee_schedule_id = fee_schedules.id WHERE rentals.id = <id>;
+}
+
+query readItemTypeRental(int id) {
+    SELECT rentals.id, rentals.rental_status, rentals.user_id, rentals.department_id, rentals.reservation_id, rentals.item_type_id, rentals.start_date, rentals.end_date, rentals.checked_in_at, rentals.checked_out_at FROM rentals JOIN item_types ON rentals.item_type_id = item_types.id WHERE item_types.id = <id>;
+}
+
+query readUserDepartment2(int id) {
+    SELECT departments.id, departments.name, departments.user_id, departments.active FROM users JOIN departments ON users.department_id = departments.id WHERE users.id = <id>;
+}
+
+query readDepartmentUser2(int id) {
+    SELECT users.id, users.first_name, users.last_name, users.email, users.phone, users.spire_id, users.department_id, users.active FROM users JOIN departments ON users.department_id = departments.id WHERE departments.id = <id>;
+}
+
