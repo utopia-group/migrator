@@ -1,0 +1,10 @@
+.DS_Store
+._*
+*.class
+*.swp
+*~
+*.bak
+*.log
+/bin/
+.idea/
+
